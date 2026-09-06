@@ -79,7 +79,7 @@ export default function TelanganaMapSection() {
                 <div className="flex items-center gap-2">
                   <Compass className="w-4 h-4 text-[#B8860B]" />
                   <span className="text-xs font-mono font-bold tracking-widest uppercase text-slate-800">
-                    TELANGANA STATE JURISDICTION
+                    EXACT TELANGANA MAP
                   </span>
                 </div>
                 <span className="text-[10px] font-mono text-[#8B6508] px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 font-bold">

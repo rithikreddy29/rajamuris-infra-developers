@@ -290,18 +290,13 @@ export default function ContactSection() {
                 
                 {/* Brand Monogram & Company */}
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-xl bg-[#141C2E] border border-[#B8860B] flex items-center justify-center">
-                      <span className="font-serif font-bold text-[#F0CD6D] text-lg">R</span>
-                    </div>
-                    <div>
-                      <h4 className="font-display font-extrabold text-lg text-white tracking-wider uppercase leading-none">
-                        RAJAMURI'S
-                      </h4>
-                      <span className="text-[10px] font-mono tracking-[0.2em] text-[#F0CD6D] uppercase font-bold">
-                        INFRA DEVELOPERS
-                      </span>
-                    </div>
+                  <div className="mb-2">
+                    <h4 className="font-display font-black text-xl text-white tracking-wider uppercase leading-none">
+                      RAJAMURI'S
+                    </h4>
+                    <span className="text-[10px] font-mono tracking-[0.22em] text-[#F0CD6D] uppercase font-bold block mt-1">
+                      INFRA DEVELOPERS
+                    </span>
                   </div>
                   <p className="text-xs font-mono text-slate-400 mt-2">
                     Government Infrastructure, R&B Works & Civil Construction Since 2014
@@ -346,21 +341,6 @@ export default function ContactSection() {
                     </div>
                     <span>{company.address || 'Kodangal, Telangana'}</span>
                   </div>
-                </div>
-
-                {/* Card Bottom Action */}
-                <div className="pt-6 border-t border-white/10 flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">
-                    OFFICIAL CREDENTIAL
-                  </span>
-                  
-                  <a
-                    href={`tel:${owner.phoneClean || '+919666660634'}`}
-                    className="px-4 py-2 rounded-xl text-xs font-mono font-bold tracking-wider text-black bg-[#D4AF37] hover:bg-[#F0CD6D] transition-all flex items-center gap-1.5"
-                  >
-                    <span>CALL DIRECT</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
                 </div>
 
               </div>
