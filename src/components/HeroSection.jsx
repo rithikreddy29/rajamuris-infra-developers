@@ -76,10 +76,10 @@ export default function HeroSection() {
         <div className="w-full mt-4">
           <div className="text-center mb-3">
             <span className="text-[11px] font-mono tracking-widest text-[#B8860B] uppercase font-bold">
-              ✦ INTERACTIVE CIVIC CONSTRUCTION SIMULATION ✦
+              ✦ AUTOMATED CIVIC INFRASTRUCTURE SIMULATION ✦
             </span>
             <p className="text-xs text-slate-500 mt-0.5">
-              Scroll down or play the animation below to witness the layer-by-layer civil execution of Anganwadi centers & R&B roads
+              Live civil construction evolution of government schools, Anganwadi centers, and R&B road networks across Telangana
             </p>
           </div>
           <ConstructionScrollAnimation />

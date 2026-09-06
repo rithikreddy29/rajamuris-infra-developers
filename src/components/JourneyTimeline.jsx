@@ -1,384 +1,426 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { 
   Calendar, 
   MapPin, 
   Building, 
   Award, 
-  ChevronLeft, 
-  ChevronRight, 
   Layers, 
   Hammer,
   CheckCircle2,
-  HardHat
+  HardHat,
+  Compass,
+  ArrowDown,
+  Sparkles
 } from 'lucide-react';
 import { useData } from '../context/DataContext';
 
-const ALL_YEARS = [
-  '2014', '2015', '2016', '2017', '2018',
-  '2019', '2020', '2021', '2022', '2023',
-  '2024', '2025', '2026'
-];
+const STAGE_CONFIG = {
+  '2014': {
+    stage: 'Foundation & Earthwork Excavation',
+    progress: 20,
+    badge: 'Stage 1: Groundwork & RCC Footings',
+    teluguTitle: 'ప్రారంభ పునాది & సివిల్ పనులు'
+  },
+  '2016': {
+    stage: 'RCC Columns & Educational Structures',
+    progress: 40,
+    badge: 'Stage 2: Structural Column Casting',
+    teluguTitle: 'భవన నిర్మాణం & RCC పిల్లర్స్'
+  },
+  '2018': {
+    stage: 'Brick Masonry & Anganwadi Enclosures',
+    progress: 55,
+    badge: 'Stage 3: Masonry & Roof Slabs',
+    teluguTitle: 'గోడల నిర్మాణం & శ్లాబ్ కాస్టింగ్'
+  },
+  '2020': {
+    stage: 'R&B Roads & Public Infrastructure',
+    progress: 70,
+    badge: 'Stage 4: R&B Road Networks & Culverts',
+    teluguTitle: 'ఆర్ అండ్ బి రోడ్ల నిర్మాణం'
+  },
+  '2022': {
+    stage: 'Institutional Finishing & Civic Amenities',
+    progress: 85,
+    badge: 'Stage 5: Turnkey Facilities Handover',
+    teluguTitle: 'పూర్తి స్థాయి ప్రజా భవనాలు'
+  },
+  '2024': {
+    stage: 'A Decade of Completed Public Infrastructure',
+    progress: 95,
+    badge: 'Stage 6: 10-Year Public Delivery Landmark',
+    teluguTitle: 'దశాబ్ద కాల ప్రజా మౌలిక వసతులు'
+  },
+  '2026': {
+    stage: 'Next-Generation Civic Infrastructure Corridors',
+    progress: 100,
+    badge: 'Stage 7: Ongoing Modern Telangana Works',
+    teluguTitle: 'ఆధునిక ప్రజా మౌలిక వసతుల విస్తరణ'
+  }
+};
 
 export default function JourneyTimeline() {
   const { timeline } = useData();
-  const [selectedYear, setSelectedYear] = useState('2024');
-  const scrollContainerRef = useRef(null);
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [selectedMilestoneId, setSelectedMilestoneId] = useState(null);
 
-  // Determine stage percentage based on year for visual construction evolution
-  const getYearProgress = (yearStr) => {
-    const yr = parseInt(yearStr, 10);
-    if (yr <= 2014) return 0.15;
-    if (yr <= 2016) return 0.35;
-    if (yr <= 2018) return 0.50;
-    if (yr <= 2020) return 0.65;
-    if (yr <= 2022) return 0.80;
-    if (yr <= 2024) return 0.92;
-    return 1.0;
+  // Published entries sorted chronologically
+  const publishedEntries = (timeline || [])
+    .filter(t => t.status === 'published' || !t.status)
+    .sort((a, b) => parseInt(a.year, 10) - parseInt(b.year, 10));
+
+  const displayEntries = activeFilter === 'all' 
+    ? publishedEntries 
+    : publishedEntries.filter(t => t.year?.toString() === activeFilter);
+
+  const getStageMeta = (yearStr) => {
+    const yr = yearStr?.toString() || '2024';
+    if (STAGE_CONFIG[yr]) return STAGE_CONFIG[yr];
+    const yrNum = parseInt(yr, 10);
+    if (yrNum <= 2014) return STAGE_CONFIG['2014'];
+    if (yrNum <= 2016) return STAGE_CONFIG['2016'];
+    if (yrNum <= 2018) return STAGE_CONFIG['2018'];
+    if (yrNum <= 2020) return STAGE_CONFIG['2020'];
+    if (yrNum <= 2022) return STAGE_CONFIG['2022'];
+    if (yrNum <= 2024) return STAGE_CONFIG['2024'];
+    return STAGE_CONFIG['2026'];
   };
-
-  const currentProgress = getYearProgress(selectedYear);
-
-  const getStageName = (yr) => {
-    const y = parseInt(yr, 10);
-    if (y <= 2014) return "Site Excavation & Foundation Groundwork";
-    if (y <= 2016) return "RCC Steel Rebar Columns & Column Casting";
-    if (y <= 2018) return "Brick Masonry Walls & Classroom Frames";
-    if (y <= 2020) return "Roof Slab Casting & R&B Road Base Works";
-    if (y <= 2022) return "Anganwadi Center Finishing & Structural Handover";
-    if (y <= 2024) return "A Decade of Completed Public Infrastructure";
-    return "Next-Generation Civil Infrastructure & Modern Corridors";
-  };
-
-  const handleScrollTimeline = (direction) => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = direction === 'left' ? -350 : 350;
-      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
-
-  // Filter published entries for the selected year
-  const yearEntries = timeline.filter(t => {
-    const isPublished = t.status === 'published' || !t.status;
-    return isPublished && t.year?.toString() === selectedYear;
-  });
 
   return (
     <section id="journey" className="relative py-24 sm:py-32 bg-white overflow-hidden telangana-border-accent">
       
-      {/* Background Architectural Grid */}
-      <div className="absolute inset-0 bg-architectural-grid opacity-50 pointer-events-none"></div>
+      {/* Background Architectural Canvas / Blueprint Grid */}
+      <div className="absolute inset-0 bg-architectural-grid opacity-60 pointer-events-none"></div>
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-amber-50/50 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-blue-50/40 rounded-full blur-[120px] pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pb-6 border-b border-slate-200">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="w-6 h-[2px] bg-[#B8860B]"></span>
-              <span className="text-xs font-mono tracking-[0.25em] text-[#B8860B] uppercase font-bold">
-                HISTORICAL CHRONOLOGY
-              </span>
-            </div>
-            <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-950 uppercase tracking-tight">
-              OUR JOURNEY
-            </h2>
-            <p className="text-xs sm:text-sm font-mono tracking-widest text-[#8B6508] mt-1 uppercase font-semibold">
-              2014 — 2026 HORIZONTAL TIMELINE & CONSTRUCTION STAGE EVOLUTION
-            </p>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200/80 mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#B8860B] animate-pulse"></span>
+            <span className="text-xs font-mono tracking-[0.25em] text-[#8B6508] uppercase font-bold">
+              CHRONOLOGICAL RECORD • 2014 TO 2026
+            </span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-slate-950 uppercase tracking-tight">
+            OUR <span className="text-gold-gradient">JOURNEY</span>
+          </h2>
+
+          <p className="text-sm sm:text-base text-slate-600 font-light mt-3 leading-relaxed">
+            Over a decade of unwavering commitment to government infrastructure, educational institutions, Anganwadi buildings, and R&B road networks across Kodangal and Telangana.
+          </p>
+
+          {/* Quick Year Filter Pill Navigation */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
             <button
-              onClick={() => handleScrollTimeline('left')}
-              className="p-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 hover:text-slate-950 transition-colors shadow-sm"
-              aria-label="Scroll left"
+              onClick={() => setActiveFilter('all')}
+              className={`px-4 py-2 rounded-xl text-xs font-mono font-bold tracking-wider uppercase transition-all ${
+                activeFilter === 'all'
+                  ? 'bg-slate-950 text-white shadow-md scale-105'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-950'
+              }`}
             >
-              <ChevronLeft className="w-5 h-5" />
+              ALL MILESTONES (2014–2026)
             </button>
-            <button
-              onClick={() => handleScrollTimeline('right')}
-              className="p-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 hover:text-slate-950 transition-colors shadow-sm"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-
-        {/* ------------------------------------------------------------- */}
-        {/* DYNAMIC BUILDING CONSTRUCTION EVOLUTION DISPLAY */}
-        {/* ------------------------------------------------------------- */}
-        <div className="mb-12 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-950 to-[#0A0F1D] text-white p-6 sm:p-8 border border-slate-800 shadow-xl overflow-hidden relative">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
-            
-            {/* Left Info: Year & Stage Title */}
-            <div className="w-full lg:w-1/3 space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#F0CD6D] text-xs font-mono font-bold">
-                <HardHat className="w-3.5 h-3.5" />
-                <span>YEAR {selectedYear} SIMULATION</span>
-              </div>
-
-              <h3 className="font-display font-bold text-2xl sm:text-3xl uppercase leading-tight text-white">
-                {getStageName(selectedYear)}
-              </h3>
-
-              <p className="text-xs sm:text-sm text-slate-400 font-light leading-relaxed">
-                As the company evolved from 2014 to {selectedYear}, civil works progressed from basic foundation excavation to full-scale institutional Anganwadi complexes, schools, and R&B road networks.
-              </p>
-
-              <div className="pt-2 flex items-center gap-3 text-xs font-mono text-slate-400">
-                <span className="text-[#F0CD6D] font-bold">STAGE PROGRESS:</span>
-                <div className="flex-1 h-2 rounded-full bg-white/10 overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] transition-all duration-700 rounded-full"
-                    style={{ width: `${currentProgress * 100}%` }}
-                  ></div>
-                </div>
-                <span>{Math.round(currentProgress * 100)}%</span>
-              </div>
-            </div>
-
-            {/* Right: Dynamic Vector Construction Visual for this Year */}
-            <div className="w-full lg:w-2/3 aspect-[21/9] rounded-xl bg-slate-950/80 border border-white/10 overflow-hidden relative flex items-center justify-center">
-              <svg viewBox="0 0 700 280" className="w-full h-full">
-                <defs>
-                  <linearGradient id="skyMini" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#0F172A" />
-                    <stop offset="100%" stopColor="#1E293B" />
-                  </linearGradient>
-                  <linearGradient id="roadMini" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#0F172A" />
-                    <stop offset="100%" stopColor="#334155" />
-                  </linearGradient>
-                </defs>
-
-                <rect width="700" height="210" fill="url(#skyMini)" />
-                <rect x="0" y="210" width="700" height="70" fill="#334155" />
-                <line x1="0" y1="210" x2="700" y2="210" stroke="#64748B" strokeWidth="2" />
-
-                {/* 1. Foundation Footings */}
-                {currentProgress >= 0.15 && (
-                  <g>
-                    {[220, 310, 400, 490].map((cx, i) => (
-                      <g key={i}>
-                        <rect x={cx - 15} y="215" width="30" height="10" fill="#94A3B8" />
-                        <rect 
-                          x={cx - 5} 
-                          y={215 - Math.min(currentProgress * 120, 95)} 
-                          width="10" 
-                          height={Math.min(currentProgress * 120, 95)} 
-                          fill={currentProgress > 0.6 ? "#64748B" : "#D4AF37"} 
-                        />
-                      </g>
-                    ))}
-                    <rect x="200" y="202" width="305" height="10" fill="#64748B" />
-                  </g>
-                )}
-
-                {/* 2. Masonry Walls */}
-                {currentProgress >= 0.45 && (
-                  <g>
-                    <rect
-                      x="210"
-                      y={202 - Math.min((currentProgress - 0.45) * 200, 75)}
-                      width="285"
-                      height={Math.min((currentProgress - 0.45) * 200, 75)}
-                      fill={currentProgress > 0.75 ? "#FFFFFF" : "#EF4444"}
-                      stroke="#1E293B"
-                      strokeWidth="2"
-                    />
-                    {currentProgress < 0.75 && (
-                      <g stroke="#FECACA" strokeWidth="1" opacity="0.5">
-                        <line x1="210" y1="180" x2="495" y2="180" />
-                        <line x1="210" y1="160" x2="495" y2="160" />
-                        <line x1="210" y1="140" x2="495" y2="140" />
-                      </g>
-                    )}
-                  </g>
-                )}
-
-                {/* 3. Roof Slab & Finished Exterior */}
-                {currentProgress >= 0.65 && (
-                  <rect x="195" y="118" width="315" height="10" fill="#E2E8F0" stroke="#0F172A" strokeWidth="1.5" />
-                )}
-
-                {/* 4. Complete Building Trim & Details */}
-                {currentProgress >= 0.75 && (
-                  <g>
-                    {/* Green Base Trim */}
-                    <rect x="210" y="192" width="285" height="10" fill="#16A34A" />
-                    {/* Center Door */}
-                    <rect x="330" y="152" width="45" height="50" fill="#0F172A" />
-                    {/* Windows */}
-                    <rect x="235" y="145" width="40" height="35" rx="2" fill="#0284C7" />
-                    <rect x="430" y="145" width="40" height="35" rx="2" fill="#0284C7" />
-                    {/* Signboard */}
-                    <rect x="290" y="122" width="125" height="18" rx="2" fill="#B8860B" />
-                    <text x="352" y="134" textAnchor="middle" fill="#FFFFFF" fontSize="8" fontWeight="bold" fontFamily="monospace">
-                      ANGANWADI CENTER
-                    </text>
-                  </g>
-                )}
-
-                {/* 5. R&B Paved Road */}
-                <g transform="translate(0, 240)">
-                  <rect x="0" y="0" width={Math.min(currentProgress * 800, 700)} height="40" fill="url(#roadMini)" />
-                  {currentProgress >= 0.6 && (
-                    <line
-                      x1="0"
-                      y1="20"
-                      x2={Math.min((currentProgress - 0.6) * 1750, 700)}
-                      y2="20"
-                      stroke="#FBBF24"
-                      strokeWidth="2"
-                      strokeDasharray="15 10"
-                    />
-                  )}
-                </g>
-              </svg>
-
-              <div className="absolute bottom-2 left-3 text-[10px] font-mono text-slate-400">
-                STATE: {selectedYear} • {getStageName(selectedYear)}
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* ------------------------------------------------------------- */}
-        {/* HORIZONTAL TIMELINE TRACK (Scrollable & Clickable 2014-2026) */}
-        {/* ------------------------------------------------------------- */}
-        <div
-          ref={scrollContainerRef}
-          className="flex items-stretch gap-4 overflow-x-auto pb-6 pt-2 scrollbar-none scroll-smooth select-none"
-        >
-          {ALL_YEARS.map((year) => {
-            const isSelected = selectedYear === year;
-            const entries = timeline.filter(t => t.year?.toString() === year && (t.status === 'published' || !t.status));
-            const hasData = entries.length > 0;
-
-            return (
-              <div
-                key={year}
-                onClick={() => setSelectedYear(year)}
-                className={`flex-shrink-0 w-72 sm:w-80 rounded-2xl p-6 cursor-pointer transition-all duration-300 flex flex-col justify-between border ${
-                  isSelected
-                    ? 'bg-slate-900 text-white border-[#B8860B] shadow-xl scale-[1.02]'
-                    : 'bg-white text-slate-800 border-slate-200 hover:border-[#B8860B]/40 hover:shadow-md'
+            {['2014', '2016', '2020', '2024', '2026'].map((yr) => (
+              <button
+                key={yr}
+                onClick={() => setActiveFilter(yr)}
+                className={`px-3.5 py-2 rounded-xl text-xs font-mono font-bold tracking-wider transition-all ${
+                  activeFilter === yr
+                    ? 'bg-[#B8860B] text-white shadow-md scale-105'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-950'
                 }`}
               >
-                <div>
-                  {/* Top Year & Milestone Pill */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className={`text-2xl font-display font-extrabold tracking-tight ${
-                      isSelected ? 'text-[#F0CD6D]' : 'text-slate-900'
-                    }`}>
-                      {year}
-                    </span>
-                    <span className={`text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded-md ${
-                      isSelected
-                        ? 'bg-[#B8860B]/30 text-[#F0CD6D] border border-[#B8860B]/50'
-                        : 'bg-slate-100 text-slate-600'
-                    }`}>
-                      {hasData ? entries[0].milestone || 'Record' : 'Upcoming'}
-                    </span>
-                  </div>
-
-                  {/* Title & Description */}
-                  {hasData ? (
-                    <div>
-                      <h4 className={`font-display font-bold text-base uppercase leading-snug mb-2 ${
-                        isSelected ? 'text-white' : 'text-slate-900'
-                      }`}>
-                        {entries[0].title}
-                      </h4>
-                      <p className={`text-xs font-light leading-relaxed line-clamp-3 ${
-                        isSelected ? 'text-slate-300' : 'text-slate-500'
-                      }`}>
-                        {entries[0].description}
-                      </p>
-                    </div>
-                  ) : (
-                    <div>
-                      <h4 className={`font-display font-bold text-sm uppercase leading-snug mb-2 ${
-                        isSelected ? 'text-slate-300' : 'text-slate-400'
-                      }`}>
-                        Projects & Milestones
-                      </h4>
-                      <p className={`text-xs font-light leading-relaxed ${
-                        isSelected ? 'text-slate-400' : 'text-slate-400'
-                      }`}>
-                        Projects and milestones from this year will be added soon.
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                {/* Bottom Meta */}
-                <div className={`mt-6 pt-4 border-t flex items-center justify-between text-[11px] font-mono ${
-                  isSelected ? 'border-white/10 text-slate-400' : 'border-slate-100 text-slate-500'
-                }`}>
-                  <span className="flex items-center gap-1">
-                    <MapPin className="w-3 h-3 text-[#B8860B]" />
-                    {hasData ? entries[0].location || 'Telangana' : 'Kodangal'}
-                  </span>
-                  <span className={isSelected ? 'text-[#F0CD6D] font-bold' : 'text-slate-700 font-semibold'}>
-                    {isSelected ? 'SELECTED' : 'CLICK TO VIEW'}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
+                {yr}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Selected Year Full Detail Card */}
-        <div className="mt-8">
-          {yearEntries.length > 0 ? (
-            <div className="rounded-2xl bg-slate-50 border border-slate-200 p-6 sm:p-8">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 mb-4 border-b border-slate-200">
-                <div className="flex items-center gap-3">
-                  <span className="w-12 h-12 rounded-xl bg-slate-900 text-[#F0CD6D] font-display font-extrabold text-xl flex items-center justify-center">
-                    {selectedYear}
-                  </span>
-                  <div>
-                    <h3 className="font-display font-bold text-xl text-slate-950 uppercase">
-                      {yearEntries[0].title}
-                    </h3>
-                    <span className="text-xs font-mono text-[#8B6508] font-semibold">
-                      {yearEntries[0].milestone} • {yearEntries[0].location || 'Kodangal, Telangana'}
-                    </span>
+        {/* ------------------------------------------------------------- */}
+        {/* VERTICAL TIMELINE CONTAINER */}
+        {/* ------------------------------------------------------------- */}
+        <div className="relative mt-12">
+          
+          {/* Continuous Architectural Vertical Spine Line */}
+          <div className="absolute left-6 md:left-1/2 -translate-x-1/2 top-4 bottom-8 w-1 bg-gradient-to-b from-[#B8860B] via-slate-300 to-[#8B6508] rounded-full z-0"></div>
+
+          {/* Timeline Nodes & Milestone Cards */}
+          <div className="space-y-12 sm:space-y-16 relative z-10">
+            {displayEntries.map((entry, index) => {
+              const isEven = index % 2 === 0;
+              const meta = getStageMeta(entry.year);
+              const isSelected = selectedMilestoneId === entry.id;
+
+              return (
+                <div
+                  key={entry.id || index}
+                  className={`relative flex flex-col md:flex-row items-start md:items-center ${
+                    isEven ? 'md:flex-row-reverse' : ''
+                  } group`}
+                >
+                  
+                  {/* Spine Center Node Indicator */}
+                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex items-center justify-center z-20">
+                    <div className="w-12 h-12 rounded-full bg-white border-4 border-[#B8860B] shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:border-slate-950 transition-all duration-300">
+                      <span className="font-display font-extrabold text-xs text-slate-950">
+                        {entry.year}
+                      </span>
+                    </div>
                   </div>
+
+                  {/* Empty Spacer on opposite side for desktop 50% grid */}
+                  <div className="hidden md:block w-1/2"></div>
+
+                  {/* Milestone Card Container */}
+                  <div className="w-full md:w-1/2 pl-16 md:pl-0 md:px-8">
+                    <div
+                      onClick={() => setSelectedMilestoneId(isSelected ? null : entry.id)}
+                      className={`cursor-pointer rounded-2xl bg-white border transition-all duration-300 p-6 sm:p-7 shadow-[0_4px_24px_rgba(15,23,42,0.05)] hover:shadow-xl hover:-translate-y-1 ${
+                        isSelected 
+                          ? 'border-[#B8860B] ring-2 ring-[#B8860B]/20' 
+                          : 'border-slate-200 hover:border-[#B8860B]/50'
+                      }`}
+                    >
+                      
+                      {/* Top Meta Row */}
+                      <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-slate-100 text-xs font-mono">
+                        <div className="flex items-center gap-2">
+                          <span className="px-2.5 py-1 rounded-md bg-amber-50 border border-amber-200 text-[#8B6508] font-bold">
+                            {entry.milestone || 'Project Milestone'}
+                          </span>
+                          <span className="text-slate-400">•</span>
+                          <span className="flex items-center gap-1 text-slate-500">
+                            <MapPin className="w-3 h-3 text-[#B8860B]" />
+                            {entry.location || 'Kodangal, Telangana'}
+                          </span>
+                        </div>
+
+                        <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded">
+                          ✓ GOVT CONTRACT
+                        </span>
+                      </div>
+
+                      {/* Milestone Title */}
+                      <div className="mb-3">
+                        <span className="text-2xl sm:text-3xl font-display font-extrabold text-slate-950 group-hover:text-[#B8860B] transition-colors block">
+                          {entry.year} — {entry.title}
+                        </span>
+                        <span className="text-xs font-mono font-semibold text-[#8B6508] tracking-wide mt-0.5 block">
+                          {meta.badge} • {meta.teluguTitle}
+                        </span>
+                      </div>
+
+                      {/* Architectural Vector Visual of this Construction Stage */}
+                      <div className="my-4 rounded-xl bg-slate-50 border border-slate-200/80 p-3 overflow-hidden">
+                        <div className="flex items-center justify-between text-[10px] font-mono text-slate-500 mb-2">
+                          <span className="flex items-center gap-1">
+                            <HardHat className="w-3 h-3 text-[#B8860B]" />
+                            {meta.stage}
+                          </span>
+                          <span className="font-bold text-[#B8860B]">{meta.progress}% COMPLETE</span>
+                        </div>
+
+                        {/* Stage Progress Bar */}
+                        <div className="w-full h-1.5 rounded-full bg-slate-200 overflow-hidden mb-3">
+                          <div
+                            className="h-full bg-gradient-to-r from-[#D4AF37] to-[#8B6508] rounded-full transition-all duration-700"
+                            style={{ width: `${meta.progress}%` }}
+                          ></div>
+                        </div>
+
+                        {/* Stage Schematic Representation */}
+                        <div className="h-16 w-full bg-white rounded-lg border border-slate-200/60 flex items-center justify-center p-2 relative overflow-hidden">
+                          {entry.year === '2014' && (
+                            <svg viewBox="0 0 300 60" className="w-full h-full">
+                              <rect x="0" y="45" width="300" height="15" fill="#E2E8F0" />
+                              <line x1="0" y1="45" x2="300" y2="45" stroke="#94A3B8" strokeWidth="1" />
+                              {/* Excavation trenches & surveying */}
+                              <rect x="30" y="45" width="40" height="10" fill="#CBD5E1" stroke="#64748B" />
+                              <rect x="130" y="45" width="40" height="10" fill="#CBD5E1" stroke="#64748B" />
+                              <rect x="230" y="45" width="40" height="10" fill="#CBD5E1" stroke="#64748B" />
+                              {/* Surveying pegs */}
+                              <line x1="50" y1="30" x2="50" y2="45" stroke="#B8860B" strokeWidth="2" />
+                              <line x1="150" y1="30" x2="150" y2="45" stroke="#B8860B" strokeWidth="2" />
+                              <line x1="250" y1="30" x2="250" y2="45" stroke="#B8860B" strokeWidth="2" />
+                              <text x="150" y="22" textAnchor="middle" fill="#64748B" fontSize="8" fontFamily="monospace">
+                                EXCAVATION & FOOTING GROUNDWORK
+                              </text>
+                            </svg>
+                          )}
+
+                          {entry.year === '2016' && (
+                            <svg viewBox="0 0 300 60" className="w-full h-full">
+                              <rect x="0" y="50" width="300" height="10" fill="#E2E8F0" />
+                              {/* Reinforced columns */}
+                              {[40, 95, 150, 205, 260].map((x, i) => (
+                                <g key={i}>
+                                  <rect x={x - 4} y="15" width="8" height="35" fill="#B8860B" stroke="#78350F" strokeWidth="1" />
+                                  <line x1={x} y1="8" x2={x} y2="15" stroke="#94A3B8" strokeWidth="1" strokeDasharray="1 1" />
+                                </g>
+                              ))}
+                              {/* First beam line */}
+                              <line x1="36" y1="30" x2="264" y2="30" stroke="#64748B" strokeWidth="2" />
+                              <text x="150" y="10" textAnchor="middle" fill="#64748B" fontSize="8" fontFamily="monospace">
+                                RCC STRUCTURAL COLUMNS & CLASSROOM BEAMS
+                              </text>
+                            </svg>
+                          )}
+
+                          {entry.year === '2020' && (
+                            <svg viewBox="0 0 300 60" className="w-full h-full">
+                              <rect x="0" y="45" width="300" height="15" fill="#1E293B" />
+                              <line x1="0" y1="52" x2="300" y2="52" stroke="#FBBF24" strokeWidth="1" strokeDasharray="8 6" />
+                              {/* Anganwadi building under masonry */}
+                              <rect x="50" y="15" width="90" height="30" fill="#FFFBEB" stroke="#B8860B" strokeWidth="1" />
+                              <rect x="65" y="25" width="15" height="15" fill="#38BDF8" />
+                              <rect x="105" y="25" width="15" height="15" fill="#38BDF8" />
+                              <rect x="85" y="25" width="15" height="20" fill="#0F172A" />
+                              {/* Road sign */}
+                              <rect x="180" y="25" width="20" height="20" rx="2" fill="#16A34A" />
+                              <text x="190" y="38" textAnchor="middle" fill="#FFFFFF" fontSize="6" fontWeight="bold">R&B</text>
+                              <text x="250" y="32" textAnchor="middle" fill="#475569" fontSize="8" fontFamily="monospace">
+                                R&B CORRIDOR & ANGANWADI
+                              </text>
+                            </svg>
+                          )}
+
+                          {entry.year === '2024' && (
+                            <svg viewBox="0 0 300 60" className="w-full h-full">
+                              {/* Completed school + Anganwadi + paved road */}
+                              <rect x="0" y="48" width="300" height="12" fill="#1E293B" />
+                              <line x1="0" y1="54" x2="300" y2="54" stroke="#FBBF24" strokeWidth="1.5" strokeDasharray="10 8" />
+                              {/* Model School */}
+                              <rect x="25" y="12" width="120" height="36" fill="#FFFFFF" stroke="#0284C7" strokeWidth="1" />
+                              <rect x="25" y="44" width="120" height="4" fill="#0284C7" />
+                              <rect x="40" y="20" width="18" height="16" fill="#38BDF8" rx="1" />
+                              <rect x="75" y="20" width="18" height="16" fill="#38BDF8" rx="1" />
+                              <rect x="110" y="20" width="18" height="16" fill="#38BDF8" rx="1" />
+                              {/* Anganwadi Center */}
+                              <rect x="160" y="18" width="90" height="30" fill="#FFFBEB" stroke="#16A34A" strokeWidth="1" />
+                              <rect x="160" y="44" width="90" height="4" fill="#16A34A" />
+                              <rect x="175" y="26" width="15" height="14" fill="#38BDF8" rx="1" />
+                              <rect x="215" y="26" width="15" height="14" fill="#38BDF8" rx="1" />
+                              <rect x="195" y="26" width="12" height="18" fill="#0F172A" />
+                              <text x="205" y="12" textAnchor="middle" fill="#0284C7" fontSize="7" fontWeight="bold">
+                                10 YEARS OF PUBLIC DELIVERY
+                              </text>
+                            </svg>
+                          )}
+
+                          {(entry.year === '2026' || !['2014', '2016', '2020', '2024'].includes(entry.year)) && (
+                            <svg viewBox="0 0 300 60" className="w-full h-full">
+                              <rect x="0" y="46" width="300" height="14" fill="#0F172A" />
+                              <line x1="0" y1="53" x2="300" y2="53" stroke="#FBBF24" strokeWidth="1.5" strokeDasharray="10 6" />
+                              {/* Modern Institutional Complex */}
+                              <rect x="20" y="8" width="140" height="38" fill="#FFFFFF" stroke="#B8860B" strokeWidth="1" />
+                              <rect x="170" y="14" width="100" height="32" fill="#F8FAFC" stroke="#0284C7" strokeWidth="1" />
+                              {/* Rooftop solar */}
+                              <line x1="30" y1="6" x2="150" y2="6" stroke="#0284C7" strokeWidth="2" />
+                              <text x="150" y="32" textAnchor="middle" fill="#B8860B" fontSize="8" fontWeight="bold" fontFamily="monospace">
+                                NEXT-GEN TELANGANA INFRASTRUCTURE
+                              </text>
+                            </svg>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-sm text-slate-600 font-light leading-relaxed mb-4">
+                        {entry.description}
+                      </p>
+
+                      {/* Civil Works Execution Scope Tag */}
+                      {entry.projects && (
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 text-xs font-mono text-slate-700 mb-2">
+                          <strong className="text-slate-900 uppercase font-bold block mb-0.5">
+                            Civil Execution Scope:
+                          </strong>
+                          {entry.projects}
+                        </div>
+                      )}
+
+                      {/* Uploaded Photos if attached in admin */}
+                      {entry.images && entry.images.length > 0 && (
+                        <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-100">
+                          {entry.images.map((img, i) => (
+                            <img
+                              key={i}
+                              src={img}
+                              alt={`${entry.year} milestone ${i + 1}`}
+                              className="w-full h-24 object-cover rounded-lg border border-slate-200"
+                            />
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Card Footer */}
+                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                        <span className="flex items-center gap-1 text-[#8B6508] font-bold">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#B8860B]" />
+                          Telangana Civil Record
+                        </span>
+                        <span className="text-slate-500">
+                          {meta.stage}
+                        </span>
+                      </div>
+
+                    </div>
+                  </div>
+
                 </div>
+              );
+            })}
+          </div>
 
-                <span className="text-xs font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full w-fit">
-                  ✓ VERIFIED GOVERNMENT CONTRACT
-                </span>
-              </div>
+        </div>
 
-              <p className="text-sm sm:text-base text-slate-700 font-light leading-relaxed mb-4">
-                {yearEntries[0].description}
-              </p>
+        {/* Empty State when filter yields nothing */}
+        {displayEntries.length === 0 && (
+          <div className="text-center py-16 rounded-2xl bg-slate-50 border border-slate-200 max-w-md mx-auto mt-8">
+            <Calendar className="w-10 h-10 text-[#B8860B] mx-auto mb-3" />
+            <h4 className="font-display font-bold text-lg text-slate-900 uppercase">
+              YEAR {activeFilter}
+            </h4>
+            <p className="text-sm text-slate-500 font-light mt-1">
+              Projects and milestones from this year will be added soon.
+            </p>
+            <button
+              onClick={() => setActiveFilter('all')}
+              className="mt-4 px-4 py-2 rounded-xl bg-slate-950 text-white text-xs font-mono font-bold uppercase hover:bg-slate-800"
+            >
+              SHOW ALL MILESTONES
+            </button>
+          </div>
+        )}
 
-              {yearEntries[0].projects && (
-                <div className="p-3.5 rounded-xl bg-white border border-slate-200 text-xs font-mono text-slate-600">
-                  <strong className="text-slate-900 font-bold uppercase block mb-1">Civil Execution Scope:</strong>
-                  {yearEntries[0].projects}
-                </div>
-              )}
+        {/* Bottom Credibility Callout */}
+        <div className="mt-16 rounded-2xl bg-gradient-to-r from-slate-50 to-amber-50/40 border border-slate-200 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-[#B8860B]/10 border border-[#B8860B]/30 flex items-center justify-center flex-shrink-0">
+              <Award className="w-6 h-6 text-[#B8860B]" />
             </div>
-          ) : (
-            <div className="rounded-2xl bg-slate-50 border border-slate-200 p-8 text-center max-w-xl mx-auto">
-              <Calendar className="w-8 h-8 text-[#B8860B] mx-auto mb-3" />
-              <h4 className="font-display font-bold text-lg text-slate-900 uppercase mb-1">
-                YEAR {selectedYear}
+            <div>
+              <h4 className="font-display font-bold text-base text-slate-950 uppercase">
+                COMMITTED TO HONEST & VERIFIABLE CIVIL CONSTRUCTION
               </h4>
-              <p className="text-sm text-slate-600 font-light">
-                Projects and milestones from this year will be added soon.
+              <p className="text-xs sm:text-sm text-slate-600 font-light mt-0.5">
+                Rajamuri's Infra Developers documents genuine civic execution records across Kodangal, respecting all public department guidelines.
               </p>
             </div>
-          )}
+          </div>
+
+          <a
+            href="#work"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-950 hover:bg-slate-800 text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-sm"
+          >
+            <span>EXPLORE OUR PROJECTS</span>
+            <ArrowDown className="w-3.5 h-3.5 text-[#F0CD6D]" />
+          </a>
         </div>
 
       </div>

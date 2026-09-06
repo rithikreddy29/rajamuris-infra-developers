@@ -45,7 +45,7 @@ export default function App() {
 
   // Public Corporate Website: 100% clean of admin controls
   return (
-    <div className="min-h-screen bg-[#05070B] text-slate-100 flex flex-col selection:bg-[#D4AF37] selection:text-black">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-[#F0CD6D] selection:text-slate-950">
       <Navigation />
       <main className="flex-1">
         <HeroSection />

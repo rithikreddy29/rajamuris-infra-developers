@@ -1,436 +1,477 @@
 import React, { useState, useEffect } from 'react';
-import { Hammer, Play, Pause, RotateCcw, CheckCircle2, Layers, Compass, Building2 } from 'lucide-react';
+import { Building2, HardHat, Route, School, Heart } from 'lucide-react';
 
-export default function ConstructionScrollAnimation({ standalone = false }) {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [autoPlay, setAutoPlay] = useState(false);
-  const [manualStage, setManualStage] = useState(null);
+export default function ConstructionScrollAnimation() {
+  const [progress, setProgress] = useState(0);
 
-  // Sync with window scroll
+  // Smooth, automatic continuous looping animation (0 -> 1 -> 0)
   useEffect(() => {
-    if (manualStage !== null || autoPlay) return;
+    let animFrame;
+    let startTime = performance.now();
+    const duration = 14000; // 14-second smooth full construction cycle
 
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const maxScroll = Math.max(
-        document.documentElement.scrollHeight - window.innerHeight,
-        1
-      );
-      // Map scroll progress across first 45% of page or entire page
-      const p = Math.min(Math.max((scrollY / (maxScroll * 0.45)), 0), 1);
-      setScrollProgress(p);
+    const loop = (now) => {
+      const elapsed = (now - startTime) % duration;
+      // Use sinusoidal or ease-in-out progress from 0 to 1 and holding at 1 for 3 seconds before resetting
+      const t = elapsed / duration;
+      let p;
+      if (t < 0.75) {
+        // Constructing smoothly from 0 to 1 over 10.5 seconds
+        p = t / 0.75;
+      } else {
+        // Hold completed state for 3.5 seconds
+        p = 1.0;
+      }
+      setProgress(p);
+      animFrame = requestAnimationFrame(loop);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [manualStage, autoPlay]);
+    animFrame = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(animFrame);
+  }, []);
 
-  // Auto-play loop if triggered
-  useEffect(() => {
-    if (!autoPlay) return;
-    const interval = setInterval(() => {
-      setScrollProgress(prev => {
-        if (prev >= 1) return 0;
-        return +(prev + 0.015).toFixed(3);
-      });
-    }, 40);
-    return () => clearInterval(interval);
-  }, [autoPlay]);
-
-  // Effective progress
-  const progress = manualStage !== null ? manualStage : scrollProgress;
-
-  // Stages breakdown:
-  // 0.00 - 0.20: Stage 1 - Site Survey & Excavation
-  // 0.20 - 0.45: Stage 2 - RCC Foundation & Columns
-  // 0.45 - 0.75: Stage 3 - Brick Masonry & R&B Road Base
-  // 0.75 - 1.00: Stage 4 - Completed Anganwadi & Paved R&B Corridor
-  const getStageTitle = (p) => {
-    if (p < 0.22) return "Stage 01: Site Surveying, Coordinates & Ground Excavation";
-    if (p < 0.50) return "Stage 02: Reinforced Concrete Foundation Footings & Column Steel Rebar";
-    if (p < 0.78) return "Stage 03: Brick Masonry, Window Lintels & R&B Road Base Compaction";
-    return "Stage 04: Completed Anganwadi Center, Finishing & Paved R&B State Corridor";
+  const getStageBadge = (p) => {
+    if (p < 0.25) return "Phase 1: Site Surveying, Road Grading & Earthwork Excavation";
+    if (p < 0.50) return "Phase 2: RCC Framing, Foundation Footings & Sub-grade Compaction";
+    if (p < 0.75) return "Phase 3: Multi-Story School & Anganwadi Masonry, Slab Casting & WBM Road Bed";
+    return "Phase 4: Completed School, Anganwadi Complex & Paved R&B State Highway";
   };
 
   return (
     <div className="w-full flex flex-col items-center">
       
-      {/* Visual Architectural Simulation Canvas */}
-      <div className="relative w-full max-w-5xl rounded-2xl bg-gradient-to-b from-white via-slate-50 to-[#F1F5F9] border border-slate-200 shadow-[0_10px_35px_-10px_rgba(15,23,42,0.08)] overflow-hidden">
+      {/* Visual Architectural Simulation Frame */}
+      <div className="relative w-full max-w-5xl rounded-2xl bg-white border border-slate-200 shadow-[0_8px_30px_rgba(15,23,42,0.06)] overflow-hidden">
         
-        {/* Top Blueprint Header Bar */}
-        <div className="p-4 bg-white border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-          <div className="flex items-center gap-2 text-slate-800 font-bold">
-            <Building2 className="w-4 h-4 text-[#B8860B]" />
-            <span className="tracking-wider uppercase">CIVIL EXECUTION SIMULATION</span>
-            <span className="text-[10px] text-[#B8860B] bg-[#B8860B]/10 px-2 py-0.5 rounded font-semibold">
-              ANGANWADI & R&B ROADS
+        {/* Top Status Header */}
+        <div className="px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span className="font-bold text-slate-900 uppercase tracking-wider">
+              AUTOMATED INFRASTRUCTURE SIMULATION
+            </span>
+            <span className="text-[10px] text-[#8B6508] bg-amber-100/80 border border-amber-300/60 px-2 py-0.5 rounded font-semibold hidden sm:inline">
+              SCHOOL + ANGANWADI + R&B ROADS
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-slate-500 hidden sm:inline">Progress:</span>
-            <span className="font-bold font-mono text-[#B8860B]">{Math.round(progress * 100)}%</span>
-            
-            {/* Play/Pause / Scrub control */}
-            <button
-              onClick={() => {
-                setManualStage(null);
-                setAutoPlay(!autoPlay);
-              }}
-              className="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center gap-1 transition-colors"
-              title="Toggle animation playback"
-            >
-              {autoPlay ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
-              <span className="text-[10px] uppercase font-bold">{autoPlay ? 'Pause' : 'Play'}</span>
-            </button>
-
-            <button
-              onClick={() => {
-                setManualStage(null);
-                setAutoPlay(false);
-                setScrollProgress(0);
-              }}
-              className="p-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
-              title="Reset"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-            </button>
+          <div className="flex items-center gap-3 text-slate-500">
+            <span className="text-[11px] font-semibold text-slate-700">{getStageBadge(progress)}</span>
+            <span className="font-bold text-[#B8860B] min-w-[38px] text-right">
+              {Math.round(progress * 100)}%
+            </span>
           </div>
         </div>
 
-        {/* Vector Construction Scene SVG */}
+        {/* Cinematic Vector Construction Landscape SVG */}
         <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] bg-white overflow-hidden select-none">
           
           {/* Subtle architectural background grid */}
-          <div className="absolute inset-0 bg-architectural-grid opacity-60 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-architectural-grid opacity-50 pointer-events-none"></div>
 
-          {/* SVG Canvas */}
-          <svg viewBox="0 0 1000 450" className="w-full h-full">
+          <svg viewBox="0 0 1100 480" className="w-full h-full">
             <defs>
-              <pattern id="gridSub" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#E2E8F0" strokeWidth="0.75" />
+              <pattern id="lightGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#F1F5F9" strokeWidth="1" />
               </pattern>
-              <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <linearGradient id="skyPan" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#F8FAFC" />
                 <stop offset="100%" stopColor="#FFFFFF" />
               </linearGradient>
-              <linearGradient id="roadGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient id="asphaltRoad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#1E293B" />
                 <stop offset="100%" stopColor="#334155" />
               </linearGradient>
-              <linearGradient id="wallPlaster" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient id="schoolWall" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#FFFFFF" />
-                <stop offset="100%" stopColor="#F1F5F9" />
+                <stop offset="100%" stopColor="#F8FAFC" />
+              </linearGradient>
+              <linearGradient id="anganwadiWall" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FFFBEB" />
+                <stop offset="100%" stopColor="#FEF3C7" />
               </linearGradient>
             </defs>
 
             {/* Sky Background */}
-            <rect width="1000" height="320" fill="url(#skyGrad)" />
-            <rect width="1000" height="320" fill="url(#gridSub)" opacity="0.4" />
+            <rect width="1100" height="340" fill="url(#skyPan)" />
+            <rect width="1100" height="340" fill="url(#lightGrid)" opacity="0.6" />
 
-            {/* Sun / Ambient light */}
-            <circle cx="880" cy="80" r="45" fill="#FEF08A" opacity={0.3 + progress * 0.4} />
+            {/* Distant Hills / Telangana Landscape */}
+            <path
+              d="M 0,330 Q 200,290 400,325 T 800,310 Q 950,285 1100,330 L 1100,340 L 0,340 Z"
+              fill="#E2E8F0"
+              opacity="0.4"
+            />
 
-            {/* Ground / Earth Plane */}
-            <rect x="0" y="320" width="1000" height="130" fill="#E2E8F0" />
-            <path d="M 0,320 L 1000,320" stroke="#CBD5E1" strokeWidth="2" />
+            {/* Sun / Daylight */}
+            <circle cx="950" cy="80" r="40" fill="#FEF08A" opacity={0.3 + progress * 0.5} />
 
-            {/* ------------------------------------------------------------- */}
-            {/* STAGE 1: SURVEYING & EXCAVATION (Active from p > 0.0) */}
-            {/* ------------------------------------------------------------- */}
+            {/* Ground / Base Plane */}
+            <rect x="0" y="330" width="1100" height="150" fill="#E2E8F0" />
+            <line x1="0" y1="330" x2="1100" y2="330" stroke="#CBD5E1" strokeWidth="2" />
+
+            {/* ============================================================= */}
+            {/* 1. LEFT SIDE: MULTI-STORY GOVERNMENT SCHOOL BUILDING COMPLEX  */}
+            {/* ============================================================= */}
+            
+            {/* 1A. Foundation & Excavation (p >= 0.05) */}
             {progress >= 0.05 && (
-              <g className="transition-opacity duration-500" opacity={progress < 0.6 ? 1 : 0.2}>
-                {/* Surveying Theodolite / Leveling Equipment */}
-                <g transform="translate(140, 240)">
-                  <line x1="0" y1="80" x2="-25" y2="80" stroke="#64748B" strokeWidth="2" />
-                  <line x1="-12" y1="80" x2="-12" y2="40" stroke="#B8860B" strokeWidth="3" />
-                  <polygon points="-22,40 -2,40 -12,25" fill="#D4AF37" />
-                  <circle cx="-12" cy="20" r="6" fill="#0F172A" />
-                  {/* Sight line laser */}
-                  <line x1="-12" y1="20" x2="350" y2="300" stroke="#EF4444" strokeWidth="1" strokeDasharray="4 3" opacity="0.7" />
-                </g>
-
-                {/* Ground Excavation Pit */}
-                <path
-                  d="M 320,320 L 360,345 L 740,345 L 780,320 Z"
-                  fill="#CBD5E1"
-                  stroke="#94A3B8"
-                  strokeWidth="1.5"
-                  strokeDasharray="4 2"
-                />
-                <text x="370" y="340" fill="#64748B" fontSize="10" fontFamily="monospace">
-                  EXCAVATION & SUB-GRADE BED
+              <g opacity={progress < 0.6 ? 1 : 0.3}>
+                <rect x="100" y="330" width="380" height="15" fill="#CBD5E1" stroke="#94A3B8" strokeWidth="1" strokeDasharray="3 3" />
+                <text x="110" y="342" fill="#64748B" fontSize="9" fontFamily="monospace">
+                  SCHOOL STRUCTURAL EXCAVATION
                 </text>
               </g>
             )}
 
-            {/* ------------------------------------------------------------- */}
-            {/* STAGE 2: RCC FOUNDATION & STEEL REBAR COLUMNS (p > 0.18) */}
-            {/* ------------------------------------------------------------- */}
+            {/* 1B. School Columns & RCC Structural Grid (p >= 0.18) */}
             {progress >= 0.18 && (
-              <g className="transition-all duration-700">
-                {/* Concrete Footing Pads */}
-                {[360, 480, 600, 720].map((colX, idx) => (
+              <g>
+                {[120, 200, 280, 360, 440].map((cx, idx) => (
                   <g key={idx}>
-                    {/* Footing Pad */}
+                    {/* Footing */}
+                    <rect x={cx - 14} y="330" width="28" height="12" fill="#94A3B8" stroke="#475569" strokeWidth="1" />
+                    {/* Column rising */}
                     <rect
-                      x={colX - 25}
-                      y="330"
-                      width="50"
-                      height="15"
-                      fill="#94A3B8"
-                      stroke="#475569"
-                      strokeWidth="1"
-                    />
-                    {/* Rebar Cage / Column rising based on progress */}
-                    <rect
-                      x={colX - 8}
-                      y={330 - Math.min((progress - 0.18) * 450, 160)}
-                      width="16"
-                      height={Math.min((progress - 0.18) * 450, 160)}
-                      fill={progress > 0.45 ? "#64748B" : "#B8860B"}
+                      x={cx - 6}
+                      y={330 - Math.min((progress - 0.18) * 450, 180)}
+                      width="12"
+                      height={Math.min((progress - 0.18) * 450, 180)}
+                      fill={progress > 0.5 ? "#64748B" : "#B8860B"}
                       stroke="#334155"
                       strokeWidth="1.5"
                     />
-                    {/* Steel tie markings */}
-                    {progress < 0.5 && (
-                      <g stroke="#CBD5E1" strokeWidth="1">
-                        <line x1={colX - 8} y1="280" x2={colX + 8} y2="280" />
-                        <line x1={colX - 8} y1="240" x2={colX + 8} y2="240" />
-                        <line x1={colX - 8} y1="200" x2={colX + 8} y2="200" />
-                      </g>
-                    )}
                   </g>
                 ))}
-
-                {/* Ground Plinth Beam connecting columns */}
-                {progress >= 0.28 && (
-                  <rect
-                    x="335"
-                    y="312"
-                    width="410"
-                    height="14"
-                    fill="#64748B"
-                    stroke="#334155"
-                    strokeWidth="1.5"
-                  />
+                {/* First floor beam */}
+                {progress >= 0.35 && (
+                  <rect x="105" y="240" width="360" height="12" fill="#64748B" stroke="#334155" strokeWidth="1.5" />
+                )}
+                {/* Second floor / Roof beam */}
+                {progress >= 0.55 && (
+                  <rect x="105" y="150" width="360" height="12" fill="#64748B" stroke="#334155" strokeWidth="1.5" />
                 )}
               </g>
             )}
 
-            {/* ------------------------------------------------------------- */}
-            {/* STAGE 3: BRICK MASONRY WALLS & ROOF CASTING (p > 0.42) */}
-            {/* ------------------------------------------------------------- */}
-            {progress >= 0.42 && (
-              <g className="transition-all duration-700">
-                {/* Main Building Body / Brickwork */}
+            {/* 1C. School Masonry Walls & Windows (p >= 0.45) */}
+            {progress >= 0.45 && (
+              <g>
+                {/* Ground Floor Walls */}
                 <rect
-                  x="350"
-                  y={312 - Math.min((progress - 0.42) * 400, 135)}
-                  width="380"
-                  height={Math.min((progress - 0.42) * 400, 135)}
-                  fill={progress > 0.75 ? "url(#wallPlaster)" : "#DC2626"}
-                  stroke="#475569"
+                  x="110"
+                  y="240"
+                  width="350"
+                  height="90"
+                  fill={progress > 0.75 ? "url(#schoolWall)" : "#EF4444"}
+                  stroke="#334155"
                   strokeWidth="2"
                 />
-
-                {/* Brickwork mortar lines if in construction stage */}
-                {progress < 0.75 && (
-                  <g stroke="#FCA5A5" strokeWidth="1" opacity="0.6">
-                    <line x1="350" y1="290" x2="730" y2="290" />
-                    <line x1="350" y1="265" x2="730" y2="265" />
-                    <line x1="350" y1="240" x2="730" y2="240" />
-                    <line x1="350" y1="215" x2="730" y2="215" />
-                  </g>
-                )}
-
-                {/* Roof Slab Shuttering & Casting */}
+                {/* First Floor Walls */}
                 {progress >= 0.60 && (
-                  <g>
-                    <rect
-                      x="330"
-                      y="166"
-                      width="420"
-                      height="15"
-                      fill="#475569"
-                      stroke="#1E293B"
-                      strokeWidth="2"
-                    />
-                    {/* Parapet Wall on Roof */}
-                    {progress >= 0.70 && (
-                      <rect
-                        x="340"
-                        y="148"
-                        width="400"
-                        height="18"
-                        fill="#E2E8F0"
-                        stroke="#94A3B8"
-                        strokeWidth="1.5"
-                      />
-                    )}
-                  </g>
+                  <rect
+                    x="110"
+                    y="150"
+                    width="350"
+                    height="90"
+                    fill={progress > 0.75 ? "url(#schoolWall)" : "#EF4444"}
+                    stroke="#334155"
+                    strokeWidth="2"
+                  />
                 )}
-
-                {/* Scaffolding on sides if still building */}
-                {progress < 0.82 && (
-                  <g stroke="#94A3B8" strokeWidth="1.5" opacity="0.8">
-                    <line x1="320" y1="160" x2="320" y2="320" />
-                    <line x1="340" y1="160" x2="340" y2="320" />
-                    <line x1="320" y1="220" x2="340" y2="240" />
-                    <line x1="320" y1="260" x2="340" y2="280" />
-                    <line x1="740" y1="160" x2="740" y2="320" />
-                    <line x1="760" y1="160" x2="760" y2="320" />
-                    <line x1="740" y1="220" x2="760" y2="240" />
-                  </g>
+                {/* Parapet on School Roof */}
+                {progress >= 0.72 && (
+                  <rect x="105" y="134" width="360" height="16" fill="#E2E8F0" stroke="#64748B" strokeWidth="1.5" />
                 )}
               </g>
             )}
 
-            {/* ------------------------------------------------------------- */}
-            {/* STAGE 4: COMPLETED ANGANWADI & R&B ROAD CORRIDOR (p > 0.75) */}
-            {/* ------------------------------------------------------------- */}
+            {/* 1D. Completed School Finishing (p >= 0.75) */}
             {progress >= 0.75 && (
-              <g className="transition-all duration-700 animate-fade-in">
-                {/* Clean Exterior Finish with Telangana Govt Primary Color Trims */}
-                {/* Green Base Trim (Traditional Telangana Public Infrastructure) */}
-                <rect x="350" y="295" width="380" height="17" fill="#16A34A" />
+              <g className="animate-fade-in">
+                {/* Base Trim in Classic Telangana Blue / Navy */}
+                <rect x="110" y="318" width="350" height="12" fill="#0284C7" />
+                <rect x="110" y="234" width="350" height="6" fill="#0284C7" />
 
-                {/* Anganwadi Center Main Entrance Arch & Doorway */}
-                <path d="M 510,312 L 510,230 Q 540,215 570,230 L 570,312 Z" fill="#0F172A" stroke="#B8860B" strokeWidth="2" />
-                <rect x="522" y="240" width="36" height="72" fill="#1E293B" />
-                <circle cx="550" cy="275" r="2.5" fill="#D4AF37" />
+                {/* Ground Floor Windows & Entrance */}
+                <rect x="140" y="260" width="45" height="42" rx="3" fill="#38BDF8" stroke="#0F172A" strokeWidth="1.5" />
+                <rect x="210" y="260" width="45" height="42" rx="3" fill="#38BDF8" stroke="#0F172A" strokeWidth="1.5" />
+                {/* Main Door */}
+                <path d="M 275,330 L 275,260 Q 295,248 315,260 L 315,330 Z" fill="#0F172A" stroke="#B8860B" strokeWidth="1.5" />
+                <rect x="345" y="260" width="45" height="42" rx="3" fill="#38BDF8" stroke="#0F172A" strokeWidth="1.5" />
+                <rect x="405" y="260" width="45" height="42" rx="3" fill="#38BDF8" stroke="#0F172A" strokeWidth="1.5" />
 
-                {/* Educational Classroom Windows with Glazing */}
-                <rect x="380" y="220" width="55" height="50" rx="4" fill="#0284C7" stroke="#0F172A" strokeWidth="2" />
-                <line x1="407" y1="220" x2="407" y2="270" stroke="#FFFFFF" strokeWidth="2" />
-                <line x1="380" y1="245" x2="435" y2="245" stroke="#FFFFFF" strokeWidth="2" />
+                {/* First Floor Windows */}
+                <rect x="140" y="170" width="45" height="42" rx="3" fill="#38BDF8" stroke="#0F172A" strokeWidth="1.5" />
+                <rect x="210" y="170" width="45" height="42" rx="3" fill="#38BDF8" stroke="#0F172A" strokeWidth="1.5" />
+                <rect x="280" y="170" width="45" height="42" rx="3" fill="#38BDF8" stroke="#0F172A" strokeWidth="1.5" />
+                <rect x="345" y="170" width="45" height="42" rx="3" fill="#38BDF8" stroke="#0F172A" strokeWidth="1.5" />
+                <rect x="405" y="170" width="45" height="42" rx="3" fill="#38BDF8" stroke="#0F172A" strokeWidth="1.5" />
 
-                <rect x="645" y="220" width="55" height="50" rx="4" fill="#0284C7" stroke="#0F172A" strokeWidth="2" />
-                <line x1="672" y1="220" x2="672" y2="270" stroke="#FFFFFF" strokeWidth="2" />
-                <line x1="645" y1="245" x2="700" y2="245" stroke="#FFFFFF" strokeWidth="2" />
+                {/* Window grill lines */}
+                <line x1="162" y1="260" x2="162" y2="302" stroke="#FFFFFF" strokeWidth="1.5" />
+                <line x1="232" y1="260" x2="232" y2="302" stroke="#FFFFFF" strokeWidth="1.5" />
+                <line x1="367" y1="260" x2="367" y2="302" stroke="#FFFFFF" strokeWidth="1.5" />
+                <line x1="427" y1="260" x2="427" y2="302" stroke="#FFFFFF" strokeWidth="1.5" />
 
-                {/* Building Header Signboard in Telugu & English */}
-                <rect x="440" y="172" width="200" height="28" rx="4" fill="#B8860B" stroke="#78350F" strokeWidth="1.5" />
-                <text x="540" y="185" textAnchor="middle" fill="#FFFFFF" fontSize="9" fontWeight="bold" fontFamily="'Plus Jakarta Sans', sans-serif">
-                  అంగన్‌వాడీ కేంద్ర భవనం
+                {/* School Signboard */}
+                <rect x="180" y="105" width="210" height="26" rx="4" fill="#0284C7" stroke="#0369A1" strokeWidth="1.5" />
+                <text x="285" y="118" textAnchor="middle" fill="#FFFFFF" fontSize="9" fontWeight="bold" fontFamily="'Plus Jakarta Sans', sans-serif">
+                  ప్రభుత్వ ఉన్నత పాఠశాల
                 </text>
-                <text x="540" y="196" textAnchor="middle" fill="#FEF08A" fontSize="7" fontWeight="bold" fontFamily="monospace">
-                  GOVERNMENT ANGANWADI CENTER
+                <text x="285" y="127" textAnchor="middle" fill="#BAE6FD" fontSize="7" fontWeight="bold" fontFamily="monospace">
+                  GOVERNMENT MODEL SCHOOL
                 </text>
 
-                {/* Indian National Flag Post on Roof */}
-                <line x1="365" y1="148" x2="365" y2="105" stroke="#475569" strokeWidth="2.5" />
-                <path d="M 365,105 L 395,115 L 365,125 Z" fill="#F97316" />
+                {/* National Flag on School Roof */}
+                <line x1="130" y1="134" x2="130" y2="90" stroke="#475569" strokeWidth="2.5" />
+                <path d="M 130,90 L 155,98 L 130,106 Z" fill="#F97316" />
 
-                {/* Solar Panels on Roof */}
-                <rect x="610" y="132" width="100" height="15" rx="2" fill="#0369A1" stroke="#0284C7" strokeWidth="1" />
-                <line x1="635" y1="132" x2="635" y2="147" stroke="#E2E8F0" strokeWidth="1" />
-                <line x1="660" y1="132" x2="660" y2="147" stroke="#E2E8F0" strokeWidth="1" />
-                <line x1="685" y1="132" x2="685" y2="147" stroke="#E2E8F0" strokeWidth="1" />
-
-                {/* Landscaping / Trees */}
-                <g transform="translate(290, 240)">
-                  <line x1="20" y1="80" x2="20" y2="50" stroke="#78350F" strokeWidth="4" />
-                  <circle cx="20" cy="40" r="24" fill="#16A34A" />
-                  <circle cx="12" cy="30" r="16" fill="#22C55E" />
-                </g>
-                <g transform="translate(770, 240)">
-                  <line x1="20" y1="80" x2="20" y2="50" stroke="#78350F" strokeWidth="4" />
-                  <circle cx="20" cy="40" r="24" fill="#16A34A" />
-                  <circle cx="28" cy="30" r="16" fill="#22C55E" />
-                </g>
+                {/* Rooftop Solar System */}
+                <rect x="330" y="120" width="80" height="14" rx="2" fill="#0369A1" stroke="#0284C7" strokeWidth="1" />
               </g>
             )}
 
-            {/* ------------------------------------------------------------- */}
-            {/* R&B ASPHALT ROAD & HIGHWAY CORRIDOR (Gradually rolls out) */}
-            {/* ------------------------------------------------------------- */}
-            <g transform="translate(0, 365)">
-              {/* Road bed width grows with progress */}
+            {/* ============================================================= */}
+            {/* 2. CENTER-RIGHT: ANGANWADI COMMUNITY BUILDING COMPLEX        */}
+            {/* ============================================================= */}
+            
+            {/* 2A. Anganwadi Foundation (p >= 0.10) */}
+            {progress >= 0.10 && (
+              <g opacity={progress < 0.65 ? 1 : 0.3}>
+                <rect x="520" y="330" width="250" height="15" fill="#CBD5E1" stroke="#94A3B8" strokeWidth="1" strokeDasharray="3 3" />
+                <text x="535" y="342" fill="#64748B" fontSize="9" fontFamily="monospace">
+                  ANGANWADI BED
+                </text>
+              </g>
+            )}
+
+            {/* 2B. Anganwadi Columns & Slab (p >= 0.22) */}
+            {progress >= 0.22 && (
+              <g>
+                {[540, 620, 700, 760].map((cx, idx) => (
+                  <g key={idx}>
+                    <rect x={cx - 10} y="330" width="20" height="10" fill="#94A3B8" />
+                    <rect
+                      x={cx - 5}
+                      y={330 - Math.min((progress - 0.22) * 400, 115)}
+                      width="10"
+                      height={Math.min((progress - 0.22) * 400, 115)}
+                      fill={progress > 0.5 ? "#64748B" : "#B8860B"}
+                      stroke="#334155"
+                      strokeWidth="1.5"
+                    />
+                  </g>
+                ))}
+                {progress >= 0.45 && (
+                  <rect x="520" y="215" width="250" height="10" fill="#64748B" stroke="#334155" strokeWidth="1.5" />
+                )}
+              </g>
+            )}
+
+            {/* 2C. Anganwadi Walls (p >= 0.45) */}
+            {progress >= 0.45 && (
+              <g>
+                <rect
+                  x="525"
+                  y="225"
+                  width="240"
+                  height="105"
+                  fill={progress > 0.75 ? "url(#anganwadiWall)" : "#EF4444"}
+                  stroke="#334155"
+                  strokeWidth="2"
+                />
+              </g>
+            )}
+
+            {/* 2D. Anganwadi Finished State (p >= 0.75) */}
+            {progress >= 0.75 && (
+              <g className="animate-fade-in">
+                {/* Telangana Traditional Green Trim */}
+                <rect x="525" y="316" width="240" height="14" fill="#16A34A" />
+
+                {/* Anganwadi Entrance Archway */}
+                <path d="M 625,330 L 625,260 Q 645,248 665,260 L 665,330 Z" fill="#0F172A" stroke="#B8860B" strokeWidth="2" />
+                <circle cx="652" cy="295" r="2" fill="#D4AF37" />
+
+                {/* Windows with Cheerful Yellow/Blue frames */}
+                <rect x="550" y="255" width="45" height="40" rx="3" fill="#38BDF8" stroke="#B8860B" strokeWidth="2" />
+                <line x1="572" y1="255" x2="572" y2="295" stroke="#FFFFFF" strokeWidth="2" />
+
+                <rect x="700" y="255" width="45" height="40" rx="3" fill="#38BDF8" stroke="#B8860B" strokeWidth="2" />
+                <line x1="722" y1="255" x2="722" y2="295" stroke="#FFFFFF" strokeWidth="2" />
+
+                {/* Anganwadi Signboard in Telugu & English */}
+                <rect x="575" y="195" width="145" height="22" rx="3" fill="#B8860B" stroke="#78350F" strokeWidth="1" />
+                <text x="647" y="206" textAnchor="middle" fill="#FFFFFF" fontSize="8" fontWeight="bold" fontFamily="'Plus Jakarta Sans', sans-serif">
+                  అంగన్‌వాడీ కేంద్రం
+                </text>
+                <text x="647" y="214" textAnchor="middle" fill="#FEF08A" fontSize="6" fontWeight="bold" fontFamily="monospace">
+                  ANGANWADI CENTER
+                </text>
+              </g>
+            )}
+
+            {/* ============================================================= */}
+            {/* 3. FAR RIGHT: WATER SUMP & CIVIL UTILITY TANK (p >= 0.35)     */}
+            {/* ============================================================= */}
+            {progress >= 0.35 && (
+              <g transform="translate(830, 200)">
+                {/* Elevated tank staging columns */}
+                <line x1="20" y1="130" x2="20" y2={130 - Math.min((progress - 0.35) * 250, 80)} stroke="#475569" strokeWidth="3" />
+                <line x1="60" y1="130" x2="60" y2={130 - Math.min((progress - 0.35) * 250, 80)} stroke="#475569" strokeWidth="3" />
+                <line x1="20" y1="80" x2="60" y2="100" stroke="#94A3B8" strokeWidth="1.5" />
+                <line x1="20" y1="100" x2="60" y2="80" stroke="#94A3B8" strokeWidth="1.5" />
+
+                {/* Overhead Sump / Tank */}
+                {progress >= 0.65 && (
+                  <g>
+                    <rect x="10" y="20" width="60" height="35" rx="4" fill="#0284C7" stroke="#0F172A" strokeWidth="1.5" />
+                    <text x="40" y="38" textAnchor="middle" fill="#FFFFFF" fontSize="6" fontWeight="bold" fontFamily="monospace">
+                      PUBLIC WATER
+                    </text>
+                  </g>
+                )}
+              </g>
+            )}
+
+            {/* ============================================================= */}
+            {/* 4. FOREGROUND: ROADS & BUILDINGS (R&B) HIGHWAY & CORRIDOR    */}
+            {/* ============================================================= */}
+            <g transform="translate(0, 375)">
+              
+              {/* Road bed progress across full width (0 -> 1100) */}
               <rect
                 x="0"
                 y="0"
-                width={Math.min(progress * 1250, 1000)}
-                height="75"
-                fill={progress > 0.5 ? "url(#roadGrad)" : "#94A3B8"}
-                stroke="#1E293B"
+                width={Math.min(progress * 1300, 1100)}
+                height="85"
+                fill={progress > 0.45 ? "url(#asphaltRoad)" : "#94A3B8"}
+                stroke="#0F172A"
                 strokeWidth="1.5"
               />
 
-              {/* Road curb shoulder */}
-              <rect x="0" y="0" width={Math.min(progress * 1250, 1000)} height="5" fill="#CBD5E1" />
+              {/* Concrete Road Shoulder / Curb */}
+              <rect x="0" y="0" width={Math.min(progress * 1300, 1100)} height="6" fill="#CBD5E1" />
 
-              {/* Yellow/White Highway Dashed Centerline (Paved road stage) */}
-              {progress >= 0.65 && (
+              {/* Road Compactor / Steamroller working on road if in progress */}
+              {progress > 0.15 && progress < 0.78 && (
+                <g transform={`translate(${Math.min(progress * 900, 800)}, -25)`}>
+                  {/* Roller Vehicle */}
+                  <rect x="0" y="10" width="45" height="20" rx="3" fill="#EAB308" stroke="#0F172A" strokeWidth="1.5" />
+                  <circle cx="10" cy="30" r="12" fill="#334155" stroke="#0F172A" strokeWidth="2" />
+                  <circle cx="40" cy="32" r="8" fill="#334155" stroke="#0F172A" strokeWidth="2" />
+                  <rect x="8" y="0" width="22" height="12" rx="2" fill="#0284C7" opacity="0.8" />
+                  <text x="22" y="24" textAnchor="middle" fill="#0F172A" fontSize="6" fontWeight="bold" fontFamily="monospace">
+                    R&B
+                  </text>
+                </g>
+              )}
+
+              {/* Yellow/White Painted Highway Dashed Centerline (Paved road stage) */}
+              {progress >= 0.58 && (
                 <line
                   x1="0"
-                  y1="38"
-                  x2={Math.min((progress - 0.65) * 2800, 1000)}
-                  y2="38"
+                  y1="42"
+                  x2={Math.min((progress - 0.58) * 2600, 1100)}
+                  y2="42"
                   stroke="#FBBF24"
-                  strokeWidth="3.5"
-                  strokeDasharray="25 15"
+                  strokeWidth="4"
+                  strokeDasharray="30 18"
                 />
               )}
 
-              {/* R&B Milestone Road Sign */}
-              {progress >= 0.85 && (
-                <g transform="translate(850, -45)">
-                  {/* Milestone post */}
-                  <path d="M 0,35 Q 12,20 24,35 L 24,65 L 0,65 Z" fill="#F8FAFC" stroke="#0F172A" strokeWidth="1.5" />
-                  <path d="M 0,35 Q 12,20 24,35 L 24,45 L 0,45 Z" fill="#16A34A" />
-                  <text x="12" y="55" textAnchor="middle" fill="#0F172A" fontSize="7" fontWeight="bold" fontFamily="monospace">
+              {/* White Edge Lines */}
+              {progress >= 0.70 && (
+                <line
+                  x1="0"
+                  y1="75"
+                  x2={Math.min((progress - 0.70) * 3600, 1100)}
+                  y2="75"
+                  stroke="#FFFFFF"
+                  strokeWidth="2"
+                  opacity="0.8"
+                />
+              )}
+
+              {/* R&B Milestone Road Sign on Highway */}
+              {progress >= 0.80 && (
+                <g transform="translate(970, -48)">
+                  <path d="M 0,35 Q 15,18 30,35 L 30,70 L 0,70 Z" fill="#FFFFFF" stroke="#0F172A" strokeWidth="1.5" />
+                  <path d="M 0,35 Q 15,18 30,35 L 30,48 L 0,48 Z" fill="#16A34A" />
+                  <text x="15" y="60" textAnchor="middle" fill="#0F172A" fontSize="8" fontWeight="bold" fontFamily="monospace">
                     R&B
                   </text>
-                  <text x="12" y="63" textAnchor="middle" fill="#0F172A" fontSize="6" fontFamily="monospace">
+                  <text x="15" y="67" textAnchor="middle" fill="#0F172A" fontSize="6" fontWeight="bold" fontFamily="monospace">
                     KODANGAL
                   </text>
                 </g>
               )}
+
+              {/* Culvert / Drainage Pipe Crossing */}
+              {progress >= 0.40 && (
+                <g transform="translate(50, 45)">
+                  <circle cx="20" cy="18" r="10" fill="#475569" stroke="#0F172A" strokeWidth="1.5" />
+                  <circle cx="20" cy="18" r="7" fill="#0F172A" />
+                </g>
+              )}
             </g>
 
-            {/* Stage Callout Floating Pill */}
-            <g transform="translate(20, 25)">
-              <rect width="360" height="34" rx="8" fill="#FFFFFF" stroke="#CBD5E1" strokeWidth="1" filter="drop-shadow(0 2px 5px rgba(0,0,0,0.05))" />
-              <circle cx="18" cy="17" r="5" fill="#B8860B" />
+            {/* Landscaping / Greenery & Trees (Completed stage) */}
+            {progress >= 0.78 && (
+              <g className="animate-fade-in">
+                {/* Left Tree */}
+                <g transform="translate(60, 260)">
+                  <rect x="8" y="45" width="6" height="25" fill="#78350F" />
+                  <circle cx="11" cy="35" r="20" fill="#16A34A" />
+                  <circle cx="18" cy="28" r="15" fill="#22C55E" />
+                </g>
+                {/* Middle Tree between School and Anganwadi */}
+                <g transform="translate(480, 260)">
+                  <rect x="8" y="45" width="6" height="25" fill="#78350F" />
+                  <circle cx="11" cy="35" r="22" fill="#16A34A" />
+                  <circle cx="4" cy="26" r="16" fill="#22C55E" />
+                </g>
+                {/* Right Tree */}
+                <g transform="translate(795, 265)">
+                  <rect x="8" y="40" width="6" height="25" fill="#78350F" />
+                  <circle cx="11" cy="30" r="18" fill="#16A34A" />
+                </g>
+              </g>
+            )}
+
+            {/* Real-Time Phase Callout Banner */}
+            <g transform="translate(20, 20)">
+              <rect width="420" height="34" rx="8" fill="#FFFFFF" stroke="#CBD5E1" strokeWidth="1" filter="drop-shadow(0 2px 6px rgba(0,0,0,0.06))" />
+              <circle cx="18" cy="17" r="5" fill="#B8860B" className="animate-ping" />
+              <circle cx="18" cy="17" r="4" fill="#B8860B" />
               <text x="32" y="21" fill="#0F172A" fontSize="10" fontWeight="bold" fontFamily="'Plus Jakarta Sans', sans-serif">
-                {getStageTitle(progress).substring(0, 52)}...
+                {getStageBadge(progress).substring(0, 60)}...
               </text>
             </g>
 
           </svg>
         </div>
 
-        {/* Interactive Scrub / Phase Buttons Bar */}
-        <div className="p-4 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-slate-500 font-semibold mr-1">Direct Phase:</span>
-            {[
-              { label: '1. Foundation', p: 0.15 },
-              { label: '2. RCC Columns', p: 0.38 },
-              { label: '3. Brickwork', p: 0.62 },
-              { label: '4. Completed Anganwadi & R&B Road', p: 1.0 }
-            ].map((btn, idx) => (
-              <button
-                key={idx}
-                onClick={() => {
-                  setAutoPlay(false);
-                  setManualStage(btn.p);
-                }}
-                className={`px-3 py-1.5 rounded-lg text-[11px] font-bold tracking-wide uppercase transition-all ${
-                  Math.abs(progress - btn.p) < 0.14
-                    ? 'bg-[#B8860B] text-white shadow-sm'
-                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
-                }`}
-              >
-                {btn.label}
-              </button>
-            ))}
+        {/* Bottom Legend Strip */}
+        <div className="px-5 py-3 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between text-[11px] font-mono text-slate-600 gap-3">
+          <div className="flex items-center gap-4">
+            <span className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-sm bg-[#0284C7]"></span>
+              <span>Model School Building</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-sm bg-[#16A34A]"></span>
+              <span>Anganwadi Center</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-sm bg-[#1E293B]"></span>
+              <span>R&B Highway Corridor</span>
+            </span>
           </div>
 
-          <div className="text-[11px] text-slate-500">
-            Scroll page or tap phase buttons to see physical construction progress
+          <div className="text-slate-500 font-semibold">
+            ✦ Fully Automated Civil Construction Simulation ✦
           </div>
         </div>
 
