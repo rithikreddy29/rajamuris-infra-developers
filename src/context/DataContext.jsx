@@ -2,18 +2,17 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const DataContext = createContext(null);
 
-// Default initial verified company data (matches data/db.json)
 const DEFAULT_COMPANY = {
   name: "RAJAMURI'S INFRA DEVELOPERS",
   legalName: "Rajamuri's Infra Developers",
   teluguName: "రాజమురి ఇన్ఫ్రా డెవలపర్స్",
-  tagline: "Government Infrastructure & Civil Construction Since 2014",
+  tagline: "Government Infrastructure, R&B Works & Civil Construction Since 2014",
   headline: "BUILDING THE FOUNDATION OF A BETTER TOMORROW.",
   teluguHeadline: "రేపటి ప్రగతికి దృఢమైన పునాది",
   storyHeading: "BUILT ON EXPERIENCE. DRIVEN BY RESPONSIBILITY.",
-  story: `Rajamuri's Infra Developers is a Telangana-based civil construction and infrastructure company with experience in government construction works since 2014.
+  story: `Rajamuri's Infra Developers is a Telangana-based civil construction and infrastructure company with experience in government construction and Roads & Buildings (R&B) works since 2014.
 
-Over the years, the company has undertaken construction and infrastructure works including educational buildings, Anganwadi buildings and other public infrastructure projects in and around the Kodangal constituency.
+Over the years, the company has undertaken construction and infrastructure works including educational buildings, Anganwadi buildings, R&B road networks and other public infrastructure projects in and around the Kodangal constituency.
 
 Our work is guided by practical engineering, responsible execution, construction quality and a commitment to delivering infrastructure that serves communities.`,
   phone: "+91 96666 60634",
@@ -37,7 +36,7 @@ const DEFAULT_OWNER = {
 const DEFAULT_STATISTICS = [
   { id: "stat-1", value: "2014", suffix: "", label: "Established", sublabel: "Continuous Operations" },
   { id: "stat-2", value: "10", suffix: "+", label: "Years of Experience", sublabel: "Civil Construction Track Record" },
-  { id: "stat-3", value: "Government", suffix: " Infra", label: "Core Experience", sublabel: "Public Infrastructure Focus" },
+  { id: "stat-3", value: "Govt & R&B", suffix: " Infra", label: "Core Experience", sublabel: "Public Infrastructure Focus" },
   { id: "stat-4", value: "Kodangal", suffix: " & TG", label: "Project Region", sublabel: "Telangana State Coverage" }
 ];
 
@@ -61,22 +60,30 @@ const DEFAULT_CAPABILITIES = [
   {
     id: "cap-3",
     number: "03",
+    title: "ROADS & BUILDINGS (R&B) WORKS",
+    teluguTitle: "రోడ్లు మరియు భవనాల పనులు (R&B)",
+    description: "Execution of state public infrastructure, asphalt road corridors, culverts, structural bridges, and departmental public buildings.",
+    category: "ROADS & BUILDINGS (R&B)"
+  },
+  {
+    id: "cap-4",
+    number: "04",
     title: "GOVERNMENT BUILDINGS",
     teluguTitle: "ప్రభుత్వ కార్యాలయ భవనాలు",
     description: "Civil construction and public infrastructure works adhering strictly to institutional engineering codes and government department standards.",
     category: "GOVERNMENT BUILDINGS"
   },
   {
-    id: "cap-4",
-    number: "04",
+    id: "cap-5",
+    number: "05",
     title: "COMMUNITY INFRASTRUCTURE",
     teluguTitle: "సామాజిక మౌలిక వసతులు",
     description: "Infrastructure designed around public needs, civic amenities, rural connectivity, and local public utility spaces.",
     category: "COMMUNITY INFRASTRUCTURE"
   },
   {
-    id: "cap-5",
-    number: "05",
+    id: "cap-6",
+    number: "06",
     title: "CIVIL CONSTRUCTION",
     teluguTitle: "సివిల్ నిర్మాణ పనులు",
     description: "General civil construction and infrastructure execution, reinforced concrete structures, earthworks, and masonry.",
@@ -85,7 +92,7 @@ const DEFAULT_CAPABILITIES = [
 ];
 
 const DEFAULT_WHY_US = [
-  { number: "01", title: "EXPERIENCE", description: "Government construction experience since 2014." },
+  { number: "01", title: "EXPERIENCE", description: "Government construction and R&B works experience since 2014." },
   { number: "02", title: "QUALITY", description: "A focus on construction quality and responsible execution." },
   { number: "03", title: "RELIABILITY", description: "Committed to dependable project execution." },
   { number: "04", title: "LOCAL EXPERIENCE", description: "Understanding of infrastructure requirements in Telangana and the Kodangal region." },
@@ -96,33 +103,36 @@ const DEFAULT_TIMELINE = [
   {
     id: "tl-2014",
     year: "2014",
-    title: "Founding & Incorporation",
-    description: "Rajamuri's Infra Developers established in Telangana, initiating dedicated civil contracting and government infrastructure execution.",
+    title: "Founding & Groundwork",
+    description: "Rajamuri's Infra Developers established in Telangana, initiating government civil contracting, site excavations, and foundation works.",
     location: "Telangana",
     milestone: "Foundation Milestone",
-    projects: "Civil Infrastructure",
+    stage: "foundation",
+    projects: "Civil Infrastructure & Foundations",
     images: [],
     status: "published"
   },
   {
     id: "tl-2016",
     year: "2016",
-    title: "Public & Educational Civil Works Expansion",
-    description: "Expanded execution capabilities into Anganwadi building complexes and rural educational facilities across Kodangal constituency.",
+    title: "Anganwadi & School Structures",
+    description: "Expanded execution into RCC column framing, Anganwadi building complexes, and primary educational facilities across Kodangal.",
     location: "Kodangal, Telangana",
-    milestone: "Regional Operations",
-    projects: "Educational & Anganwadi Infrastructure",
+    milestone: "Structural Expansion",
+    stage: "framing",
+    projects: "Anganwadi Centers & Schools",
     images: [],
     status: "published"
   },
   {
     id: "tl-2020",
     year: "2020",
-    title: "Institutional Infrastructure & Civil Works",
-    description: "Continued delivery of community welfare buildings and government-sanctioned infrastructure with dependable engineering standards.",
-    location: "Telangana",
-    milestone: "Institutional Execution",
-    projects: "Public Works",
+    title: "R&B Works & Public Infrastructure",
+    description: "Undertook Roads & Buildings (R&B) works, connecting roads, culverts, and institutional public community halls.",
+    location: "Kodangal & Telangana",
+    milestone: "R&B Public Execution",
+    stage: "brickwork",
+    projects: "R&B Roads & Public Works",
     images: [],
     status: "published"
   },
@@ -130,10 +140,11 @@ const DEFAULT_TIMELINE = [
     id: "tl-2024",
     year: "2024",
     title: "A Decade of Public Infrastructure Delivery",
-    description: "Marked 10 years of consistent government construction works, deepening community infrastructure across the Kodangal region.",
+    description: "Marked 10 years of consistent government construction works, delivering completed educational, Anganwadi, and civil projects across the constituency.",
     location: "Kodangal & Telangana",
     milestone: "10-Year Landmark",
-    projects: "Government Civil Infrastructure",
+    stage: "completed",
+    projects: "Completed Public Infrastructure",
     images: [],
     status: "published"
   },
@@ -141,10 +152,11 @@ const DEFAULT_TIMELINE = [
     id: "tl-2026",
     year: "2026",
     title: "Next-Phase Civil Development",
-    description: "Executing modern educational, civic, and community infrastructure works aligned with Telangana's growing public development needs.",
+    description: "Executing modern educational, R&B civil corridors, and civic infrastructure aligned with Telangana's growing public development needs.",
     location: "Kodangal & Surrounding Regions",
     milestone: "Present Operations",
-    projects: "Ongoing Infrastructure",
+    stage: "modern",
+    projects: "Ongoing State Infrastructure",
     images: [],
     status: "published"
   }
@@ -166,7 +178,6 @@ export function DataProvider({ children }) {
 
   const isAuthenticated = Boolean(token);
 
-  // Fetch Public Data
   const fetchPublicData = async () => {
     try {
       const res = await fetch('/api/public-data');
@@ -189,7 +200,6 @@ export function DataProvider({ children }) {
     }
   };
 
-  // Fetch Admin All Data (includes drafts and inquiries)
   const fetchAdminData = async (authToken) => {
     try {
       const activeToken = authToken || token;
@@ -229,7 +239,6 @@ export function DataProvider({ children }) {
     }
   }, [token]);
 
-  // Auth methods
   const login = async (username, password) => {
     try {
       const res = await fetch('/api/auth/login', {
@@ -256,7 +265,6 @@ export function DataProvider({ children }) {
     fetchPublicData();
   };
 
-  // Upload Media (support file or base64 data)
   const uploadMedia = async (fileOrFiles) => {
     try {
       const formData = new FormData();
@@ -265,7 +273,6 @@ export function DataProvider({ children }) {
       } else if (fileOrFiles instanceof File || fileOrFiles instanceof Blob) {
         formData.append('files', fileOrFiles);
       } else if (typeof fileOrFiles === 'string') {
-        // base64 upload
         const res = await fetch('/api/media/upload', {
           method: 'POST',
           headers: {
@@ -294,7 +301,6 @@ export function DataProvider({ children }) {
     }
   };
 
-  // Project CRUD
   const addProject = async (projectData) => {
     try {
       const res = await fetch('/api/projects', {
@@ -347,7 +353,6 @@ export function DataProvider({ children }) {
     }
   };
 
-  // Timeline CRUD
   const addTimeline = async (entryData) => {
     try {
       const res = await fetch('/api/timeline', {
@@ -400,7 +405,6 @@ export function DataProvider({ children }) {
     }
   };
 
-  // Owner Update
   const updateOwner = async (ownerData) => {
     try {
       const res = await fetch('/api/owner', {
@@ -420,7 +424,6 @@ export function DataProvider({ children }) {
     }
   };
 
-  // Company Update
   const updateCompany = async (companyData, statsData) => {
     try {
       const res = await fetch('/api/company', {
@@ -441,7 +444,6 @@ export function DataProvider({ children }) {
     }
   };
 
-  // Contact Inquiry Submission (Public)
   const submitInquiry = async (formData) => {
     try {
       const res = await fetch('/api/inquiries', {
@@ -471,7 +473,6 @@ export function DataProvider({ children }) {
     }
   };
 
-  // Password Update
   const changePassword = async (currentPassword, newPassword) => {
     try {
       const res = await fetch('/api/settings/password', {

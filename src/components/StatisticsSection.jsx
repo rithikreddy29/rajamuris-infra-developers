@@ -57,62 +57,80 @@ export default function StatisticsSection() {
 
   const getStatIcon = (index) => {
     switch (index) {
-      case 0: return <Clock className="w-5 h-5 text-[#D4AF37]" />;
-      case 1: return <Award className="w-5 h-5 text-[#D4AF37]" />;
-      case 2: return <Shield className="w-5 h-5 text-[#D4AF37]" />;
-      case 3: return <MapPin className="w-5 h-5 text-[#D4AF37]" />;
-      default: return <Shield className="w-5 h-5 text-[#D4AF37]" />;
+      case 0: return <Clock className="w-5 h-5 text-[#B8860B]" />;
+      case 1: return <Award className="w-5 h-5 text-[#B8860B]" />;
+      case 2: return <Shield className="w-5 h-5 text-[#B8860B]" />;
+      case 3: return <MapPin className="w-5 h-5 text-[#B8860B]" />;
+      default: return <Shield className="w-5 h-5 text-[#B8860B]" />;
     }
   };
 
   return (
-    <section className="relative py-20 bg-[#070A11] border-y border-white/10 overflow-hidden">
+    <section className="relative py-16 sm:py-20 bg-[#F8FAFC] border-y border-slate-200 overflow-hidden">
       
-      {/* Background ambient lighting */}
-      <div className="absolute inset-0 bg-dots-pattern opacity-15 pointer-events-none"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-32 bg-[#D4AF37]/5 blur-[100px] pointer-events-none"></div>
+      {/* Background Subtle Mesh */}
+      <div className="absolute inset-0 bg-architectural-grid opacity-40 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {statistics.map((stat, idx) => (
-            <div
-              key={stat.id || idx}
-              className="relative p-6 sm:p-8 rounded-xl bg-[#0B0F1A]/80 border border-white/10 hover:border-[#D4AF37]/40 transition-all duration-300 group"
-            >
-              {/* Top Stat Icon & Index */}
-              <div className="flex items-center justify-between mb-4">
-                <div className="p-2.5 rounded-lg bg-[#141C2E] border border-white/5 group-hover:border-[#D4AF37]/30 transition-colors">
-                  {getStatIcon(idx)}
+        {/* Section Pill */}
+        <div className="flex items-center justify-between mb-8 pb-3 border-b border-slate-200">
+          <div className="flex items-center gap-2 text-xs font-mono text-slate-500 uppercase tracking-widest font-semibold">
+            <span className="w-2 h-2 rounded-full bg-[#B8860B]"></span>
+            <span>EXPERIENCE METRICS & OPERATIONAL INTEGRITY</span>
+          </div>
+          <span className="text-[11px] font-mono text-slate-400 hidden sm:inline">
+            VERIFIED HISTORICAL DATA • ESTD. 2014
+          </span>
+        </div>
+
+        {/* 4 Robust Cards Grid - No Overlapping */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {statistics.map((stat, idx) => {
+            const isTextLong = stat.value && stat.value.length > 5;
+            return (
+              <div
+                key={stat.id || idx}
+                className="relative rounded-2xl bg-white p-6 sm:p-7 border border-slate-200 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] hover:border-[#B8860B]/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between min-h-[210px] group"
+              >
+                {/* Top Row: Icon + Index Badge */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-[#B8860B] group-hover:scale-105 transition-transform">
+                    {getStatIcon(idx)}
+                  </div>
+                  <span className="font-mono text-xs font-bold text-slate-400 bg-slate-100 px-2.5 py-1 rounded-md">
+                    0{idx + 1}
+                  </span>
                 </div>
-                <span className="font-mono text-[11px] text-slate-400 group-hover:text-[#D4AF37] transition-colors">
-                  0{idx + 1}
-                </span>
-              </div>
 
-              {/* Stat Value */}
-              <div className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-none mb-2">
-                <span className="text-gold-gradient">
-                  <AnimatedCounter endValue={stat.value} suffix={stat.suffix || ""} />
-                </span>
-              </div>
-
-              {/* Stat Label */}
-              <div className="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-200">
-                {stat.label}
-              </div>
-
-              {/* Sublabel / Context */}
-              {stat.sublabel && (
-                <div className="text-[11px] text-slate-400 mt-1 font-light">
-                  {stat.sublabel}
+                {/* Middle: Number / Metric */}
+                <div className="my-auto py-2">
+                  <div className={`font-display font-extrabold tracking-tight text-slate-900 leading-tight ${
+                    isTextLong ? 'text-2xl sm:text-3xl' : 'text-4xl sm:text-5xl'
+                  }`}>
+                    <span className="text-slate-900 group-hover:text-[#B8860B] transition-colors">
+                      <AnimatedCounter endValue={stat.value} suffix={stat.suffix || ""} />
+                    </span>
+                  </div>
                 </div>
-              )}
 
-              {/* Bottom Subtle Accent Bar */}
-              <div className="absolute bottom-0 left-6 right-6 h-[1px] bg-white/5 group-hover:bg-[#D4AF37]/40 transition-colors"></div>
-            </div>
-          ))}
+                {/* Bottom: Label and Sublabel (clean vertical separation) */}
+                <div className="pt-3 border-t border-slate-100 mt-2">
+                  <div className="font-mono text-xs font-bold uppercase tracking-wider text-[#8B6508]">
+                    {stat.label}
+                  </div>
+                  {stat.sublabel && (
+                    <div className="text-[11px] text-slate-500 font-light mt-1 leading-snug">
+                      {stat.sublabel}
+                    </div>
+                  )}
+                </div>
+
+                {/* Bottom Accent Highlight */}
+                <div className="absolute bottom-0 left-6 right-6 h-[2px] bg-transparent group-hover:bg-[#B8860B] transition-colors rounded-full"></div>
+              </div>
+            );
+          })}
         </div>
 
       </div>

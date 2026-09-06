@@ -14,7 +14,8 @@ import {
   MapPin, 
   Calendar,
   Layers,
-  ArrowUpRight
+  ArrowUpRight,
+  Route
 } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 import BeforeAfterSlider from '../../components/BeforeAfterSlider';
@@ -22,6 +23,7 @@ import BeforeAfterSlider from '../../components/BeforeAfterSlider';
 const CATEGORIES = [
   'SCHOOLS',
   'ANGANWADI',
+  'ROADS & BUILDINGS (R&B)',
   'GOVERNMENT BUILDINGS',
   'COMMUNITY INFRASTRUCTURE',
   'CIVIL WORKS',
@@ -44,7 +46,7 @@ export default function AdminProjects({ initialOpenAdd = false }) {
   // Form state
   const initialForm = {
     name: '',
-    category: 'CIVIL WORKS',
+    category: 'ROADS & BUILDINGS (R&B)',
     year: '2024',
     location: 'Kodangal, Telangana',
     status: 'Completed',
@@ -74,7 +76,7 @@ export default function AdminProjects({ initialOpenAdd = false }) {
     setEditingId(project.id);
     setFormData({
       name: project.name || '',
-      category: project.category || 'CIVIL WORKS',
+      category: project.category || 'ROADS & BUILDINGS (R&B)',
       year: project.year || '2024',
       location: project.location || 'Kodangal, Telangana',
       status: project.status || 'Completed',
@@ -101,10 +103,8 @@ export default function AdminProjects({ initialOpenAdd = false }) {
 
     setUploading(true);
     try {
-      // Read each as base64 or upload to backend
       const uploadedUrls = [];
       for (const file of files) {
-        // Use FileReader for instant reliable preview/base64 & backend sync
         const base64 = await new Promise((resolve) => {
           const reader = new FileReader();
           reader.onload = (ev) => resolve(ev.target.result);
@@ -119,7 +119,6 @@ export default function AdminProjects({ initialOpenAdd = false }) {
             uploadedUrls.push(base64);
           }
         } catch {
-          // Fallback to base64
           uploadedUrls.push(base64);
         }
       }
@@ -193,7 +192,7 @@ export default function AdminProjects({ initialOpenAdd = false }) {
             PROJECT PORTFOLIO MANAGEMENT
           </h2>
           <p className="text-xs font-mono text-slate-400 mt-1">
-            Create, draft, preview, and publish verified civil infrastructure works.
+            Create, draft, preview, and publish verified civil infrastructure and R&B works.
           </p>
         </div>
 
@@ -350,7 +349,7 @@ export default function AdminProjects({ initialOpenAdd = false }) {
             <Building className="w-12 h-12 text-slate-600 mx-auto mb-3" />
             <h3 className="font-display font-bold text-lg text-white uppercase">NO PROJECTS RECORDED YET</h3>
             <p className="text-xs font-mono text-slate-400 mt-1 max-w-sm mx-auto">
-              Click "+ ADD NEW PROJECT" above to add verified educational, Anganwadi, or civil construction records.
+              Click "+ ADD NEW PROJECT" above to add verified educational, Anganwadi, or R&B construction records.
             </p>
           </div>
         )}
@@ -395,7 +394,7 @@ export default function AdminProjects({ initialOpenAdd = false }) {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Model Primary School Building"
+                    placeholder="e.g. Model Anganwadi Center / R&B Road Package"
                     className="w-full px-4 py-2.5 rounded-xl bg-[#070911] border border-white/10 text-white text-sm focus:border-[#D4AF37] focus:outline-none"
                   />
                 </div>
@@ -474,7 +473,7 @@ export default function AdminProjects({ initialOpenAdd = false }) {
                       type="text"
                       value={formData.department}
                       onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                      placeholder="e.g. Roads & Buildings / Education Dept"
+                      placeholder="e.g. Roads & Buildings (R&B) / Women & Child Welfare"
                       className="w-full px-3 py-2 rounded-lg bg-[#0A0E1A] border border-white/10 text-white text-xs focus:border-[#D4AF37] focus:outline-none"
                     />
                   </div>
@@ -592,7 +591,6 @@ export default function AdminProjects({ initialOpenAdd = false }) {
 
               {/* Before & After Photos Upload Zone */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-white/10">
-                {/* Before Photo */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <label className="text-[11px] font-mono text-slate-400 uppercase">
@@ -628,7 +626,6 @@ export default function AdminProjects({ initialOpenAdd = false }) {
                   )}
                 </div>
 
-                {/* After Photo */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <label className="text-[11px] font-mono text-slate-400 uppercase">
@@ -773,7 +770,6 @@ export default function AdminProjects({ initialOpenAdd = false }) {
                 </div>
               </div>
 
-              {/* Before/After Preview */}
               {previewProject.beforeImages?.[0] && previewProject.afterImages?.[0] && (
                 <BeforeAfterSlider
                   beforeImage={previewProject.beforeImages[0]}
@@ -782,14 +778,12 @@ export default function AdminProjects({ initialOpenAdd = false }) {
                 />
               )}
 
-              {/* Images Preview */}
               {previewProject.images && previewProject.images.length > 0 && (
                 <div className="aspect-video rounded-xl overflow-hidden bg-black border border-white/10">
                   <img src={previewProject.images[0]} alt="" className="w-full h-full object-cover" />
                 </div>
               )}
 
-              {/* Description Preview */}
               <p className="text-slate-300 text-sm sm:text-base font-light leading-relaxed whitespace-pre-line">
                 {previewProject.description || 'No description provided.'}
               </p>

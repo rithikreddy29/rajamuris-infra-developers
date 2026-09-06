@@ -3,11 +3,11 @@
     "name": "RAJAMURI'S INFRA DEVELOPERS",
     "legalName": "Rajamuri's Infra Developers",
     "teluguName": "రాజమురి ఇన్ఫ్రా డెవలపర్స్",
-    "tagline": "Government Infrastructure & Civil Construction Since 2014",
+    "tagline": "Government Infrastructure, R&B Works & Civil Construction Since 2014",
     "headline": "BUILDING THE FOUNDATION OF A BETTER TOMORROW.",
     "teluguHeadline": "రేపటి ప్రగతికి దృఢమైన పునాది",
     "storyHeading": "BUILT ON EXPERIENCE. DRIVEN BY RESPONSIBILITY.",
-    "story": "Rajamuri's Infra Developers is a Telangana-based civil construction and infrastructure company with experience in government construction works since 2014.\n\nOver the years, the company has undertaken construction and infrastructure works including educational buildings, Anganwadi buildings and other public infrastructure projects in and around the Kodangal constituency.\n\nOur work is guided by practical engineering, responsible execution, construction quality and a commitment to delivering infrastructure that serves communities.",
+    "story": "Rajamuri's Infra Developers is a Telangana-based civil construction and infrastructure company with experience in government construction and Roads & Buildings (R&B) works since 2014.\n\nOver the years, the company has undertaken construction and infrastructure works including educational buildings, Anganwadi buildings, R&B road networks and other public infrastructure projects in and around the Kodangal constituency.\n\nOur work is guided by practical engineering, responsible execution, construction quality and a commitment to delivering infrastructure that serves communities.",
     "phone": "+91 96666 60634",
     "phoneClean": "+919666660634",
     "email": "rajmuri18575@gmail.com",
@@ -41,7 +41,7 @@
     },
     {
       "id": "stat-3",
-      "value": "Government",
+      "value": "Govt & R&B",
       "suffix": " Infra",
       "label": "Core Experience",
       "sublabel": "Public Infrastructure Focus"
@@ -74,22 +74,30 @@
     {
       "id": "cap-3",
       "number": "03",
+      "title": "ROADS & BUILDINGS (R&B) WORKS",
+      "teluguTitle": "రోడ్లు మరియు భవనాల పనులు (R&B)",
+      "description": "Execution of state public infrastructure, asphalt road corridors, culverts, structural bridges, and departmental public buildings.",
+      "category": "ROADS & BUILDINGS (R&B)"
+    },
+    {
+      "id": "cap-4",
+      "number": "04",
       "title": "GOVERNMENT BUILDINGS",
       "teluguTitle": "ప్రభుత్వ కార్యాలయ భవనాలు",
       "description": "Civil construction and public infrastructure works adhering strictly to institutional engineering codes and government department standards.",
       "category": "GOVERNMENT BUILDINGS"
     },
     {
-      "id": "cap-4",
-      "number": "04",
+      "id": "cap-5",
+      "number": "05",
       "title": "COMMUNITY INFRASTRUCTURE",
       "teluguTitle": "సామాజిక మౌలిక వసతులు",
       "description": "Infrastructure designed around public needs, civic amenities, rural connectivity, and local public utility spaces.",
       "category": "COMMUNITY INFRASTRUCTURE"
     },
     {
-      "id": "cap-5",
-      "number": "05",
+      "id": "cap-6",
+      "number": "06",
       "title": "CIVIL CONSTRUCTION",
       "teluguTitle": "సివిల్ నిర్మాణ పనులు",
       "description": "General civil construction and infrastructure execution, reinforced concrete structures, earthworks, and masonry.",
@@ -100,7 +108,7 @@
     {
       "number": "01",
       "title": "EXPERIENCE",
-      "description": "Government construction experience since 2014."
+      "description": "Government construction and R&B works experience since 2014."
     },
     {
       "number": "02",
@@ -127,33 +135,36 @@
     {
       "id": "tl-2014",
       "year": "2014",
-      "title": "Founding & Incorporation",
-      "description": "Rajamuri's Infra Developers established in Telangana, initiating dedicated civil contracting and government infrastructure execution.",
+      "title": "Founding & Groundwork",
+      "description": "Rajamuri's Infra Developers established in Telangana, initiating government civil contracting, site excavations, and foundation works.",
       "location": "Telangana",
       "milestone": "Foundation Milestone",
-      "projects": "Civil Infrastructure",
+      "stage": "foundation",
+      "projects": "Civil Infrastructure & Foundations",
       "images": [],
       "status": "published"
     },
     {
       "id": "tl-2016",
       "year": "2016",
-      "title": "Public & Educational Civil Works Expansion",
-      "description": "Expanded execution capabilities into Anganwadi building complexes and rural educational facilities across Kodangal constituency.",
+      "title": "Anganwadi & School Structures",
+      "description": "Expanded execution into RCC column framing, Anganwadi building complexes, and primary educational facilities across Kodangal.",
       "location": "Kodangal, Telangana",
-      "milestone": "Regional Operations",
-      "projects": "Educational & Anganwadi Infrastructure",
+      "milestone": "Structural Expansion",
+      "stage": "framing",
+      "projects": "Anganwadi Centers & Schools",
       "images": [],
       "status": "published"
     },
     {
       "id": "tl-2020",
       "year": "2020",
-      "title": "Institutional Infrastructure & Civil Works",
-      "description": "Continued delivery of community welfare buildings and government-sanctioned infrastructure with dependable engineering standards.",
-      "location": "Telangana",
-      "milestone": "Institutional Execution",
-      "projects": "Public Works",
+      "title": "R&B Works & Public Infrastructure",
+      "description": "Undertook Roads & Buildings (R&B) works, connecting roads, culverts, and institutional public community halls.",
+      "location": "Kodangal & Telangana",
+      "milestone": "R&B Public Execution",
+      "stage": "brickwork",
+      "projects": "R&B Roads & Public Works",
       "images": [],
       "status": "published"
     },
@@ -161,10 +172,11 @@
       "id": "tl-2024",
       "year": "2024",
       "title": "A Decade of Public Infrastructure Delivery",
-      "description": "Marked 10 years of consistent government construction works, deepening community infrastructure across the Kodangal region.",
+      "description": "Marked 10 years of consistent government construction works, delivering completed educational, Anganwadi, and civil projects across the constituency.",
       "location": "Kodangal & Telangana",
       "milestone": "10-Year Landmark",
-      "projects": "Government Civil Infrastructure",
+      "stage": "completed",
+      "projects": "Completed Public Infrastructure",
       "images": [],
       "status": "published"
     },
@@ -172,10 +184,11 @@
       "id": "tl-2026",
       "year": "2026",
       "title": "Next-Phase Civil Development",
-      "description": "Executing modern educational, civic, and community infrastructure works aligned with Telangana's growing public development needs.",
+      "description": "Executing modern educational, R&B civil corridors, and civic infrastructure aligned with Telangana's growing public development needs.",
       "location": "Kodangal & Surrounding Regions",
       "milestone": "Present Operations",
-      "projects": "Ongoing Infrastructure",
+      "stage": "modern",
+      "projects": "Ongoing State Infrastructure",
       "images": [],
       "status": "published"
     }
@@ -185,10 +198,10 @@
   "updates": [
     {
       "id": "up-1",
-      "title": "Continuing Government Infrastructure Works in Kodangal Constituency",
+      "title": "Executing Government Infrastructure & R&B Works in Kodangal",
       "date": "2026-08-15",
       "category": "Announcements",
-      "description": "Rajamuri's Infra Developers continues its dedicated commitment to public infrastructure, executing sanctioned educational and civil works with high standards of safety and durability.",
+      "description": "Rajamuri's Infra Developers continues its dedicated commitment to public infrastructure, executing sanctioned educational, Anganwadi, and R&B road civil works with high standards of safety and durability.",
       "images": [],
       "status": "published"
     }

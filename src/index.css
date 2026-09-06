@@ -3,118 +3,100 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
-  --bg-main: #05070B;
-  --gold: #D4AF37;
-  --gold-glow: rgba(212, 175, 55, 0.15);
+  color-scheme: light;
+  --bg-main: #FFFFFF;
+  --bg-surface: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --text-main: #0F172A;
+  --text-muted: #64748B;
+  --border-light: #E2E8F0;
+  --gold-accent: #B8860B;
+  --gold-primary: #D4AF37;
 }
 
 body {
-  background-color: var(--bg-main);
-  color: #F1F5F9;
+  background-color: #FFFFFF;
+  color: #0F172A;
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom Architectural Scrollbar */
+/* Custom Clean Architectural Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #07090E;
+  background: #F1F5F9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1E293B;
-  border-radius: 3px;
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: #CBD5E1;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37;
+  background: #B8860B;
 }
 
-/* Architectural Grid Pattern */
+/* Light Architectural Grids */
 .bg-architectural-grid {
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 64px 64px;
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
 .bg-blueprint-grid {
   background-image: 
-    linear-gradient(to right, rgba(212, 175, 55, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(to right, rgba(184, 134, 11, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(184, 134, 11, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 .bg-dots-pattern {
-  background-image: radial-gradient(rgba(212, 175, 55, 0.15) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(184, 134, 11, 0.18) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
-/* Glass Panels */
+/* Pristine Architectural White Cards & Panels */
 .glass-panel {
-  background: rgba(13, 17, 26, 0.75);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-panel-gold {
-  background: rgba(14, 20, 34, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(212, 175, 55, 0.25);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(212, 175, 55, 0.1);
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 25px -5px rgba(15, 23, 42, 0.05);
 }
 
 .glass-panel-card {
-  background: linear-gradient(135deg, rgba(19, 25, 38, 0.8) 0%, rgba(9, 13, 21, 0.9) 100%);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-panel-card:hover {
-  border-color: rgba(212, 175, 55, 0.4);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(212, 175, 55, 0.15);
+  border-color: rgba(184, 134, 11, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.08), 0 0 15px -3px rgba(184, 134, 11, 0.15);
 }
 
-/* Gold Text Gradient */
+.glass-panel-gold {
+  background: #FFFFFF;
+  border: 1px solid rgba(184, 134, 11, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(184, 134, 11, 0.12), 0 4px 15px -3px rgba(15, 23, 42, 0.05);
+}
+
+/* Executive Accent Typography */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #FFF0C8 0%, #D4AF37 50%, #A8791E 100%);
+  background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #8B6508 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.text-silver-gradient {
-  background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 50%, #94A3B8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Image reveal overlay */
-.image-reveal-mask {
-  position: relative;
-  overflow: hidden;
-}
-
-.image-reveal-mask::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(5,7,11,0) 40%, rgba(5,7,11,0.85) 100%);
-  pointer-events: none;
-}
-
-/* Telangana Motif Border Accent */
 .telangana-border-accent {
   position: relative;
 }
@@ -125,18 +107,11 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.6) 50%, transparent 100%);
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 0%, rgba(184, 134, 11, 0.5) 50%, transparent 100%);
 }
 
-/* Kinetic typography subtle letter spacing */
 .editorial-title {
   font-family: 'Syne', sans-serif;
-  letter-spacing: -0.03em;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-}
-
-.editorial-serif {
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.05em;
+  letter-spacing: -0.02em;
 }

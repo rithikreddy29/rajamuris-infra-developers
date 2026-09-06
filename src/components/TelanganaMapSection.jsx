@@ -1,106 +1,104 @@
 import React, { useState } from 'react';
-import { MapPin, Navigation, Compass, Building, GraduationCap, HeartHandshake, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { MapPin, Navigation, Compass, Building, GraduationCap, HeartHandshake, ShieldCheck, Route } from 'lucide-react';
 import { useData } from '../context/DataContext';
 
 export default function TelanganaMapSection() {
   const { company } = useData();
-  const [activeDistrict, setActiveDistrict] = useState('Kodangal (Vikarabad)');
 
   const regionalCategories = [
     {
-      title: "Schools",
+      title: "Roads & Buildings (R&B) Works",
+      telugu: "రోడ్లు & భవనాలు (R&B)",
+      desc: "State public infrastructure, asphalt road corridors, culverts, and departmental buildings.",
+      icon: Route
+    },
+    {
+      title: "Schools & Educational Buildings",
       telugu: "పాఠశాల భవనాలు",
-      desc: "Educational infrastructure providing durable classrooms and learning spaces.",
+      desc: "Educational infrastructure providing durable classrooms and safe learning environments.",
       icon: GraduationCap
     },
     {
-      title: "Anganwadi Buildings",
+      title: "Anganwadi Centers",
       telugu: "అంగన్‌వాడీ కేంద్రాలు",
-      desc: "Child development and maternal healthcare community centers.",
+      desc: "Community-focused facilities serving early childhood education and maternal welfare.",
       icon: HeartHandshake
     },
     {
-      title: "Government Buildings",
+      title: "Government Institutional Buildings",
       telugu: "ప్రభుత్వ భవనాలు",
-      desc: "Public administration, departmental offices, and institutional civil works.",
+      desc: "Civil construction adhering to institutional codes and department specifications.",
       icon: Building
     },
     {
       title: "Community Infrastructure",
       telugu: "సామాజిక వసతులు",
-      desc: "Rural utility structures, community halls, and civic development works.",
+      desc: "Public amenities, utility structures, and rural civic connectivity works.",
       icon: ShieldCheck
-    },
-    {
-      title: "Civil Works",
-      telugu: "సివిల్ మౌలిక సదుపాయాలు",
-      desc: "Reinforced cement concrete execution, compound walls, approach works.",
-      icon: Navigation
     }
   ];
 
   return (
-    <section id="regional" className="relative py-28 sm:py-36 bg-[#05070B] overflow-hidden telangana-border-accent">
+    <section id="regional" className="relative py-24 sm:py-32 bg-white overflow-hidden telangana-border-accent">
       
-      {/* Background Architectural Grid & Subtle Amber Glow */}
-      <div className="absolute inset-0 bg-architectural-grid opacity-25 pointer-events-none"></div>
-      <div className="absolute top-1/2 left-1/3 w-[600px] h-[600px] rounded-full bg-[#A34728]/10 blur-[150px] pointer-events-none"></div>
+      {/* Background Subtle Grid */}
+      <div className="absolute inset-0 bg-architectural-grid opacity-50 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Heading */}
-        <div className="mb-16 text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/20 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]"></span>
-            <span className="text-xs font-mono tracking-[0.25em] text-[#D4AF37] uppercase font-semibold">
+        <div className="mb-14 text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span>
+            <span className="text-xs font-mono tracking-[0.25em] text-[#8B6508] uppercase font-bold">
               REGIONAL IDENTITY
             </span>
           </div>
 
-          <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight uppercase leading-tight">
+          <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-950 uppercase tracking-tight">
             BUILDING FOR COMMUNITIES
           </h2>
           
-          <p className="font-mono text-base sm:text-lg tracking-widest text-gold-400 mt-2 uppercase font-semibold">
+          <p className="font-mono text-sm sm:text-base tracking-widest text-[#8B6508] mt-2 uppercase font-bold">
             KODANGAL • TELANGANA
           </p>
 
-          <p className="text-sm sm:text-base text-slate-300 mt-4 font-light leading-relaxed">
-            Rajamuri's Infra Developers has undertaken civil construction and infrastructure works across the region, with an enduring commitment to public buildings that directly serve local communities and future generations.
+          <p className="text-sm sm:text-base text-slate-600 mt-3 font-light leading-relaxed">
+            Rajamuri's Infra Developers has undertaken civil construction and Roads & Buildings (R&B) works across the region, with an enduring commitment to public buildings that directly serve local communities.
           </p>
         </div>
 
-        {/* Interactive Layout: Custom Telangana Map Graphic + Regional Capabilities */}
+        {/* Interactive Layout: Stylized Telangana Map + Categories */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Column: Stylized Vector Telangana Map with Glowing Kodangal Beacon (6 cols) */}
+          {/* Left Column: Stylized Vector Telangana Map with Kodangal Beacon (6 cols) */}
           <div className="lg:col-span-6">
-            <div className="relative rounded-2xl p-6 sm:p-8 bg-gradient-to-b from-[#0E1424] to-[#080B13] border border-[#D4AF37]/30 shadow-2xl overflow-hidden">
+            <div className="rounded-2xl p-6 sm:p-8 bg-slate-50 border border-slate-200 shadow-sm overflow-hidden relative">
               
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-200">
                 <div className="flex items-center gap-2">
-                  <Compass className="w-4 h-4 text-[#D4AF37]" />
-                  <span className="text-xs font-mono font-bold tracking-widest uppercase text-white">
+                  <Compass className="w-4 h-4 text-[#B8860B]" />
+                  <span className="text-xs font-mono font-bold tracking-widest uppercase text-slate-800">
                     TELANGANA STATE JURISDICTION
                   </span>
                 </div>
-                <span className="text-[10px] font-mono text-gold-400 px-2 py-0.5 rounded bg-[#D4AF37]/10 border border-[#D4AF37]/20">
+                <span className="text-[10px] font-mono text-[#8B6508] px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 font-bold">
                   ESTD. 2014
                 </span>
               </div>
 
               {/* Stylized Vector SVG of Telangana State */}
-              <div className="relative w-full aspect-[1/1] max-w-md mx-auto flex items-center justify-center p-4">
-                <svg viewBox="0 0 400 400" className="w-full h-full filter drop-shadow-[0_0_25px_rgba(212,175,55,0.15)]">
+              <div className="relative w-full aspect-[1/1] max-w-md mx-auto flex items-center justify-center p-2">
+                <svg viewBox="0 0 400 400" className="w-full h-full filter drop-shadow-sm">
                   <defs>
-                    <linearGradient id="tgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#1E293B" stopOpacity="0.8" />
-                      <stop offset="100%" stopColor="#0B0F1A" stopOpacity="0.95" />
+                    <linearGradient id="tgLightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#FFFFFF" />
+                      <stop offset="100%" stopColor="#F1F5F9" />
                     </linearGradient>
-                    <radialGradient id="beaconGlow" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.9" />
-                      <stop offset="60%" stopColor="#D4AF37" stopOpacity="0.3" />
-                      <stop offset="100%" stopColor="#D4AF37" stopOpacity="0" />
+                    <radialGradient id="beaconLightGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.8" />
+                      <stop offset="50%" stopColor="#B8860B" stopOpacity="0.3" />
+                      <stop offset="100%" stopColor="#B8860B" stopOpacity="0" />
                     </radialGradient>
                   </defs>
 
@@ -114,65 +112,62 @@ export default function TelanganaMapSection() {
                        C 95,295 70,260 75,210 
                        C 78,170 95,130 120,90 
                        C 145,55 170,40 190,40 Z"
-                    fill="url(#tgGrad)"
-                    stroke="#D4AF37"
-                    strokeWidth="1.5"
+                    fill="url(#tgLightGrad)"
+                    stroke="#B8860B"
+                    strokeWidth="2"
                     strokeDasharray="4 2"
-                    className="transition-all duration-700 hover:stroke-[#F0CD6D]"
                   />
 
-                  {/* Internal District Grid Guides */}
+                  {/* Internal Grid Guides */}
                   <path
-                    d="M 140,110 Q 200,160 270,140 M 110,180 Q 210,210 290,220 M 130,260 Q 190,280 250,290 M 200,60 L 210,340"
-                    stroke="rgba(255,255,255,0.06)"
-                    strokeWidth="1"
+                    d="M 140,110 Q 200,160 270,140 M 110,180 Q 210,210 290,220 M 130,260 Q 190,280 250,290"
+                    stroke="#E2E8F0"
+                    strokeWidth="1.5"
                     fill="none"
                   />
 
-                  {/* Surrounding Telangana Major District Anchor Markers */}
-                  <g className="text-[9px] font-mono fill-slate-400 select-none">
+                  {/* Major District Markers */}
+                  <g className="text-[10px] font-mono fill-slate-500 font-semibold select-none">
                     <text x="210" y="90">Adilabad</text>
                     <text x="250" y="150">Karimnagar</text>
                     <text x="260" y="200">Warangal</text>
-                    <text x="180" y="180" fill="#E2E8F0" fontWeight="bold">Hyderabad</text>
+                    <text x="180" y="180" fill="#0F172A" fontWeight="bold">Hyderabad</text>
                     <text x="195" y="280">Mahbubnagar</text>
                     <text x="270" y="270">Khammam</text>
-                    <text x="130" y="160">Sangareddy</text>
+                    <text x="125" y="160">Sangareddy</text>
                   </g>
 
-                  {/* KODANGAL LOCATION BEACON (South-West Belt: Vikarabad / Mahbubnagar region) */}
+                  {/* KODANGAL LOCATION BEACON */}
                   <g transform="translate(125, 235)">
-                    {/* Animated Radar Pulse Rings */}
-                    <circle cx="0" cy="0" r="28" fill="url(#beaconGlow)" className="animate-ping" opacity="0.4" />
-                    <circle cx="0" cy="0" r="16" fill="none" stroke="#D4AF37" strokeWidth="1.5" opacity="0.8" />
-                    <circle cx="0" cy="0" r="6" fill="#D4AF37" />
+                    <circle cx="0" cy="0" r="28" fill="url(#beaconLightGlow)" className="animate-ping" opacity="0.6" />
+                    <circle cx="0" cy="0" r="14" fill="none" stroke="#B8860B" strokeWidth="2" />
+                    <circle cx="0" cy="0" r="6" fill="#B8860B" />
 
                     {/* Kodangal Location Pin Card */}
-                    <rect x="8" y="-22" width="105" height="42" rx="6" fill="#060910" stroke="#D4AF37" strokeWidth="1" />
-                    <text x="16" y="-7" fill="#F0CD6D" fontSize="10" fontWeight="bold" fontFamily="monospace">KODANGAL</text>
-                    <text x="16" y="8" fill="#94A3B8" fontSize="8" fontFamily="monospace">Core Project Hub</text>
+                    <rect x="10" y="-22" width="115" height="42" rx="8" fill="#0F172A" stroke="#B8860B" strokeWidth="1.5" />
+                    <text x="18" y="-7" fill="#F0CD6D" fontSize="10" fontWeight="bold" fontFamily="monospace">KODANGAL</text>
+                    <text x="18" y="8" fill="#E2E8F0" fontSize="8" fontFamily="monospace">Core Project Hub</text>
                   </g>
                 </svg>
 
                 {/* Corner Coordinates Legend */}
-                <div className="absolute bottom-4 left-4 right-4 p-3 rounded-lg bg-[#060910]/90 border border-white/10 flex items-center justify-between text-[10px] font-mono">
-                  <span className="text-slate-400">17.1121° N, 77.6251° E</span>
-                  <span className="text-[#D4AF37] font-semibold">KODANGAL CONSTITUENCY</span>
+                <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-white border border-slate-200 flex items-center justify-between text-[11px] font-mono shadow-sm">
+                  <span className="text-slate-600">17.1121° N, 77.6251° E</span>
+                  <span className="text-[#8B6508] font-bold">KODANGAL CONSTITUENCY</span>
                 </div>
               </div>
 
             </div>
           </div>
 
-          {/* Right Column: Regional Project Categories (6 cols) */}
-          <div className="lg:col-span-6 space-y-4">
-            
-            <div className="mb-6">
-              <h3 className="text-xs font-mono font-bold tracking-widest text-[#D4AF37] uppercase">
-                TARGET CIVIL INFRASTRUCTURE
+          {/* Right Column: Categories (6 cols) */}
+          <div className="lg:col-span-6 space-y-3">
+            <div className="mb-4">
+              <h3 className="text-xs font-mono font-bold tracking-widest text-[#8B6508] uppercase">
+                TARGET REGIONAL CIVIL WORKS
               </h3>
-              <p className="text-slate-400 text-xs mt-1">
-                Sanctioned civil works focused on community welfare and rural advancement:
+              <p className="text-slate-500 text-xs mt-0.5">
+                Sanctioned civil works focused on community infrastructure and R&B development:
               </p>
             </div>
 
@@ -182,22 +177,22 @@ export default function TelanganaMapSection() {
                 return (
                   <div
                     key={idx}
-                    className="p-4 rounded-xl glass-panel-card border border-white/10 hover:border-[#D4AF37]/50 transition-all flex items-start gap-4 group"
+                    className="p-4 rounded-xl bg-slate-50 hover:bg-white border border-slate-200 hover:border-[#B8860B] shadow-sm transition-all flex items-start gap-4 group"
                   >
-                    <div className="p-2.5 rounded-lg bg-[#141C2E] border border-white/5 text-[#D4AF37] group-hover:scale-110 transition-transform">
+                    <div className="p-2.5 rounded-xl bg-white border border-slate-200 text-[#B8860B] group-hover:scale-105 transition-transform">
                       <IconComponent className="w-5 h-5" />
                     </div>
 
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-display font-bold text-sm sm:text-base text-white uppercase group-hover:text-gold-400 transition-colors">
+                        <h4 className="font-display font-bold text-sm sm:text-base text-slate-900 group-hover:text-[#B8860B] transition-colors">
                           {item.title}
                         </h4>
-                        <span className="text-[10px] font-mono text-[#D4AF37]/80 bg-[#D4AF37]/10 px-2 py-0.5 rounded">
+                        <span className="text-[10px] font-mono text-[#8B6508] bg-amber-50 border border-amber-200 px-2 py-0.5 rounded font-semibold">
                           {item.telugu}
                         </span>
                       </div>
-                      <p className="text-xs text-slate-400 mt-1 font-light leading-relaxed">
+                      <p className="text-xs text-slate-600 mt-1 font-light leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
@@ -206,11 +201,10 @@ export default function TelanganaMapSection() {
               })}
             </div>
 
-            {/* Strict Notice */}
-            <div className="p-4 rounded-xl bg-[#090E18] border border-[#D4AF37]/20 flex items-start gap-3 mt-6">
-              <ShieldCheck className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" />
-              <p className="text-[11px] font-mono text-slate-400 leading-relaxed">
-                <strong className="text-white">GOVERNMENT WORK INTEGRITY:</strong> Projects are formally published only after physical completion verification and administrative ledger entry.
+            <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 flex items-start gap-3 mt-5">
+              <ShieldCheck className="w-5 h-5 text-[#B8860B] flex-shrink-0 mt-0.5" />
+              <p className="text-[11px] font-mono text-slate-700 leading-relaxed">
+                <strong className="text-slate-900 font-bold">GOVERNMENT CONTRACT INTEGRITY:</strong> Projects are formally associated and published only after verified completion and administrative validation.
               </p>
             </div>
 
