@@ -37,31 +37,13 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* Brand Identity */}
-          <a href="#" className="flex items-center gap-3.5 group">
-            {/* Architectural Monogram Emblem */}
-            <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-slate-900 border-2 border-[#B8860B]/40 flex items-center justify-center shadow-md group-hover:border-[#B8860B] transition-all duration-300">
-              <span className="font-serif font-bold text-lg sm:text-xl text-[#F0CD6D] tracking-wider">R</span>
-              <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#B8860B] border-2 border-white"></span>
-            </div>
-
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2">
-                <span className="font-display font-extrabold text-base sm:text-lg tracking-wider text-slate-950 uppercase leading-none group-hover:text-[#B8860B] transition-colors">
-                  RAJAMURI'S
-                </span>
-                <span className="text-[9px] font-semibold text-[#8B6508] bg-[#FEF3C7] border border-[#FDE68A] px-1.5 py-0.2 rounded hidden sm:inline-block">
-                  రాజమురి ఇన్ఫ్రా
-                </span>
-              </div>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="text-[10px] sm:text-[11px] tracking-[0.22em] text-slate-500 font-semibold uppercase">
-                  INFRA DEVELOPERS
-                </span>
-                <span className="text-[9px] text-slate-400 font-mono hidden md:inline">
-                  • GOVT & R&B
-                </span>
-              </div>
-            </div>
+          <a href="#" className="flex flex-col group py-0.5">
+            <span className="font-display font-extrabold text-base sm:text-xl tracking-wider text-slate-950 uppercase leading-none group-hover:text-[#B8860B] transition-colors">
+              RAJAMURI'S
+            </span>
+            <span className="text-[10px] sm:text-xs tracking-[0.26em] text-[#8B6508] font-bold uppercase mt-1 font-mono">
+              INFRA DEVELOPERS
+            </span>
           </a>
 
           {/* Desktop Navigation Links */}
