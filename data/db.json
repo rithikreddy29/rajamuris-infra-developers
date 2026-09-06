@@ -206,7 +206,20 @@
       "status": "published"
     }
   ],
-  "inquiries": [],
+  "inquiries": [
+    {
+      "id": "inq-1788671021927",
+      "name": "rajamuri sai rithik reddy",
+      "phone": "+918096660634",
+      "email": "rithikreddy29@gmail.com",
+      "organization": "",
+      "projectType": "Roads & Buildings (R&B)",
+      "location": "Telangana",
+      "message": "",
+      "date": "2026-09-06T05:03:41.927Z",
+      "status": "new"
+    }
+  ],
   "auth": {
     "username": "admin",
     "passwordHash": "rajamuri2014"

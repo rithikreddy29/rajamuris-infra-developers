@@ -27,6 +27,7 @@ export default function ContactSection() {
 
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [lastWaUrl, setLastWaUrl] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
@@ -39,23 +40,41 @@ export default function ContactSection() {
     setSubmitting(true);
     setError('');
 
-    const res = await submitInquiry(formData);
-    setSubmitting(false);
+    // Construct formatted WhatsApp message
+    const waText = 
+`*NEW FORMAL INQUIRY - RAJAMURI'S INFRA DEVELOPERS*
+--------------------------------------------
+👤 *Name:* ${formData.name.trim()}
+📞 *Phone:* ${formData.phone.trim()}
+${formData.email.trim() ? `📧 *Email:* ${formData.email.trim()}\n` : ''}${formData.organization.trim() ? `🏢 *Organization:* ${formData.organization.trim()}\n` : ''}🏗️ *Category:* ${formData.projectType || 'Roads & Buildings (R&B)'}
+${formData.location.trim() ? `📍 *Location:* ${formData.location.trim()}\n` : ''}${formData.message.trim() ? `📝 *Message:* ${formData.message.trim()}\n` : ''}--------------------------------------------
+_Sent via Rajamuri's Infra Developers Website_`;
 
-    if (res.success) {
-      setSubmitted(true);
-      setFormData({
-        name: '',
-        phone: '',
-        email: '',
-        organization: '',
-        projectType: 'Roads & Buildings (R&B)',
-        location: '',
-        message: ''
-      });
-    } else {
-      setError(res.error || 'Unable to submit at this time. Please call directly.');
+    const targetNumber = '919666660634';
+    const waUrl = `https://wa.me/${targetNumber}?text=${encodeURIComponent(waText)}`;
+    setLastWaUrl(waUrl);
+
+    // Save inquiry to backend database (so it appears in the Admin Panel!)
+    try {
+      await submitInquiry(formData);
+    } catch (err) {
+      console.warn('Backend inquiry save warning:', err);
     }
+
+    // Directly open WhatsApp with the pre-filled inquiry
+    window.open(waUrl, '_blank');
+
+    setSubmitting(false);
+    setSubmitted(true);
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      organization: '',
+      projectType: 'Roads & Buildings (R&B)',
+      location: '',
+      message: ''
+    });
   };
 
   return (
@@ -130,34 +149,52 @@ export default function ContactSection() {
               </div>
 
               {submitted ? (
-                <div className="p-8 rounded-xl bg-emerald-50 border border-emerald-200 text-center space-y-4">
-                  <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center">
-                    <CheckCircle2 className="w-6 h-6" />
+                <div className="p-8 sm:p-10 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border-2 border-emerald-300 dark:border-emerald-800/60 text-center space-y-4 shadow-lg">
+                  <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 mx-auto flex items-center justify-center shadow-inner">
+                    <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h4 className="font-display font-bold text-lg text-slate-900 uppercase">
-                    INQUIRY TRANSMITTED SUCCESSFULLY
+                  <h4 className="font-display font-extrabold text-xl sm:text-2xl text-slate-950 dark:text-white uppercase tracking-tight">
+                    INQUIRY TRANSMITTED TO WHATSAPP
                   </h4>
-                  <p className="text-sm text-slate-600 font-light">
-                    Thank you. Your project details have been registered with Rajamuri's Infra Developers. Our leadership team will review and connect promptly.
+                  <p className="text-sm text-slate-600 dark:text-slate-300 font-light max-w-lg mx-auto leading-relaxed">
+                    Your inquiry has been registered with Rajamuri's Infra Developers and directed straight to WhatsApp number <strong className="font-mono text-slate-950 dark:text-white font-bold">+91 96666 60634</strong>.
                   </p>
-                  <button
-                    onClick={() => setSubmitted(false)}
-                    className="mt-4 px-5 py-2 rounded-lg text-xs font-mono text-[#8B6508] border border-amber-300 hover:bg-amber-50"
-                  >
-                    Send another inquiry
-                  </button>
+
+                  {lastWaUrl && (
+                    <div className="pt-2">
+                      <a
+                        href={lastWaUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-bold font-mono text-xs sm:text-sm tracking-wider uppercase text-white bg-[#25D366] hover:bg-[#20bd5a] shadow-lg transition-all hover:scale-105 active:scale-95"
+                      >
+                        <MessageSquare className="w-4 h-4 fill-white" />
+                        <span>OPEN CHAT ON WHATSAPP (+91 96666 60634)</span>
+                        <ArrowUpRight className="w-4 h-4" />
+                      </a>
+                    </div>
+                  )}
+
+                  <div className="pt-4 border-t border-emerald-200 dark:border-emerald-800/40">
+                    <button
+                      onClick={() => setSubmitted(false)}
+                      className="px-5 py-2 rounded-xl text-xs font-mono font-semibold text-[#8B6508] dark:text-[#F0CD6D] border border-amber-300 dark:border-amber-700/60 hover:bg-amber-50 dark:hover:bg-amber-950/50 transition-colors"
+                    >
+                      Submit another inquiry
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {error && (
-                    <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700 font-mono">
+                    <div className="p-3.5 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-xs text-red-700 dark:text-red-300 font-mono">
                       {error}
                     </div>
                   )}
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 uppercase mb-1 font-semibold">
+                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
                         FULL NAME *
                       </label>
                       <input
@@ -166,12 +203,12 @@ export default function ContactSection() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Srikanth Reddy"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:border-[#B8860B] focus:bg-white focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 uppercase mb-1 font-semibold">
+                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
                         PHONE NUMBER *
                       </label>
                       <input
@@ -180,14 +217,14 @@ export default function ContactSection() {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+91 98765 43210"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:border-[#B8860B] focus:bg-white focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 uppercase mb-1 font-semibold">
+                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
                         EMAIL ADDRESS
                       </label>
                       <input
@@ -195,12 +232,12 @@ export default function ContactSection() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="office@example.com"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:border-[#B8860B] focus:bg-white focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 uppercase mb-1 font-semibold">
+                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
                         ORGANIZATION / ENTITY
                       </label>
                       <input
@@ -208,20 +245,20 @@ export default function ContactSection() {
                         value={formData.organization}
                         onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                         placeholder="e.g. Panchayat / R&B Department / Enterprise"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:border-[#B8860B] focus:bg-white focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 uppercase mb-1 font-semibold">
+                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
                         PROJECT CATEGORY
                       </label>
                       <select
                         value={formData.projectType}
                         onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:border-[#B8860B] focus:bg-white focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors"
                       >
                         <option value="Roads & Buildings (R&B)">Roads & Buildings (R&B) Works</option>
                         <option value="Schools & Educational">Schools & Educational Facilities</option>
@@ -233,7 +270,7 @@ export default function ContactSection() {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 uppercase mb-1 font-semibold">
+                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
                         LOCATION IN TELANGANA
                       </label>
                       <input
@@ -241,13 +278,13 @@ export default function ContactSection() {
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                         placeholder="e.g. Kodangal / Vikarabad / Telangana"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:border-[#B8860B] focus:bg-white focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono tracking-wider text-slate-600 uppercase mb-1 font-semibold">
+                    <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
                       PROJECT DESCRIPTION / MESSAGE
                     </label>
                     <textarea
@@ -255,21 +292,22 @@ export default function ContactSection() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Please outline the scope, approximate specifications, or site requirements..."
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:border-[#B8860B] focus:bg-white focus:outline-none transition-colors resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors resize-none"
                     ></textarea>
                   </div>
 
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full py-4 rounded-xl font-bold text-xs sm:text-sm tracking-widest uppercase text-white bg-slate-950 hover:bg-slate-800 shadow-[0_4px_20px_rgba(15,23,42,0.2)] transition-all flex items-center justify-center gap-2 mt-4"
+                    className="w-full py-4 rounded-xl font-bold text-xs sm:text-sm tracking-widest uppercase text-white bg-[#25D366] hover:bg-[#20bd5a] shadow-[0_4px_25px_rgba(37,211,102,0.35)] transition-all flex items-center justify-center gap-2 mt-4 hover:scale-[1.01] active:scale-[0.99]"
                   >
                     {submitting ? (
-                      <span>TRANSMITTING...</span>
+                      <span>TRANSMITTING TO WHATSAPP...</span>
                     ) : (
                       <>
-                        <span>SEND ENQUIRY</span>
-                        <Send className="w-4 h-4 text-[#F0CD6D]" />
+                        <MessageSquare className="w-4 h-4 fill-white" />
+                        <span>SUBMIT FORMAL INQUIRY (SEND TO WHATSAPP 96666 60634)</span>
+                        <Send className="w-4 h-4 text-white" />
                       </>
                     )}
                   </button>

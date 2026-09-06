@@ -171,8 +171,16 @@ export default function Footer() {
 
         {/* Bottom Copyright & Back to Top Strip */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
-          <div>
-            © 2026 Rajamuri's Infra Developers. All Rights Reserved.
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <span>© 2026 Rajamuri's Infra Developers. All Rights Reserved.</span>
+            <span className="text-slate-600">•</span>
+            <a 
+              href="/admin" 
+              className="text-slate-500 hover:text-[#F0CD6D] transition-colors underline decoration-dotted underline-offset-4 font-bold"
+              title="Access Management Portal"
+            >
+              Admin Portal
+            </a>
           </div>
 
           <button
