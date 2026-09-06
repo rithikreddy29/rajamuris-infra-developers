@@ -36,23 +36,23 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* Brand Identity */}
-          <a href="#" className="flex flex-col group py-0.5">
-            <span className="font-display font-extrabold text-base sm:text-xl tracking-wider text-slate-950 uppercase leading-none group-hover:text-[#B8860B] transition-colors">
+          {/* Brand Identity - Single Line */}
+          <a href="#" className="flex items-center gap-2 whitespace-nowrap group flex-shrink-0 py-1">
+            <span className="font-display font-extrabold text-sm sm:text-base lg:text-lg tracking-wider text-slate-950 uppercase leading-none group-hover:text-[#B8860B] transition-colors">
               RAJAMURI'S
             </span>
-            <span className="text-[10px] sm:text-xs tracking-[0.26em] text-[#8B6508] font-bold uppercase mt-1 font-mono">
+            <span className="text-[10px] sm:text-xs tracking-[0.22em] text-[#8B6508] font-bold uppercase font-mono">
               INFRA DEVELOPERS
             </span>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-7">
+          {/* Desktop Navigation Links - Single Line */}
+          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 flex-shrink-0 whitespace-nowrap">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs font-bold tracking-widest text-slate-600 hover:text-slate-950 transition-colors relative py-1 group"
+                className="text-[11px] xl:text-xs font-bold tracking-wider text-slate-700 hover:text-slate-950 transition-colors relative py-1 group whitespace-nowrap"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#B8860B] transition-all duration-300 group-hover:w-full"></span>
@@ -60,24 +60,24 @@ export default function Navigation() {
             ))}
           </nav>
 
-          {/* Right Action CTA */}
-          <div className="hidden lg:flex items-center gap-5">
+          {/* Right Action CTA & Phone - Single Line */}
+          <div className="hidden lg:flex items-center gap-3 xl:gap-4 flex-shrink-0 whitespace-nowrap">
             <a
               href={`tel:${company.phoneClean || '+919666660634'}`}
-              className="flex items-center gap-2 text-xs font-mono text-slate-700 hover:text-[#B8860B] transition-colors"
+              className="flex items-center gap-1.5 text-xs font-mono font-semibold text-slate-800 hover:text-[#B8860B] transition-colors whitespace-nowrap"
             >
-              <div className="p-1.5 rounded-full bg-slate-100 text-[#B8860B]">
-                <Phone className="w-3.5 h-3.5" />
+              <div className="p-1 rounded-full bg-slate-100 text-[#B8860B]">
+                <Phone className="w-3 h-3" />
               </div>
-              <span className="hidden xl:inline font-semibold">+91 96666 60634</span>
+              <span>+91 96666 60634</span>
             </a>
 
             <a
               href="#contact"
-              className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold tracking-widest uppercase text-white bg-slate-900 hover:bg-slate-800 shadow-[0_4px_15px_rgba(15,23,42,0.15)] transition-all hover:scale-[1.02] active:scale-[0.98] border border-slate-700"
+              className="relative inline-flex items-center gap-1.5 px-3.5 xl:px-4 py-2 rounded-xl text-[11px] font-bold tracking-wider uppercase text-white bg-slate-950 hover:bg-slate-800 shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98] border border-slate-700 whitespace-nowrap"
             >
               <span>GET IN TOUCH</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#F0CD6D]" />
+              <ArrowUpRight className="w-3 h-3 text-[#F0CD6D]" />
             </a>
           </div>
 

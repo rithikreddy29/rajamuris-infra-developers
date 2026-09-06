@@ -16,10 +16,10 @@ export default function HeroSection() {
       {/* ------------------------------------------------------------- */}
       {/* FAST 3.5s AUTOMATED CIVIL ANIMATION DIRECTLY IN THE BACKGROUND */}
       {/* ------------------------------------------------------------- */}
-      <div className="absolute inset-0 z-0 flex items-end justify-center pointer-events-none overflow-hidden select-none opacity-85">
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none opacity-90">
         <ConstructionScrollAnimation isBackground={true} />
-        {/* Crisp glass scrim overlay ensuring foreground typography pops with high contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white/85 pointer-events-none"></div>
+        {/* Architectural scrim overlay ensuring foreground typography pops with high contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-white/65 to-white/80 pointer-events-none"></div>
       </div>
 
       {/* Main Hero Foreground Content */}

@@ -87,73 +87,271 @@ export default function TelanganaMapSection() {
                 </span>
               </div>
 
-              {/* Stylized Vector SVG of Telangana State */}
-              <div className="relative w-full aspect-[1/1] max-w-md mx-auto flex items-center justify-center p-2">
-                <svg viewBox="0 0 400 400" className="w-full h-full filter drop-shadow-sm">
+              {/* Geographically Authentic Vector SVG of Telangana State */}
+              <div className="relative w-full aspect-[1/1] max-w-lg mx-auto flex items-center justify-center p-2">
+                <svg viewBox="0 0 520 500" className="w-full h-full filter drop-shadow-md select-none">
                   <defs>
-                    <linearGradient id="tgLightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient id="tgRealMapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#FFFFFF" />
+                      <stop offset="60%" stopColor="#F8FAFC" />
                       <stop offset="100%" stopColor="#F1F5F9" />
                     </linearGradient>
-                    <radialGradient id="beaconLightGlow" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.8" />
-                      <stop offset="50%" stopColor="#B8860B" stopOpacity="0.3" />
+
+                    <radialGradient id="kodangalRadarGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.9" />
+                      <stop offset="40%" stopColor="#B8860B" stopOpacity="0.4" />
                       <stop offset="100%" stopColor="#B8860B" stopOpacity="0" />
                     </radialGradient>
+
+                    <pattern id="mapBlueprintGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#E2E8F0" strokeWidth="0.8" opacity="0.7" />
+                    </pattern>
                   </defs>
 
-                  {/* Outer Telangana State Boundary Silhouette */}
+                  {/* Subtle Background Blueprint Grid */}
+                  <rect width="520" height="500" fill="url(#mapBlueprintGrid)" opacity="0.5" rx="16" />
+
+                  {/* Latitude / Longitude Guide Lines */}
+                  <line x1="30" y1="120" x2="490" y2="120" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="4 4" />
+                  <line x1="30" y1="260" x2="490" y2="260" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="4 4" />
+                  <line x1="30" y1="400" x2="490" y2="400" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="4 4" />
+                  <line x1="140" y1="20" x2="140" y2="480" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="4 4" />
+                  <line x1="260" y1="20" x2="260" y2="480" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="4 4" />
+                  <line x1="400" y1="20" x2="400" y2="480" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="4 4" />
+
+                  <text x="35" y="115" fill="#94A3B8" fontSize="8" fontFamily="monospace">19° N</text>
+                  <text x="35" y="255" fill="#94A3B8" fontSize="8" fontFamily="monospace">17.5° N</text>
+                  <text x="35" y="395" fill="#94A3B8" fontSize="8" fontFamily="monospace">16° N</text>
+                  <text x="145" y="475" fill="#94A3B8" fontSize="8" fontFamily="monospace">78° E</text>
+                  <text x="265" y="475" fill="#94A3B8" fontSize="8" fontFamily="monospace">79.5° E</text>
+                  <text x="405" y="475" fill="#94A3B8" fontSize="8" fontFamily="monospace">81° E</text>
+
+                  {/* ------------------------------------------------------------- */}
+                  {/* AUTHENTIC TELANGANA STATE GEOGRAPHICAL BOUNDARY PATH */}
+                  {/* ------------------------------------------------------------- */}
                   <path
-                    d="M 190,40 
-                       C 240,45 280,70 310,110 
-                       C 330,140 340,180 320,230 
-                       C 300,270 280,310 240,340 
-                       C 200,370 160,360 130,330 
-                       C 95,295 70,260 75,210 
-                       C 78,170 95,130 120,90 
-                       C 145,55 170,40 190,40 Z"
-                    fill="url(#tgLightGrad)"
+                    d="M 270,35
+                       C 285,25 315,35 335,60
+                       C 355,80 380,105 385,135
+                       C 390,160 410,185 435,210
+                       C 460,235 485,260 475,290
+                       C 465,315 435,325 410,335
+                       C 385,345 365,355 340,365
+                       C 315,375 285,395 260,420
+                       C 245,435 225,445 205,430
+                       C 185,415 170,380 150,355
+                       C 135,335 110,320 115,295
+                       C 120,275 140,265 145,245
+                       C 150,225 135,200 145,175
+                       C 155,150 175,130 185,105
+                       C 195,80 215,65 240,45
+                       Z"
+                    fill="url(#tgRealMapGrad)"
                     stroke="#B8860B"
-                    strokeWidth="2"
-                    strokeDasharray="4 2"
+                    strokeWidth="2.5"
+                    className="transition-all duration-300"
                   />
 
-                  {/* Internal Grid Guides */}
+                  {/* State Boundary Inner Drop Shadow / Depth */}
                   <path
-                    d="M 140,110 Q 200,160 270,140 M 110,180 Q 210,210 290,220 M 130,260 Q 190,280 250,290"
-                    stroke="#E2E8F0"
-                    strokeWidth="1.5"
+                    d="M 270,35
+                       C 285,25 315,35 335,60
+                       C 355,80 380,105 385,135
+                       C 390,160 410,185 435,210
+                       C 460,235 485,260 475,290
+                       C 465,315 435,325 410,335
+                       C 385,345 365,355 340,365
+                       C 315,375 285,395 260,420
+                       C 245,435 225,445 205,430
+                       C 185,415 170,380 150,355
+                       C 135,335 110,320 115,295
+                       C 120,275 140,265 145,245
+                       C 150,225 135,200 145,175
+                       C 155,150 175,130 185,105
+                       C 195,80 215,65 240,45
+                       Z"
+                    fill="none"
+                    stroke="#D4AF37"
+                    strokeWidth="1"
+                    strokeDasharray="6 3"
+                    opacity="0.8"
+                  />
+
+                  {/* Internal River Courses (Godavari in North, Krishna in South) */}
+                  {/* Godavari River Basin */}
+                  <path
+                    d="M 185,105 Q 240,115 310,110 T 410,170 T 475,280"
+                    fill="none"
+                    stroke="#0284C7"
+                    strokeWidth="1.8"
+                    strokeDasharray="5 3"
+                    opacity="0.6"
+                  />
+                  <text x="330" y="105" fill="#0284C7" fontSize="7" fontWeight="bold" fontFamily="monospace" opacity="0.8">
+                    GODAVARI BASIN
+                  </text>
+
+                  {/* Krishna River Basin */}
+                  <path
+                    d="M 115,320 Q 170,385 240,410 T 360,365 T 440,330"
+                    fill="none"
+                    stroke="#0284C7"
+                    strokeWidth="1.8"
+                    strokeDasharray="5 3"
+                    opacity="0.6"
+                  />
+                  <text x="260" y="405" fill="#0284C7" fontSize="7" fontWeight="bold" fontFamily="monospace" opacity="0.8">
+                    KRISHNA BASIN
+                  </text>
+
+                  {/* District Outlines / Internal Zones */}
+                  <path
+                    d="M 230,120 L 270,185 M 270,185 L 340,210 M 270,185 L 240,260 M 240,260 L 320,300 M 240,260 L 195,310 M 195,310 L 250,370"
+                    stroke="#CBD5E1"
+                    strokeWidth="1"
+                    strokeDasharray="3 3"
                     fill="none"
                   />
 
-                  {/* Major District Markers */}
-                  <g className="text-[10px] font-mono fill-slate-500 font-semibold select-none">
-                    <text x="210" y="90">Adilabad</text>
-                    <text x="250" y="150">Karimnagar</text>
-                    <text x="260" y="200">Warangal</text>
-                    <text x="180" y="180" fill="#0F172A" fontWeight="bold">Hyderabad</text>
-                    <text x="195" y="280">Mahbubnagar</text>
-                    <text x="270" y="270">Khammam</text>
-                    <text x="125" y="160">Sangareddy</text>
+                  {/* Major Telangana Cities & Hubs */}
+                  <g className="text-[9px] font-mono fill-slate-500 font-semibold select-none">
+                    {/* Adilabad */}
+                    <circle cx="280" cy="70" r="2.5" fill="#94A3B8" />
+                    <text x="288" y="73">Adilabad</text>
+
+                    {/* Nizamabad */}
+                    <circle cx="205" cy="130" r="2.5" fill="#94A3B8" />
+                    <text x="155" y="133">Nizamabad</text>
+
+                    {/* Karimnagar */}
+                    <circle cx="285" cy="145" r="2.5" fill="#94A3B8" />
+                    <text x="293" y="148">Karimnagar</text>
+
+                    {/* Warangal */}
+                    <circle cx="330" cy="205" r="3" fill="#64748B" />
+                    <text x="338" y="208">Warangal</text>
+
+                    {/* Khammam */}
+                    <circle cx="380" cy="290" r="2.5" fill="#94A3B8" />
+                    <text x="388" y="293">Khammam</text>
+
+                    {/* Nalgonda */}
+                    <circle cx="295" cy="315" r="2.5" fill="#94A3B8" />
+                    <text x="303" y="318">Nalgonda</text>
+
+                    {/* Mahabubnagar */}
+                    <circle cx="205" cy="345" r="3" fill="#64748B" />
+                    <text x="145" y="358">Mahabubnagar</text>
+
+                    {/* Sangareddy */}
+                    <circle cx="180" cy="225" r="2.5" fill="#94A3B8" />
+                    <text x="125" y="222">Sangareddy</text>
+
+                    {/* Vikarabad */}
+                    <circle cx="160" cy="265" r="2.5" fill="#94A3B8" />
+                    <text x="110" y="260">Vikarabad</text>
+
+                    {/* Hyderabad - State Capital */}
+                    <circle cx="225" cy="255" r="5" fill="#0F172A" stroke="#D4AF37" strokeWidth="2" />
+                    <text x="235" y="252" fill="#0F172A" fontSize="10" fontWeight="bold">HYDERABAD</text>
+                    <text x="235" y="262" fill="#8B6508" fontSize="7" fontWeight="bold">STATE CAPITAL</text>
                   </g>
 
-                  {/* KODANGAL LOCATION BEACON */}
-                  <g transform="translate(125, 235)">
-                    <circle cx="0" cy="0" r="28" fill="url(#beaconLightGlow)" className="animate-ping" opacity="0.6" />
+                  {/* ------------------------------------------------------------- */}
+                  {/* R&B HIGHWAY CORRIDOR CONNECTING KODANGAL TO HYDERABAD & TG */}
+                  {/* ------------------------------------------------------------- */}
+                  {/* Kodangal to Hyderabad via Pargi */}
+                  <path
+                    d="M 130,295 Q 165,275 225,255"
+                    fill="none"
+                    stroke="#B8860B"
+                    strokeWidth="2.5"
+                    strokeDasharray="6 4"
+                  />
+                  {/* Kodangal to Mahabubnagar via Kosgi */}
+                  <path
+                    d="M 130,295 Q 165,325 205,345"
+                    fill="none"
+                    stroke="#B8860B"
+                    strokeWidth="2"
+                    strokeDasharray="4 3"
+                    opacity="0.8"
+                  />
+
+                  {/* ------------------------------------------------------------- */}
+                  {/* PROMINENT KODANGAL LOCATION POINT & PULSING RADAR BEACON */}
+                  {/* ------------------------------------------------------------- */}
+                  <g transform="translate(130, 295)">
+                    {/* Animated Radar Pulse Rings */}
+                    <circle cx="0" cy="0" r="35" fill="url(#kodangalRadarGlow)" className="animate-ping" opacity="0.75" />
+                    <circle cx="0" cy="0" r="22" fill="none" stroke="#D4AF37" strokeWidth="1.5" className="animate-pulse" />
                     <circle cx="0" cy="0" r="14" fill="none" stroke="#B8860B" strokeWidth="2" />
-                    <circle cx="0" cy="0" r="6" fill="#B8860B" />
+                    <circle cx="0" cy="0" r="7" fill="#B8860B" stroke="#FFFFFF" strokeWidth="2" />
 
-                    {/* Kodangal Location Pin Card */}
-                    <rect x="10" y="-22" width="115" height="42" rx="8" fill="#0F172A" stroke="#B8860B" strokeWidth="1.5" />
-                    <text x="18" y="-7" fill="#F0CD6D" fontSize="10" fontWeight="bold" fontFamily="monospace">KODANGAL</text>
-                    <text x="18" y="8" fill="#E2E8F0" fontSize="8" fontFamily="monospace">Core Project Hub</text>
+                    {/* Laser Target Reticle */}
+                    <line x1="-18" y1="0" x2="-9" y2="0" stroke="#B8860B" strokeWidth="1.5" />
+                    <line x1="9" y1="0" x2="18" y2="0" stroke="#B8860B" strokeWidth="1.5" />
+                    <line x1="0" y1="-18" x2="0" y2="-9" stroke="#B8860B" strokeWidth="1.5" />
+                    <line x1="0" y1="9" x2="0" y2="18" stroke="#B8860B" strokeWidth="1.5" />
+
+                    {/* Highlight Pin Card Callout */}
+                    <g transform="translate(14, -48)">
+                      <rect
+                        width="180"
+                        height="52"
+                        rx="8"
+                        fill="#0F172A"
+                        stroke="#D4AF37"
+                        strokeWidth="1.5"
+                        filter="drop-shadow(0 4px 12px rgba(0,0,0,0.25))"
+                      />
+                      <polygon points="12,52 20,52 14,60" fill="#0F172A" />
+                      
+                      <circle cx="14" cy="14" r="3" fill="#D4AF37" />
+                      <text x="22" y="17" fill="#F0CD6D" fontSize="11" fontWeight="bold" fontFamily="'Plus Jakarta Sans', sans-serif">
+                        KODANGAL
+                      </text>
+                      <text x="96" y="16" fill="#94A3B8" fontSize="7" fontFamily="monospace">
+                        VIKARABAD DIST
+                      </text>
+
+                      <text x="14" y="32" fill="#E2E8F0" fontSize="8" fontWeight="bold" fontFamily="monospace">
+                        ★ CORE CIVIL & R&B HUB
+                      </text>
+                      <text x="14" y="43" fill="#38BDF8" fontSize="7" fontFamily="monospace">
+                        17.1121° N, 77.6251° E • ACTIVE
+                      </text>
+                    </g>
                   </g>
+
+                  {/* Map Scale & Compass Rose in Top Left */}
+                  <g transform="translate(30, 30)">
+                    {/* Compass */}
+                    <circle cx="20" cy="20" r="16" fill="#FFFFFF" stroke="#CBD5E1" strokeWidth="1" />
+                    <polygon points="20,6 23,20 20,18" fill="#B8860B" />
+                    <polygon points="20,6 17,20 20,18" fill="#D4AF37" />
+                    <polygon points="20,34 23,20 20,22" fill="#94A3B8" />
+                    <polygon points="20,34 17,20 20,22" fill="#64748B" />
+                    <text x="20" y="4" textAnchor="middle" fill="#B8860B" fontSize="7" fontWeight="bold">N</text>
+
+                    {/* Scale bar */}
+                    <g transform="translate(45, 15)">
+                      <line x1="0" y1="5" x2="60" y2="5" stroke="#0F172A" strokeWidth="1.5" />
+                      <line x1="0" y1="2" x2="0" y2="8" stroke="#0F172A" strokeWidth="1.5" />
+                      <line x1="30" y1="2" x2="30" y2="8" stroke="#0F172A" strokeWidth="1.5" />
+                      <line x1="60" y1="2" x2="60" y2="8" stroke="#0F172A" strokeWidth="1.5" />
+                      <text x="0" y="16" fill="#64748B" fontSize="6" fontFamily="monospace">0</text>
+                      <text x="25" y="16" fill="#64748B" fontSize="6" fontFamily="monospace">50</text>
+                      <text x="50" y="16" fill="#64748B" fontSize="6" fontFamily="monospace">100 KM</text>
+                    </g>
+                  </g>
+
                 </svg>
 
                 {/* Corner Coordinates Legend */}
-                <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-white border border-slate-200 flex items-center justify-between text-[11px] font-mono shadow-sm">
-                  <span className="text-slate-600">17.1121° N, 77.6251° E</span>
-                  <span className="text-[#8B6508] font-bold">KODANGAL CONSTITUENCY</span>
+                <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-white/95 backdrop-blur-sm border border-slate-200 flex items-center justify-between text-[11px] font-mono shadow-sm">
+                  <span className="text-slate-600">TELANGANA STATE • 17.1121° N, 77.6251° E</span>
+                  <span className="text-[#8B6508] font-bold">KODANGAL JURISDICTION</span>
                 </div>
               </div>
 
