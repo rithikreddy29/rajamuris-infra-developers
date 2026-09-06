@@ -56,7 +56,7 @@ export default function Footer() {
               Government Infrastructure, R&B Works & Civil Construction Since 2014
             </p>
 
-            <p className="text-xs text-slate-400 font-light leading-relaxed">
+            <p className="text-xs text-slate-200 font-normal leading-relaxed">
               Dependable public civil infrastructure, Anganwadi centers, educational buildings, and R&B road corridors across Telangana.
             </p>
 
@@ -72,7 +72,7 @@ export default function Footer() {
               <span className="w-2 h-[2px] bg-[#D4AF37]"></span>
               <span>QUICK LINKS</span>
             </h4>
-            <ul className="space-y-2.5 text-xs font-mono text-slate-400">
+            <ul className="space-y-2.5 text-xs font-mono text-slate-200 font-medium">
               {[
                 { name: 'About Company', href: '#about' },
                 { name: 'Our Work', href: '#work' },
@@ -86,7 +86,7 @@ export default function Footer() {
                     href={item.href} 
                     className="group inline-flex items-center gap-2 hover:text-[#F0CD6D] transition-colors"
                   >
-                    <span className="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-[#F0CD6D] group-hover:w-2 transition-all"></span>
+                    <span className="w-1 h-1 rounded-full bg-slate-400 group-hover:bg-[#F0CD6D] group-hover:w-2 transition-all"></span>
                     <span className="group-hover:translate-x-0.5 transition-transform">{item.name}</span>
                   </a>
                 </li>
@@ -100,7 +100,7 @@ export default function Footer() {
               <span className="w-2 h-[2px] bg-[#D4AF37]"></span>
               <span>INFRASTRUCTURE</span>
             </h4>
-            <ul className="space-y-2.5 text-xs font-mono text-slate-400">
+            <ul className="space-y-2.5 text-xs font-mono text-slate-200 font-medium">
               {[
                 'Anganwadi Centers',
                 'Government Schools',
@@ -111,7 +111,7 @@ export default function Footer() {
               ].map((item) => (
                 <li key={item} className="flex items-center gap-2">
                   <span className="w-1 h-1 rounded-full bg-[#D4AF37]/80"></span>
-                  <span className="hover:text-slate-200 transition-colors">{item}</span>
+                  <span className="hover:text-white transition-colors">{item}</span>
                 </li>
               ))}
             </ul>
@@ -133,14 +133,14 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="space-y-2.5 text-xs font-mono text-slate-400 pt-1">
+            <div className="space-y-2.5 text-xs font-mono text-slate-200 pt-1 font-medium">
               <div className="flex items-center gap-2.5 group">
                 <div className="p-1.5 rounded-lg bg-white/10 text-[#F0CD6D] group-hover:bg-[#D4AF37] group-hover:text-black transition-colors">
                   <Phone className="w-3.5 h-3.5" />
                 </div>
                 <a 
                   href={`tel:${owner.phoneClean || '+919666660634'}`} 
-                  className="hover:text-white font-semibold transition-colors text-slate-300"
+                  className="hover:text-white font-bold transition-colors text-white"
                 >
                   {owner.phone || '+91 96666 60634'}
                 </a>
@@ -152,7 +152,7 @@ export default function Footer() {
                 </div>
                 <a 
                   href={`mailto:${owner.email || 'rajmuri18575@gmail.com'}`} 
-                  className="hover:text-white transition-colors text-slate-300"
+                  className="hover:text-white transition-colors text-white font-medium"
                 >
                   {owner.email || 'rajmuri18575@gmail.com'}
                 </a>

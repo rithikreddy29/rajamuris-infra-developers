@@ -34,7 +34,7 @@ export default function ProjectGallery() {
   ];
 
   return (
-    <section className="relative py-24 sm:py-32 bg-[#F8FAFC] border-y border-slate-200 overflow-hidden telangana-border-accent">
+    <section className="relative py-24 sm:py-32 bg-[#F8FAFC] dark:bg-[#0A0F1D] border-y border-slate-300 dark:border-slate-800 overflow-hidden telangana-border-accent transition-colors duration-300">
       
       {/* Background Grid */}
       <div className="absolute inset-0 bg-architectural-grid opacity-50 pointer-events-none"></div>
@@ -42,23 +42,23 @@ export default function ProjectGallery() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pb-4 border-b border-slate-200">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pb-4 border-b border-slate-300 dark:border-slate-800">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="w-6 h-[2px] bg-[#B8860B]"></span>
-              <span className="text-xs font-mono tracking-[0.25em] text-[#B8860B] uppercase font-bold">
+              <span className="text-xs font-mono tracking-[0.25em] text-[#8B6508] dark:text-[#F0CD6D] uppercase font-bold">
                 VISUAL ARCHIVE
               </span>
             </div>
-            <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-950 uppercase tracking-tight">
+            <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-950 dark:text-white uppercase tracking-tight">
               PROJECT GALLERY
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-1 font-light max-w-xl">
+            <p className="text-sm sm:text-base text-slate-800 dark:text-slate-200 mt-1 font-medium max-w-xl">
               Photographic documentation of civil execution, Anganwadi buildings, and R&B road works.
             </p>
           </div>
 
-          <div className="text-xs font-mono text-slate-500 font-semibold">
+          <div className="text-xs font-mono text-slate-700 dark:text-slate-300 font-bold">
             <span>SHOWCASING {displayImages.length} VISUAL RECORDS</span>
           </div>
         </div>
@@ -69,7 +69,7 @@ export default function ProjectGallery() {
             <div
               key={item.id || idx}
               onClick={() => setLightboxIndex(idx)}
-              className="group relative aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer border border-slate-200 hover:border-[#B8860B] shadow-sm hover:shadow-xl transition-all duration-300 bg-white"
+              className="group relative aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer border-2 border-slate-300 dark:border-slate-700 hover:border-[#B8860B] shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#111A2E]"
             >
               <img
                 src={item.url}

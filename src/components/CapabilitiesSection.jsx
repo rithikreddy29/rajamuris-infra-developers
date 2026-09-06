@@ -24,7 +24,7 @@ export default function CapabilitiesSection() {
   };
 
   return (
-    <section id="capabilities" className="relative py-24 sm:py-32 bg-[#F8FAFC] border-y border-slate-200 overflow-hidden telangana-border-accent">
+    <section id="capabilities" className="relative py-24 sm:py-32 bg-[#F8FAFC] dark:bg-[#0A0F1D] text-slate-900 dark:text-white border-y border-slate-300 dark:border-slate-800 overflow-hidden telangana-border-accent transition-colors duration-300">
       
       {/* Background Architectural Grid */}
       <div className="absolute inset-0 bg-architectural-grid opacity-50 pointer-events-none"></div>
@@ -35,14 +35,14 @@ export default function CapabilitiesSection() {
         <div className="mb-14">
           <div className="flex items-center gap-2 mb-2">
             <span className="w-6 h-[2px] bg-[#B8860B]"></span>
-            <span className="text-xs font-mono tracking-[0.25em] text-[#B8860B] uppercase font-bold">
+            <span className="text-xs font-mono tracking-[0.25em] text-[#B8860B] dark:text-[#F0CD6D] uppercase font-bold">
               CIVIL CONTRACTING SCOPE
             </span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-950 uppercase tracking-tight">
+          <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-950 dark:text-white uppercase tracking-tight">
             WHAT WE BUILD
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 mt-2 font-light max-w-xl">
+          <p className="text-sm sm:text-base text-slate-900 dark:text-slate-200 mt-2 font-medium max-w-xl">
             Specialized in public sector civil engineering, Anganwadi facilities, and Roads & Buildings (R&B) works across Telangana.
           </p>
         </div>
@@ -52,43 +52,43 @@ export default function CapabilitiesSection() {
           {capabilities.map((cap, idx) => (
             <div
               key={cap.id || idx}
-              className="rounded-2xl p-8 bg-white border border-slate-200 hover:border-[#B8860B]/50 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+              className="rounded-2xl p-8 bg-white dark:bg-[#131B2E] border-2 border-slate-300 dark:border-slate-700 hover:border-[#B8860B] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 {/* Top Row: Icon and Number */}
                 <div className="flex items-center justify-between mb-6">
-                  <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-200/80 group-hover:scale-105 transition-transform">
+                  <div className="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 group-hover:scale-105 transition-transform">
                     {getCapabilityIcon(cap.category)}
                   </div>
-                  <span className="font-mono text-xs font-bold text-slate-400 group-hover:text-[#B8860B] transition-colors">
+                  <span className="font-mono text-xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-[#B8860B] transition-colors">
                     {cap.number || `0${idx + 1}`}
                   </span>
                 </div>
 
                 {/* Capability Title */}
-                <h3 className="font-display font-extrabold text-lg sm:text-xl text-slate-950 uppercase tracking-wide group-hover:text-[#B8860B] transition-colors leading-snug">
+                <h3 className="font-display font-black text-lg sm:text-xl text-slate-950 dark:text-white uppercase tracking-wide group-hover:text-[#B8860B] dark:group-hover:text-[#F0CD6D] transition-colors leading-snug">
                   {cap.title}
                 </h3>
 
                 {/* Telugu Subtitle Accent */}
                 {cap.teluguTitle && (
-                  <div className="text-[11px] font-mono text-[#8B6508] mt-1 mb-3 font-semibold">
+                  <div className="text-[11px] font-mono text-[#8B6508] dark:text-[#F0CD6D] mt-1 mb-3 font-bold">
                     {cap.teluguTitle}
                   </div>
                 )}
 
                 {/* Capability Description */}
-                <p className="text-sm text-slate-600 font-light leading-relaxed mt-2">
+                <p className="text-sm text-slate-900 dark:text-slate-200 font-normal leading-relaxed mt-2">
                   {cap.description}
                 </p>
               </div>
 
               {/* Bottom Card Footer */}
-              <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-slate-500">
+              <div className="mt-8 pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-mono text-slate-700 dark:text-slate-300 font-bold">
                 <span>GOVERNMENT SECTOR</span>
                 <a
                   href="#work"
-                  className="inline-flex items-center gap-1 text-[#B8860B] font-semibold hover:underline"
+                  className="inline-flex items-center gap-1 text-[#B8860B] dark:text-[#F0CD6D] font-bold hover:underline"
                 >
                   <span>VIEW WORK</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />

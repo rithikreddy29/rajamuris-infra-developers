@@ -25,7 +25,7 @@ export default function AdminLogin({ onLoginSuccess }) {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[#05070B] p-4 relative overflow-hidden">
+    <div className="admin-portal min-h-screen w-full flex items-center justify-center bg-[#05070B] p-4 relative overflow-hidden">
       
       {/* Subtle Background Mesh */}
       <div className="absolute inset-0 bg-architectural-grid opacity-30 pointer-events-none"></div>
@@ -67,7 +67,7 @@ export default function AdminLogin({ onLoginSuccess }) {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-[11px] font-mono tracking-wider text-slate-400 uppercase mb-1.5">
+              <label className="block text-xs font-mono font-bold tracking-wider text-slate-200 uppercase mb-1.5">
                 ADMIN USERNAME
               </label>
               <div className="relative">
@@ -77,14 +77,14 @@ export default function AdminLogin({ onLoginSuccess }) {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="admin"
-                  className="w-full px-4 py-3 pl-10 rounded-xl bg-[#070A11] border border-white/10 text-white placeholder-slate-600 text-sm focus:border-[#D4AF37] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 pl-10 rounded-xl bg-[#070A11] border border-slate-700 text-white placeholder-slate-400 text-sm focus:border-[#D4AF37] focus:outline-none transition-colors"
                 />
-                <User className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
               </div>
             </div>
 
             <div>
-              <label className="block text-[11px] font-mono tracking-wider text-slate-400 uppercase mb-1.5">
+              <label className="block text-xs font-mono font-bold tracking-wider text-slate-200 uppercase mb-1.5">
                 PASSWORD
               </label>
               <div className="relative">
@@ -94,16 +94,16 @@ export default function AdminLogin({ onLoginSuccess }) {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter administrator password"
-                  className="w-full px-4 py-3 pl-10 rounded-xl bg-[#070A11] border border-white/10 text-white placeholder-slate-600 text-sm focus:border-[#D4AF37] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 pl-10 rounded-xl bg-[#070A11] border border-slate-700 text-white placeholder-slate-400 text-sm focus:border-[#D4AF37] focus:outline-none transition-colors"
                 />
-                <Key className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                <Key className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
               </div>
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 rounded-xl font-bold text-xs font-mono tracking-widest uppercase text-black bg-gradient-to-r from-[#F0CD6D] via-[#D4AF37] to-[#B8860B] hover:opacity-95 shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-xl font-bold text-xs sm:text-sm font-mono tracking-widest uppercase text-black bg-gradient-to-r from-[#F0CD6D] via-[#D4AF37] to-[#B8860B] hover:opacity-95 shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               {loading ? (
                 <span>VERIFYING...</span>
@@ -117,11 +117,11 @@ export default function AdminLogin({ onLoginSuccess }) {
           </form>
 
           {/* Helper Credentials Box */}
-          <div className="mt-6 pt-5 border-t border-white/10 text-[11px] font-mono text-slate-400 text-center">
-            <span className="text-slate-500 block mb-1">DEFAULT CREDENTIALS:</span>
-            <span className="text-[#D4AF37]">Username: admin</span>
-            <span className="mx-2">•</span>
-            <span className="text-[#D4AF37]">Password: rajamuri2014</span>
+          <div className="mt-6 p-3.5 rounded-xl bg-[#0A101D] border border-[#D4AF37]/40 text-xs font-mono text-slate-200 text-center">
+            <span className="text-slate-300 font-bold block mb-1">DEFAULT CREDENTIALS:</span>
+            <span className="text-[#F0CD6D] font-bold">Username: admin</span>
+            <span className="mx-2 text-slate-500">•</span>
+            <span className="text-[#F0CD6D] font-bold">Password: rajamuri2014</span>
           </div>
         </div>
 

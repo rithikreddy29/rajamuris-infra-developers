@@ -85,7 +85,7 @@ export default function AdminLayout({ onLogout }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#05070B] text-slate-100 flex flex-col md:flex-row">
+    <div className="admin-portal min-h-screen bg-[#05070B] text-slate-100 flex flex-col md:flex-row">
       
       {/* Mobile Topbar */}
       <div className="md:hidden flex items-center justify-between p-4 bg-[#090D17] border-b border-white/10 sticky top-0 z-40">
@@ -163,7 +163,7 @@ export default function AdminLayout({ onLogout }) {
                       : 'text-slate-400 hover:text-white hover:bg-white/5'
                   }`}
                 >
-                  <IconComp className={`w-4 h-4 ${isActive ? 'text-black' : 'text-slate-400'}`} />
+                  <IconComp className={`w-4 h-4 ${isActive ? 'text-black' : 'text-slate-300'}`} />
                   <span>{item.label}</span>
                 </button>
               );
@@ -177,7 +177,7 @@ export default function AdminLayout({ onLogout }) {
             href="/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-mono text-gold-400 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 border border-[#D4AF37]/30 transition-colors"
+            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-mono font-bold text-[#F0CD6D] bg-[#D4AF37]/15 hover:bg-[#D4AF37]/25 border border-[#D4AF37]/40 transition-colors shadow-sm"
           >
             <ExternalLink className="w-3.5 h-3.5" />
             <span>VIEW PUBLIC SITE</span>
@@ -185,7 +185,7 @@ export default function AdminLayout({ onLogout }) {
 
           <button
             onClick={handleLogoutClick}
-            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-mono text-slate-400 hover:text-red-400 hover:bg-red-950/30 transition-colors"
+            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-mono font-bold text-slate-300 hover:text-red-400 hover:bg-red-950/30 transition-colors"
           >
             <LogOut className="w-4 h-4" />
             <span>LOGOUT</span>
@@ -197,10 +197,10 @@ export default function AdminLayout({ onLogout }) {
       <main className="flex-1 min-w-0 flex flex-col min-h-screen">
         
         {/* Desktop Header */}
-        <header className="hidden md:flex items-center justify-between px-8 py-5 border-b border-white/10 bg-[#080B13]/80 backdrop-blur-md sticky top-0 z-30">
+        <header className="hidden md:flex items-center justify-between px-8 py-5 border-b border-white/10 bg-[#080B13]/95 backdrop-blur-md sticky top-0 z-30">
           <div className="flex items-center gap-3">
-            <span className="text-xs font-mono text-slate-500 uppercase">ADMINISTRATION /</span>
-            <span className="text-xs font-mono font-bold text-white uppercase tracking-widest">
+            <span className="text-xs font-mono text-slate-400 font-bold uppercase">ADMINISTRATION /</span>
+            <span className="text-xs font-mono font-black text-white uppercase tracking-widest">
               {navItems.find(i => i.id === activeTab)?.label || 'DASHBOARD'}
             </span>
           </div>
@@ -210,7 +210,7 @@ export default function AdminLayout({ onLogout }) {
               href="/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold text-slate-100 hover:text-white bg-white/10 hover:bg-white/15 border border-white/20 transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5 text-gold-400" />
               <span>LIVE WEBSITE</span>

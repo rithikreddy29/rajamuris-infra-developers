@@ -230,7 +230,7 @@ export default function JourneyTimeline() {
                   className={`w-[86vw] sm:w-[74vw] lg:w-[65vw] max-w-5xl h-[470px] sm:h-[500px] flex-shrink-0 rounded-3xl bg-white dark:bg-[#131B2E] border-2 transition-all duration-500 p-6 sm:p-9 flex flex-col justify-between relative overflow-hidden shadow-2xl ${
                     isCurrent 
                       ? 'border-[#B8860B] ring-2 ring-[#B8860B]/25 scale-100 opacity-100' 
-                      : 'border-slate-200 dark:border-slate-800 scale-[0.98] opacity-80'
+                      : 'border-slate-300 dark:border-slate-700 scale-[0.98] opacity-80'
                   }`}
                 >
                   
@@ -383,18 +383,18 @@ export default function JourneyTimeline() {
                   </div>
 
                   {/* Description */}
-                  <p className="relative z-10 text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
+                  <p className="relative z-10 text-xs sm:text-sm text-slate-800 dark:text-slate-100 font-medium leading-relaxed">
                     {entry.description}
                   </p>
 
                   {/* Scope & Verified Handover Strip */}
-                  <div className="relative z-10 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+                  <div className="relative z-10 pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
                     <div className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 font-bold">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                       <span>{t.journey.handoverCertified}</span>
                     </div>
 
-                    <div className="text-slate-500 dark:text-slate-400 text-[11px]">
+                    <div className="text-slate-700 dark:text-slate-300 text-[11px] font-semibold">
                       {entry.projects ? (
                         <span><strong>Scope:</strong> {entry.projects}</span>
                       ) : (

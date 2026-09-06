@@ -98,7 +98,7 @@ _Sent via Rajamuri's Infra Developers Website_`;
             LET'S BUILD WHAT'S NEXT.
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-light mt-3 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-800 dark:text-slate-200 font-medium mt-3 leading-relaxed">
             Have a project, requirement or opportunity? Get in touch with Rajamuri's Infra Developers.
           </p>
 
@@ -124,7 +124,7 @@ _Sent via Rajamuri's Infra Developers Website_`;
 
             <a
               href={`mailto:${owner.email || 'rajmuri18575@gmail.com'}`}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-[#131B2E] border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white hover:border-slate-400 dark:hover:border-slate-600 transition-all font-mono text-xs font-bold uppercase tracking-wider shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-[#131B2E] border-2 border-slate-300 dark:border-slate-700 text-slate-950 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white hover:border-[#B8860B] transition-all font-mono text-xs font-bold uppercase tracking-wider shadow-sm"
             >
               <Mail className="w-4 h-4 text-[#B8860B] dark:text-[#F0CD6D]" />
               <span>EMAIL US</span>
@@ -137,13 +137,13 @@ _Sent via Rajamuri's Infra Developers Website_`;
           
           {/* Left Column: Formal Enquiry Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl p-6 sm:p-10 bg-white dark:bg-[#131B2E] border border-slate-200 dark:border-slate-800 shadow-xl">
+            <div className="rounded-2xl p-6 sm:p-10 bg-white dark:bg-[#131B2E] border-2 border-slate-300 dark:border-slate-700 shadow-xl">
               
               <div className="mb-6">
                 <h3 className="font-display font-bold text-xl sm:text-2xl text-slate-950 dark:text-white uppercase">
                   SUBMIT FORMAL INQUIRY
                 </h3>
-                <p className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1">
+                <p className="text-xs font-mono text-slate-700 dark:text-slate-300 mt-1 font-semibold">
                   Requests are reviewed directly by Rajamuri Rajashekar Reddy and the executive civil engineering team.
                 </p>
               </div>
@@ -156,7 +156,7 @@ _Sent via Rajamuri's Infra Developers Website_`;
                   <h4 className="font-display font-extrabold text-xl sm:text-2xl text-slate-950 dark:text-white uppercase tracking-tight">
                     INQUIRY TRANSMITTED TO WHATSAPP
                   </h4>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 font-light max-w-lg mx-auto leading-relaxed">
+                  <p className="text-sm text-slate-800 dark:text-slate-200 font-medium max-w-lg mx-auto leading-relaxed">
                     Your inquiry has been registered with Rajamuri's Infra Developers and directed straight to WhatsApp number <strong className="font-mono text-slate-950 dark:text-white font-bold">+91 96666 60634</strong>.
                   </p>
 
@@ -187,14 +187,14 @@ _Sent via Rajamuri's Infra Developers Website_`;
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {error && (
-                    <div className="p-3.5 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-xs text-red-700 dark:text-red-300 font-mono">
+                    <div className="p-3.5 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-xs text-red-700 dark:text-red-300 font-mono font-bold">
                       {error}
                     </div>
                   )}
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
+                      <label className="block text-[11px] font-mono tracking-wider text-slate-800 dark:text-slate-200 uppercase mb-1 font-bold">
                         FULL NAME *
                       </label>
                       <input
@@ -203,12 +203,12 @@ _Sent via Rajamuri's Infra Developers Website_`;
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Srikanth Reddy"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border-2 border-slate-300 dark:border-slate-700 text-slate-950 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none font-medium transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
+                      <label className="block text-[11px] font-mono tracking-wider text-slate-800 dark:text-slate-200 uppercase mb-1 font-bold">
                         PHONE NUMBER *
                       </label>
                       <input
@@ -217,14 +217,14 @@ _Sent via Rajamuri's Infra Developers Website_`;
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+91 98765 43210"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border-2 border-slate-300 dark:border-slate-700 text-slate-950 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none font-medium transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
+                      <label className="block text-[11px] font-mono tracking-wider text-slate-800 dark:text-slate-200 uppercase mb-1 font-bold">
                         EMAIL ADDRESS
                       </label>
                       <input
@@ -232,12 +232,12 @@ _Sent via Rajamuri's Infra Developers Website_`;
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="office@example.com"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border-2 border-slate-300 dark:border-slate-700 text-slate-950 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none font-medium transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
+                      <label className="block text-[11px] font-mono tracking-wider text-slate-800 dark:text-slate-200 uppercase mb-1 font-bold">
                         ORGANIZATION / ENTITY
                       </label>
                       <input
@@ -245,20 +245,20 @@ _Sent via Rajamuri's Infra Developers Website_`;
                         value={formData.organization}
                         onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                         placeholder="e.g. Panchayat / R&B Department / Enterprise"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border-2 border-slate-300 dark:border-slate-700 text-slate-950 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none font-medium transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
+                      <label className="block text-[11px] font-mono tracking-wider text-slate-800 dark:text-slate-200 uppercase mb-1 font-bold">
                         PROJECT CATEGORY
                       </label>
                       <select
                         value={formData.projectType}
                         onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border-2 border-slate-300 dark:border-slate-700 text-slate-950 dark:text-white text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none font-medium transition-colors"
                       >
                         <option value="Roads & Buildings (R&B)">Roads & Buildings (R&B) Works</option>
                         <option value="Schools & Educational">Schools & Educational Facilities</option>
@@ -270,7 +270,7 @@ _Sent via Rajamuri's Infra Developers Website_`;
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
+                      <label className="block text-[11px] font-mono tracking-wider text-slate-800 dark:text-slate-200 uppercase mb-1 font-bold">
                         LOCATION IN TELANGANA
                       </label>
                       <input
@@ -278,13 +278,13 @@ _Sent via Rajamuri's Infra Developers Website_`;
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                         placeholder="e.g. Kodangal / Vikarabad / Telangana"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border-2 border-slate-300 dark:border-slate-700 text-slate-950 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none font-medium transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-300 uppercase mb-1 font-semibold">
+                    <label className="block text-[11px] font-mono tracking-wider text-slate-800 dark:text-slate-200 uppercase mb-1 font-bold">
                       PROJECT DESCRIPTION / MESSAGE
                     </label>
                     <textarea
@@ -292,7 +292,7 @@ _Sent via Rajamuri's Infra Developers Website_`;
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Please outline the scope, approximate specifications, or site requirements..."
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none transition-colors resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border-2 border-slate-300 dark:border-slate-700 text-slate-950 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:border-[#B8860B] dark:focus:border-[#F0CD6D] focus:bg-white dark:focus:bg-[#0A0F1D] focus:outline-none font-medium transition-colors resize-none"
                     ></textarea>
                   </div>
 
@@ -336,7 +336,7 @@ _Sent via Rajamuri's Infra Developers Website_`;
                       INFRA DEVELOPERS
                     </span>
                   </div>
-                  <p className="text-xs font-mono text-slate-400 mt-2">
+                  <p className="text-xs font-mono text-slate-200 mt-2 font-medium">
                     Government Infrastructure, R&B Works & Civil Construction Since 2014
                   </p>
                 </div>
@@ -355,7 +355,7 @@ _Sent via Rajamuri's Infra Developers Website_`;
                 <div className="space-y-3 pt-2">
                   <a
                     href={`tel:${owner.phoneClean || '+919666660634'}`}
-                    className="flex items-center gap-3 text-sm font-mono text-slate-300 hover:text-white transition-colors"
+                    className="flex items-center gap-3 text-sm font-mono text-slate-200 hover:text-white transition-colors"
                   >
                     <div className="p-2 rounded-lg bg-white/10 text-[#F0CD6D]">
                       <Phone className="w-4 h-4" />
@@ -365,15 +365,15 @@ _Sent via Rajamuri's Infra Developers Website_`;
 
                   <a
                     href={`mailto:${owner.email || 'rajmuri18575@gmail.com'}`}
-                    className="flex items-center gap-3 text-sm font-mono text-slate-300 hover:text-white transition-colors"
+                    className="flex items-center gap-3 text-sm font-mono text-slate-200 hover:text-white transition-colors"
                   >
                     <div className="p-2 rounded-lg bg-white/10 text-[#F0CD6D]">
                       <Mail className="w-4 h-4" />
                     </div>
-                    <span className="truncate">{owner.email || 'rajmuri18575@gmail.com'}</span>
+                    <span className="truncate font-semibold">{owner.email || 'rajmuri18575@gmail.com'}</span>
                   </a>
 
-                  <div className="flex items-center gap-3 text-xs font-mono text-slate-400">
+                  <div className="flex items-center gap-3 text-xs font-mono text-slate-200 font-medium">
                     <div className="p-2 rounded-lg bg-white/10 text-[#F0CD6D]">
                       <MapPin className="w-4 h-4" />
                     </div>
@@ -385,13 +385,13 @@ _Sent via Rajamuri's Infra Developers Website_`;
 
             </div>
 
-            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-start gap-4">
-              <ShieldCheck className="w-6 h-6 text-[#B8860B] flex-shrink-0 mt-0.5" />
+            <div className="p-5 rounded-2xl bg-white dark:bg-[#131B2E] border-2 border-slate-300 dark:border-slate-700 shadow-md flex items-start gap-4">
+              <ShieldCheck className="w-6 h-6 text-[#B8860B] dark:text-[#F0CD6D] flex-shrink-0 mt-0.5" />
               <div>
-                <h5 className="font-display font-bold text-xs uppercase tracking-wider text-slate-900">
+                <h5 className="font-display font-bold text-xs uppercase tracking-wider text-slate-950 dark:text-white">
                   GOVERNMENT OF TELANGANA COMPLIANT
                 </h5>
-                <p className="text-xs text-slate-500 font-light mt-1 leading-relaxed">
+                <p className="text-xs text-slate-800 dark:text-slate-200 font-normal mt-1 leading-relaxed">
                   Executing engineering and masonry works under sanctioned government parameters, ensuring generational safety and community utility in Kodangal and across Telangana.
                 </p>
               </div>

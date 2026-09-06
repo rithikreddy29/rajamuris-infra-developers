@@ -28,23 +28,23 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         
         {/* Supporting Tagline Pill */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-[#131B2E]/90 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm text-slate-700 dark:text-slate-200 text-xs font-mono tracking-widest uppercase font-semibold mb-6">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#B8860B] animate-pulse"></span>
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-[#131B2E] border-2 border-slate-300 dark:border-slate-700 shadow-md text-slate-900 dark:text-white text-xs font-mono tracking-widest uppercase font-bold mb-6">
+          <span className="w-2 h-2 rounded-full bg-[#B8860B] animate-pulse"></span>
           <span>{t.hero.tagline}</span>
         </div>
 
         {/* Main Title */}
         <h1 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-slate-950 dark:text-white leading-[1.05] uppercase mb-6 drop-shadow-sm">
-          <span className="block text-slate-900 dark:text-white">{t.hero.titleTop}</span>
+          <span className="block text-black dark:text-white">{t.hero.titleTop}</span>
           <span className="block text-gold-gradient tracking-tight">{t.hero.titleBottom}</span>
         </h1>
 
         {/* Headline */}
         <div className="max-w-2xl mx-auto mb-8">
-          <p className="text-base sm:text-xl md:text-2xl font-semibold tracking-wide text-slate-800 dark:text-slate-100 leading-relaxed font-sans">
+          <p className="text-base sm:text-xl md:text-2xl font-bold tracking-wide text-black dark:text-white leading-relaxed font-sans">
             {t.hero.headline}
           </p>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2 font-normal">
+          <p className="text-sm sm:text-base text-slate-900 dark:text-slate-200 mt-2 font-medium">
             {t.hero.subtext}
           </p>
         </div>
@@ -53,7 +53,7 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-8">
           <a
             href="#work"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-xs sm:text-sm tracking-widest uppercase text-white bg-slate-950 dark:bg-[#1E293B] hover:bg-slate-800 dark:hover:bg-slate-700 shadow-[0_4px_25px_rgba(15,23,42,0.25)] transition-all hover:scale-[1.02] active:scale-[0.98] border border-transparent dark:border-slate-700"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-xs sm:text-sm tracking-widest uppercase text-white bg-slate-950 dark:bg-[#1E293B] hover:bg-slate-800 dark:hover:bg-slate-700 shadow-[0_4px_25px_rgba(15,23,42,0.3)] transition-all hover:scale-[1.02] active:scale-[0.98] border border-transparent dark:border-slate-700"
           >
             <span>{t.hero.viewWork}</span>
             <ArrowUpRight className="w-4 h-4 text-[#F0CD6D]" />
@@ -61,7 +61,7 @@ export default function HeroSection() {
 
           <a
             href="#contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-xs sm:text-sm tracking-widest uppercase text-slate-800 dark:text-slate-200 bg-white/90 dark:bg-[#131B2E]/90 backdrop-blur-sm border border-slate-300 dark:border-slate-700 hover:border-[#B8860B] hover:text-[#B8860B] dark:hover:border-[#F0CD6D] dark:hover:text-[#F0CD6D] shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-xs sm:text-sm tracking-widest uppercase text-slate-950 dark:text-white bg-white dark:bg-[#131B2E] border-2 border-slate-400 dark:border-slate-700 hover:border-[#B8860B] hover:text-[#B8860B] dark:hover:border-[#F0CD6D] dark:hover:text-[#F0CD6D] shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             <span>{t.hero.getInTouch}</span>
           </a>
@@ -70,8 +70,8 @@ export default function HeroSection() {
       </div>
 
       {/* Subtle Scroll Hint */}
-      <div className="mt-8 relative z-10 flex flex-col items-center gap-1 opacity-80 hover:opacity-100 transition-opacity">
-        <span className="text-[10px] font-mono tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase">
+      <div className="mt-8 relative z-10 flex flex-col items-center gap-1 opacity-90 hover:opacity-100 transition-opacity">
+        <span className="text-xs font-mono font-bold tracking-[0.25em] text-slate-800 dark:text-slate-200 uppercase">
           {t.hero.scrollHint}
         </span>
         <ArrowDown className="w-4 h-4 text-[#B8860B] animate-bounce" />

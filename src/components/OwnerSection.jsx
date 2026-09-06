@@ -40,43 +40,43 @@ export default function OwnerSection() {
 
         {/* Core Principles Strip */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-14">
-          <div className="p-5 rounded-2xl bg-white dark:bg-[#131B2E] border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
+          <div className="p-5 rounded-2xl bg-white dark:bg-[#131B2E] border-2 border-slate-300 dark:border-slate-700 shadow-md flex items-start gap-4">
             <div className="p-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-[#B8860B] dark:text-[#F0CD6D] mt-0.5">
               <Building2 className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-mono font-bold tracking-wider uppercase text-slate-900 dark:text-white">
+              <h4 className="text-xs font-mono font-bold tracking-wider uppercase text-slate-950 dark:text-white">
                 {t.aboutUs.principles.title1}
               </h4>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 font-normal leading-relaxed">
+              <p className="text-xs text-slate-800 dark:text-slate-200 mt-1 font-medium leading-relaxed">
                 {t.aboutUs.principles.desc1}
               </p>
             </div>
           </div>
 
-          <div className="p-5 rounded-2xl bg-white dark:bg-[#131B2E] border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
+          <div className="p-5 rounded-2xl bg-white dark:bg-[#131B2E] border-2 border-slate-300 dark:border-slate-700 shadow-md flex items-start gap-4">
             <div className="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 mt-0.5">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-mono font-bold tracking-wider uppercase text-slate-900 dark:text-white">
+              <h4 className="text-xs font-mono font-bold tracking-wider uppercase text-slate-950 dark:text-white">
                 {t.aboutUs.principles.title2}
               </h4>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 font-normal leading-relaxed">
+              <p className="text-xs text-slate-800 dark:text-slate-200 mt-1 font-medium leading-relaxed">
                 {t.aboutUs.principles.desc2}
               </p>
             </div>
           </div>
 
-          <div className="p-5 rounded-2xl bg-white dark:bg-[#131B2E] border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
+          <div className="p-5 rounded-2xl bg-white dark:bg-[#131B2E] border-2 border-slate-300 dark:border-slate-700 shadow-md flex items-start gap-4">
             <div className="p-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 mt-0.5">
               <MapPin className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-mono font-bold tracking-wider uppercase text-slate-900 dark:text-white">
+              <h4 className="text-xs font-mono font-bold tracking-wider uppercase text-slate-950 dark:text-white">
                 {t.aboutUs.principles.title3}
               </h4>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 font-normal leading-relaxed">
+              <p className="text-xs text-slate-800 dark:text-slate-200 mt-1 font-medium leading-relaxed">
                 {t.aboutUs.principles.desc3}
               </p>
             </div>
@@ -86,7 +86,7 @@ export default function OwnerSection() {
         {/* ----------------------------------------------------------------- */}
         {/* MAIN ABOUT US CARD: TELANGANA MAP (POINTING KODANGAL) + LEADERSHIP */}
         {/* ----------------------------------------------------------------- */}
-        <div className="rounded-3xl p-6 sm:p-10 bg-white dark:bg-[#131B2E] border-2 border-slate-200 dark:border-slate-800 shadow-2xl relative overflow-hidden">
+        <div className="rounded-3xl p-6 sm:p-10 bg-white dark:bg-[#131B2E] border-2 border-slate-300 dark:border-slate-700 shadow-2xl relative overflow-hidden">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
@@ -94,7 +94,7 @@ export default function OwnerSection() {
             {/* REPLACED IMAGE WITH EXACT TELANGANA MAP POINTING TO KODANGAL */}
             {/* ------------------------------------------------------------- */}
             <div className="lg:col-span-6">
-              <div className="rounded-2xl p-4 sm:p-6 bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 shadow-md overflow-hidden relative">
+              <div className="rounded-2xl p-4 sm:p-6 bg-slate-50 dark:bg-[#0A0F1D] border-2 border-slate-300 dark:border-slate-700 shadow-md overflow-hidden relative">
                 
                 {/* Map Card Header */}
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200 dark:border-slate-800">
@@ -365,11 +365,11 @@ export default function OwnerSection() {
                 {t.aboutUs.ownerRole} • Rajamuri's Infra Developers
               </p>
 
-              <div className="space-y-3 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-light leading-relaxed mb-6 border-l-2 border-[#B8860B] pl-5 bg-slate-50 dark:bg-[#0A0F1D]/60 p-4 rounded-r-xl border-y border-r border-slate-200 dark:border-slate-800">
+              <div className="space-y-3 text-slate-900 dark:text-slate-200 text-sm sm:text-base font-normal leading-relaxed mb-6 border-l-4 border-[#B8860B] pl-5 bg-slate-100/70 dark:bg-[#0A0F1D]/80 p-4 rounded-r-xl border-y border-r border-slate-300 dark:border-slate-700">
                 <p>
                   {owner.bio || "Rajamuri Rajashekar Reddy leads Rajamuri's Infra Developers with a focus on dependable execution, construction quality, and responsible public infrastructure development. Having spearheaded government contracts across Telangana since 2014, he personally oversees structural integrity, material verification, and prompt public handover."}
                 </p>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-normal">
+                <p className="text-xs sm:text-sm text-slate-800 dark:text-slate-300 font-medium">
                   {language === 'te'
                     ? "కొడంగల్ కేంద్రంగా ప్రభుత్వ పాఠశాలలు, అంగన్‌వాడీ కేంద్రాలు మరియు ఆర్ అండ్ బి రోడ్ల నిర్మాణంలో విశ్వసనీయ రికార్డును నమోదు చేశాము."
                     : "Headquartered in Kodangal, we operate with direct accountability to state departments, delivering 100% completed infrastructure for the public benefit."}
@@ -380,16 +380,16 @@ export default function OwnerSection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-6">
                 <a
                   href={`tel:${owner.phoneClean || '+919666660634'}`}
-                  className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 hover:border-[#B8860B] shadow-sm transition-all group flex items-center gap-3.5"
+                  className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border-2 border-slate-300 dark:border-slate-700 hover:border-[#B8860B] shadow-sm transition-all group flex items-center gap-3.5"
                 >
                   <div className="w-9 h-9 rounded-lg bg-amber-50 dark:bg-amber-950/60 text-[#B8860B] dark:text-[#F0CD6D] flex items-center justify-center group-hover:scale-105 transition-transform">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono tracking-widest text-slate-500 uppercase font-semibold">
+                    <div className="text-[10px] font-mono tracking-widest text-slate-700 dark:text-slate-300 uppercase font-bold">
                       {t.aboutUs.directCall}
                     </div>
-                    <div className="text-xs sm:text-sm font-bold font-mono text-slate-900 dark:text-white group-hover:text-[#B8860B] dark:group-hover:text-[#F0CD6D] transition-colors">
+                    <div className="text-xs sm:text-sm font-bold font-mono text-slate-950 dark:text-white group-hover:text-[#B8860B] dark:group-hover:text-[#F0CD6D] transition-colors">
                       {owner.phone || '+91 96666 60634'}
                     </div>
                   </div>
@@ -397,16 +397,16 @@ export default function OwnerSection() {
 
                 <a
                   href={`mailto:${owner.email || 'rajmuri18575@gmail.com'}`}
-                  className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 hover:border-[#B8860B] shadow-sm transition-all group flex items-center gap-3.5"
+                  className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border-2 border-slate-300 dark:border-slate-700 hover:border-[#B8860B] shadow-sm transition-all group flex items-center gap-3.5"
                 >
                   <div className="w-9 h-9 rounded-lg bg-amber-50 dark:bg-amber-950/60 text-[#B8860B] dark:text-[#F0CD6D] flex items-center justify-center group-hover:scale-105 transition-transform">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono tracking-widest text-slate-500 uppercase font-semibold">
+                    <div className="text-[10px] font-mono tracking-widest text-slate-700 dark:text-slate-300 uppercase font-bold">
                       {t.aboutUs.officialEmail}
                     </div>
-                    <div className="text-xs sm:text-sm font-bold font-mono text-slate-900 dark:text-white group-hover:text-[#B8860B] dark:group-hover:text-[#F0CD6D] transition-colors truncate max-w-[190px]">
+                    <div className="text-xs sm:text-sm font-bold font-mono text-slate-950 dark:text-white group-hover:text-[#B8860B] dark:group-hover:text-[#F0CD6D] transition-colors truncate max-w-[190px]">
                       {owner.email || 'rajmuri18575@gmail.com'}
                     </div>
                   </div>

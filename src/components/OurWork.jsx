@@ -45,7 +45,7 @@ export default function OurWork() {
   }, [projects, activeCategory]);
 
   return (
-    <section id="work" className="relative py-24 sm:py-32 bg-white overflow-hidden telangana-border-accent">
+    <section id="work" className="relative py-24 sm:py-32 bg-white dark:bg-[#0A0F1D] text-slate-900 dark:text-white overflow-hidden telangana-border-accent transition-colors duration-300">
       
       {/* Background Ambience */}
       <div className="absolute inset-0 bg-architectural-grid opacity-50 pointer-events-none"></div>
@@ -53,42 +53,42 @@ export default function OurWork() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pb-6 border-b border-slate-200">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pb-6 border-b border-slate-300 dark:border-slate-800">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="w-6 h-[2px] bg-[#B8860B]"></span>
-              <span className="text-xs font-mono tracking-[0.25em] text-[#B8860B] uppercase font-bold">
+              <span className="text-xs font-mono tracking-[0.25em] text-[#B8860B] dark:text-[#F0CD6D] uppercase font-bold">
                 PUBLIC INFRASTRUCTURE PORTFOLIO
               </span>
             </div>
-            <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-950 uppercase tracking-tight">
+            <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-950 dark:text-white uppercase tracking-tight">
               OUR WORK
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-1 font-light max-w-xl">
+            <p className="text-sm sm:text-base text-slate-900 dark:text-slate-200 mt-1 font-medium max-w-xl">
               Infrastructure built to serve communities across Kodangal & Telangana.
             </p>
           </div>
 
           <div className="text-left md:text-right">
-            <span className="text-xs font-mono text-slate-500 uppercase tracking-widest block font-semibold">
+            <span className="text-xs font-mono text-slate-700 dark:text-slate-300 uppercase tracking-widest block font-bold">
               OFFICIAL JURISDICTION
             </span>
-            <span className="text-xs font-mono text-[#8B6508] font-bold">
+            <span className="text-xs font-mono text-[#8B6508] dark:text-[#F0CD6D] font-extrabold">
               Government Infrastructure & R&B Works
             </span>
           </div>
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-12 scrollbar-none border-b border-slate-100">
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-12 scrollbar-none border-b border-slate-200 dark:border-slate-800">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider uppercase whitespace-nowrap transition-all duration-200 ${
                 activeCategory === cat
-                  ? 'bg-slate-900 text-white shadow-md'
-                  : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 border border-slate-200'
+                  ? 'bg-slate-950 dark:bg-white text-white dark:text-slate-950 shadow-md font-black'
+                  : 'bg-slate-200 dark:bg-[#1E293B] text-slate-900 dark:text-slate-100 hover:text-black dark:hover:text-white hover:bg-slate-300 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700'
               }`}
             >
               {cat}
@@ -106,7 +106,7 @@ export default function OurWork() {
                   setSelectedProject(project);
                   setActiveImageIndex(0);
                 }}
-                className="group relative rounded-2xl overflow-hidden bg-white border border-slate-200 hover:border-[#B8860B]/60 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer"
+                className="group relative rounded-2xl overflow-hidden bg-white dark:bg-[#131B2E] border-2 border-slate-300 dark:border-slate-700 hover:border-[#B8860B] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer"
               >
                 {/* Project Media Thumbnail */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
@@ -177,37 +177,37 @@ export default function OurWork() {
           </div>
         ) : (
           // Dignified Clean White State (No Fabricated Projects)
-          <div className="rounded-2xl border border-slate-200 p-8 sm:p-14 bg-slate-50 text-center max-w-3xl mx-auto shadow-sm">
-            <div className="w-16 h-16 rounded-2xl bg-white border border-slate-200 mx-auto flex items-center justify-center mb-5 shadow-sm text-[#B8860B]">
+          <div className="rounded-2xl border-2 border-slate-300 dark:border-slate-700 p-8 sm:p-14 bg-white dark:bg-[#131B2E] text-center max-w-3xl mx-auto shadow-md">
+            <div className="w-16 h-16 rounded-2xl bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 mx-auto flex items-center justify-center mb-5 shadow-sm text-[#B8860B] dark:text-[#F0CD6D]">
               <Building className="w-8 h-8" />
             </div>
 
-            <h3 className="font-display font-bold text-xl sm:text-2xl text-slate-950 uppercase tracking-wide mb-2">
+            <h3 className="font-display font-extrabold text-xl sm:text-2xl text-slate-950 dark:text-white uppercase tracking-wide mb-2">
               OFFICIAL PROJECT DOSSIERS • VERIFICATION PHASE
             </h3>
 
-            <p className="text-slate-600 text-sm sm:text-base font-light leading-relaxed max-w-xl mx-auto mb-6">
+            <p className="text-slate-900 dark:text-slate-200 text-sm sm:text-base font-normal leading-relaxed max-w-xl mx-auto mb-6">
               Rajamuri's Infra Developers executes verified government educational facilities, Anganwadi centers, and Roads & Buildings (R&B) works in Kodangal and Telangana.
               Actual project photographs and technical parameters are published directly through the private administrative portal.
             </p>
 
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 text-xs font-mono text-slate-700 shadow-sm">
-              <ShieldCheck className="w-4 h-4 text-[#B8860B]" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#0A0F1D] border border-slate-300 dark:border-slate-700 text-xs font-mono text-slate-900 dark:text-slate-200 font-bold shadow-sm">
+              <ShieldCheck className="w-4 h-4 text-[#B8860B] dark:text-[#F0CD6D]" />
               <span>STRICT POLICY: ONLY VERIFIED GOVERNMENT CONTRACTS ARE DISPLAYED</span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 pt-8 border-t border-slate-200 text-left">
-              <div className="p-3.5 rounded-xl bg-white border border-slate-200">
-                <span className="text-[10px] font-mono text-[#8B6508] uppercase block font-bold">CATEGORY SCOPE</span>
-                <span className="text-xs font-bold text-slate-900 uppercase mt-1 block">{activeCategory}</span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 pt-8 border-t border-slate-200 dark:border-slate-800 text-left">
+              <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-300 dark:border-slate-700">
+                <span className="text-[10px] font-mono text-[#8B6508] dark:text-[#F0CD6D] uppercase block font-bold">CATEGORY SCOPE</span>
+                <span className="text-xs font-bold text-slate-950 dark:text-white uppercase mt-1 block">{activeCategory}</span>
               </div>
-              <div className="p-3.5 rounded-xl bg-white border border-slate-200">
-                <span className="text-[10px] font-mono text-[#8B6508] uppercase block font-bold">REGIONAL BASE</span>
-                <span className="text-xs font-bold text-slate-900 uppercase mt-1 block">Kodangal & Telangana</span>
+              <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-300 dark:border-slate-700">
+                <span className="text-[10px] font-mono text-[#8B6508] dark:text-[#F0CD6D] uppercase block font-bold">REGIONAL BASE</span>
+                <span className="text-xs font-bold text-slate-950 dark:text-white uppercase mt-1 block">Kodangal & Telangana</span>
               </div>
-              <div className="p-3.5 rounded-xl bg-white border border-slate-200">
-                <span className="text-[10px] font-mono text-[#8B6508] uppercase block font-bold">OPERATIONS</span>
-                <span className="text-xs font-bold text-slate-900 uppercase mt-1 block">Continuous Since 2014</span>
+              <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#0A0F1D] border border-slate-300 dark:border-slate-700">
+                <span className="text-[10px] font-mono text-[#8B6508] dark:text-[#F0CD6D] uppercase block font-bold">OPERATIONS</span>
+                <span className="text-xs font-bold text-slate-950 dark:text-white uppercase mt-1 block">Continuous Since 2014</span>
               </div>
             </div>
           </div>

@@ -74,12 +74,12 @@ export default function StatisticsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Pill */}
-        <div className="flex items-center justify-between mb-8 pb-3 border-b border-slate-200 dark:border-slate-800">
-          <div className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-widest font-semibold">
-            <span className="w-2 h-2 rounded-full bg-[#B8860B]"></span>
+        <div className="flex items-center justify-between mb-8 pb-3 border-b border-slate-300 dark:border-slate-800">
+          <div className="flex items-center gap-2 text-xs font-mono text-slate-900 dark:text-slate-200 uppercase tracking-widest font-bold">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#B8860B]"></span>
             <span>EXPERIENCE METRICS & OPERATIONAL INTEGRITY</span>
           </div>
-          <span className="text-[11px] font-mono text-slate-400 dark:text-slate-500 hidden sm:inline">
+          <span className="text-xs font-mono text-slate-700 dark:text-slate-300 font-bold hidden sm:inline">
             VERIFIED HISTORICAL DATA • ESTD. 2014
           </span>
         </div>
@@ -91,43 +91,43 @@ export default function StatisticsSection() {
             return (
               <div
                 key={stat.id || idx}
-                className="relative rounded-2xl bg-white dark:bg-[#131B2E] p-6 sm:p-7 border border-slate-200 dark:border-slate-800 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] hover:border-[#B8860B]/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between min-h-[210px] group"
+                className="relative rounded-2xl bg-white dark:bg-[#131B2E] p-6 sm:p-7 border-2 border-slate-300 dark:border-slate-700 shadow-md hover:border-[#B8860B] hover:shadow-xl transition-all duration-300 flex flex-col justify-between min-h-[210px] group"
               >
                 {/* Top Row: Icon + Index Badge */}
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 flex items-center justify-center text-[#B8860B] dark:text-[#F0CD6D] group-hover:scale-105 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 flex items-center justify-center text-[#B8860B] dark:text-[#F0CD6D] group-hover:scale-105 transition-transform">
                     {getStatIcon(idx)}
                   </div>
-                  <span className="font-mono text-xs font-bold text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">
+                  <span className="font-mono text-xs font-bold text-slate-800 dark:text-slate-200 bg-slate-200 dark:bg-slate-800 px-2.5 py-1 rounded-md">
                     0{idx + 1}
                   </span>
                 </div>
 
                 {/* Middle: Number / Metric */}
                 <div className="my-auto py-2">
-                  <div className={`font-display font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight ${
+                  <div className={`font-display font-black tracking-tight text-slate-950 dark:text-white leading-tight ${
                     isTextLong ? 'text-2xl sm:text-3xl' : 'text-4xl sm:text-5xl'
                   }`}>
-                    <span className="text-slate-900 dark:text-white group-hover:text-[#B8860B] dark:group-hover:text-[#F0CD6D] transition-colors">
+                    <span className="text-slate-950 dark:text-white group-hover:text-[#B8860B] dark:group-hover:text-[#F0CD6D] transition-colors">
                       <AnimatedCounter endValue={stat.value} suffix={stat.suffix || ""} />
                     </span>
                   </div>
                 </div>
 
                 {/* Bottom: Label and Sublabel (clean vertical separation) */}
-                <div className="pt-3 border-t border-slate-100 dark:border-slate-800 mt-2">
+                <div className="pt-3 border-t border-slate-200 dark:border-slate-800 mt-2">
                   <div className="font-mono text-xs font-bold uppercase tracking-wider text-[#8B6508] dark:text-[#F0CD6D]">
                     {stat.label}
                   </div>
                   {stat.sublabel && (
-                    <div className="text-[11px] text-slate-500 dark:text-slate-400 font-light mt-1 leading-snug">
+                    <div className="text-xs text-slate-800 dark:text-slate-200 font-medium mt-1 leading-snug">
                       {stat.sublabel}
                     </div>
                   )}
                 </div>
 
                 {/* Bottom Accent Highlight */}
-                <div className="absolute bottom-0 left-6 right-6 h-[2px] bg-transparent group-hover:bg-[#B8860B] transition-colors rounded-full"></div>
+                <div className="absolute bottom-0 left-6 right-6 h-[2.5px] bg-transparent group-hover:bg-[#B8860B] transition-colors rounded-full"></div>
               </div>
             );
           })}

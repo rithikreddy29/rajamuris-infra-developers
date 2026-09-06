@@ -85,8 +85,8 @@ export default function Navigation() {
                   href={link.href}
                   className={`text-[11px] xl:text-xs tracking-wider transition-all relative py-1.5 whitespace-nowrap group ${
                     isActive 
-                      ? 'text-slate-950 dark:text-white font-black' 
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white font-bold'
+                      ? 'text-black dark:text-white font-black' 
+                      : 'text-slate-900 dark:text-slate-200 hover:text-black dark:hover:text-white font-black'
                   }`}
                 >
                   <span className="flex items-center gap-1.5">
