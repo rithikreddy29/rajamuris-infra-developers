@@ -6,12 +6,36 @@ export default function Navigation() {
   const { company, owner } = useData();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      const sectionIds = ['about', 'work', 'journey', 'regional', 'capabilities', 'leadership', 'contact'];
+      const scrollPosition = window.scrollY + 160;
+
+      let current = '';
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            current = id;
+            break;
+          }
+        }
+      }
+      if (current) {
+        setActiveSection(current);
+      } else if (window.scrollY < 200) {
+        setActiveSection('');
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -30,37 +54,55 @@ export default function Navigation() {
       <header 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled 
-            ? 'bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.05)] py-3.5' 
-            : 'bg-white/90 backdrop-blur-sm border-b border-slate-100 py-4'
+            ? 'bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.05)] py-3' 
+            : 'bg-white/90 backdrop-blur-sm border-b border-slate-100 py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* Brand Identity - Single Line */}
-          <a href="#" className="flex items-center gap-2 whitespace-nowrap group flex-shrink-0 py-1">
-            <span className="font-display font-extrabold text-sm sm:text-base lg:text-lg tracking-wider text-slate-950 uppercase leading-none group-hover:text-[#B8860B] transition-colors">
+          {/* Brand Identity: INFRA DEVELOPERS directly below RAJAMURI'S */}
+          <a href="#" className="flex flex-col group flex-shrink-0 py-0.5">
+            <span className="font-display font-black text-base sm:text-lg lg:text-xl tracking-tight text-slate-950 uppercase leading-none group-hover:text-[#B8860B] transition-colors">
               RAJAMURI'S
             </span>
-            <span className="text-[10px] sm:text-xs tracking-[0.22em] text-[#8B6508] font-bold uppercase font-mono">
+            <span className="text-[9px] sm:text-[10px] tracking-[0.24em] text-[#8B6508] font-bold uppercase font-mono mt-0.5">
               INFRA DEVELOPERS
             </span>
           </a>
 
-          {/* Desktop Navigation Links - Single Line */}
+          {/* Desktop Navigation Links with Active Section Highlighting */}
           <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 flex-shrink-0 whitespace-nowrap">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-[11px] xl:text-xs font-bold tracking-wider text-slate-700 hover:text-slate-950 transition-colors relative py-1 group whitespace-nowrap"
-              >
-                {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#B8860B] transition-all duration-300 group-hover:w-full"></span>
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const sectionId = link.href.replace('#', '');
+              const isActive = activeSection === sectionId;
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`text-[11px] xl:text-xs tracking-wider transition-all relative py-1.5 whitespace-nowrap group ${
+                    isActive 
+                      ? 'text-slate-950 font-black' 
+                      : 'text-slate-600 hover:text-slate-950 font-bold'
+                  }`}
+                >
+                  <span className="flex items-center gap-1.5">
+                    {isActive && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#B8860B] animate-pulse"></span>
+                    )}
+                    <span>{link.name}</span>
+                  </span>
+                  {/* Underline Indicator: solid and highlighted when active */}
+                  <span 
+                    className={`absolute bottom-0 left-0 h-[2.5px] bg-[#B8860B] transition-all duration-300 ${
+                      isActive ? 'w-full shadow-sm' : 'w-0 group-hover:w-full'
+                    }`}
+                  ></span>
+                </a>
+              );
+            })}
           </nav>
 
-          {/* Right Action CTA & Phone - Single Line */}
+          {/* Right Action CTA & Phone */}
           <div className="hidden lg:flex items-center gap-3 xl:gap-4 flex-shrink-0 whitespace-nowrap">
             <a
               href={`tel:${company.phoneClean || '+919666660634'}`}
