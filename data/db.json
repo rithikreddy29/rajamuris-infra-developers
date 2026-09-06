@@ -1,0 +1,201 @@
+{
+  "company": {
+    "name": "RAJAMURI'S INFRA DEVELOPERS",
+    "legalName": "Rajamuri's Infra Developers",
+    "teluguName": "రాజమురి ఇన్ఫ్రా డెవలపర్స్",
+    "tagline": "Government Infrastructure & Civil Construction Since 2014",
+    "headline": "BUILDING THE FOUNDATION OF A BETTER TOMORROW.",
+    "teluguHeadline": "రేపటి ప్రగతికి దృఢమైన పునాది",
+    "storyHeading": "BUILT ON EXPERIENCE. DRIVEN BY RESPONSIBILITY.",
+    "story": "Rajamuri's Infra Developers is a Telangana-based civil construction and infrastructure company with experience in government construction works since 2014.\n\nOver the years, the company has undertaken construction and infrastructure works including educational buildings, Anganwadi buildings and other public infrastructure projects in and around the Kodangal constituency.\n\nOur work is guided by practical engineering, responsible execution, construction quality and a commitment to delivering infrastructure that serves communities.",
+    "phone": "+91 96666 60634",
+    "phoneClean": "+919666660634",
+    "email": "rajmuri18575@gmail.com",
+    "address": "Kodangal, Vikarabad District, Telangana 509338",
+    "state": "Telangana",
+    "primaryRegion": "Kodangal Constituency & Telangana",
+    "whatsapp": "919666660634"
+  },
+  "owner": {
+    "name": "RAJAMURI RAJASHEKAR REDDY",
+    "designation": "Owner",
+    "phone": "+91 96666 60634",
+    "email": "rajmuri18575@gmail.com",
+    "photoUrl": "",
+    "bio": "Rajamuri Rajashekar Reddy leads Rajamuri's Infra Developers with a focus on dependable execution, quality construction and responsible infrastructure development. With experience in the government construction sector since 2014, the company has grown through consistent project execution and a commitment to serving public infrastructure requirements."
+  },
+  "statistics": [
+    {
+      "id": "stat-1",
+      "value": "2014",
+      "suffix": "",
+      "label": "Established",
+      "sublabel": "Continuous Operations"
+    },
+    {
+      "id": "stat-2",
+      "value": "10",
+      "suffix": "+",
+      "label": "Years of Experience",
+      "sublabel": "Civil Construction Track Record"
+    },
+    {
+      "id": "stat-3",
+      "value": "Government",
+      "suffix": " Infra",
+      "label": "Core Experience",
+      "sublabel": "Public Infrastructure Focus"
+    },
+    {
+      "id": "stat-4",
+      "value": "Kodangal",
+      "suffix": " & TG",
+      "label": "Project Region",
+      "sublabel": "Telangana State Coverage"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "cap-1",
+      "number": "01",
+      "title": "EDUCATIONAL INFRASTRUCTURE",
+      "teluguTitle": "విద్యా మౌలిక సదుపాయాలు",
+      "description": "Construction of school and educational facilities designed to provide robust, safe learning environments for future generations.",
+      "category": "SCHOOLS"
+    },
+    {
+      "id": "cap-2",
+      "number": "02",
+      "title": "ANGANWADI INFRASTRUCTURE",
+      "teluguTitle": "అంగన్‌వాడీ కేంద్ర భవనాలు",
+      "description": "Community-focused buildings serving children and families with dedicated maternal and child welfare spaces.",
+      "category": "ANGANWADI"
+    },
+    {
+      "id": "cap-3",
+      "number": "03",
+      "title": "GOVERNMENT BUILDINGS",
+      "teluguTitle": "ప్రభుత్వ కార్యాలయ భవనాలు",
+      "description": "Civil construction and public infrastructure works adhering strictly to institutional engineering codes and government department standards.",
+      "category": "GOVERNMENT BUILDINGS"
+    },
+    {
+      "id": "cap-4",
+      "number": "04",
+      "title": "COMMUNITY INFRASTRUCTURE",
+      "teluguTitle": "సామాజిక మౌలిక వసతులు",
+      "description": "Infrastructure designed around public needs, civic amenities, rural connectivity, and local public utility spaces.",
+      "category": "COMMUNITY INFRASTRUCTURE"
+    },
+    {
+      "id": "cap-5",
+      "number": "05",
+      "title": "CIVIL CONSTRUCTION",
+      "teluguTitle": "సివిల్ నిర్మాణ పనులు",
+      "description": "General civil construction and infrastructure execution, reinforced concrete structures, earthworks, and masonry.",
+      "category": "CIVIL WORKS"
+    }
+  ],
+  "whyUs": [
+    {
+      "number": "01",
+      "title": "EXPERIENCE",
+      "description": "Government construction experience since 2014."
+    },
+    {
+      "number": "02",
+      "title": "QUALITY",
+      "description": "A focus on construction quality and responsible execution."
+    },
+    {
+      "number": "03",
+      "title": "RELIABILITY",
+      "description": "Committed to dependable project execution."
+    },
+    {
+      "number": "04",
+      "title": "LOCAL EXPERIENCE",
+      "description": "Understanding of infrastructure requirements in Telangana and the Kodangal region."
+    },
+    {
+      "number": "05",
+      "title": "COMMUNITY IMPACT",
+      "description": "Infrastructure designed to serve schools, children, families and communities."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "tl-2014",
+      "year": "2014",
+      "title": "Founding & Incorporation",
+      "description": "Rajamuri's Infra Developers established in Telangana, initiating dedicated civil contracting and government infrastructure execution.",
+      "location": "Telangana",
+      "milestone": "Foundation Milestone",
+      "projects": "Civil Infrastructure",
+      "images": [],
+      "status": "published"
+    },
+    {
+      "id": "tl-2016",
+      "year": "2016",
+      "title": "Public & Educational Civil Works Expansion",
+      "description": "Expanded execution capabilities into Anganwadi building complexes and rural educational facilities across Kodangal constituency.",
+      "location": "Kodangal, Telangana",
+      "milestone": "Regional Operations",
+      "projects": "Educational & Anganwadi Infrastructure",
+      "images": [],
+      "status": "published"
+    },
+    {
+      "id": "tl-2020",
+      "year": "2020",
+      "title": "Institutional Infrastructure & Civil Works",
+      "description": "Continued delivery of community welfare buildings and government-sanctioned infrastructure with dependable engineering standards.",
+      "location": "Telangana",
+      "milestone": "Institutional Execution",
+      "projects": "Public Works",
+      "images": [],
+      "status": "published"
+    },
+    {
+      "id": "tl-2024",
+      "year": "2024",
+      "title": "A Decade of Public Infrastructure Delivery",
+      "description": "Marked 10 years of consistent government construction works, deepening community infrastructure across the Kodangal region.",
+      "location": "Kodangal & Telangana",
+      "milestone": "10-Year Landmark",
+      "projects": "Government Civil Infrastructure",
+      "images": [],
+      "status": "published"
+    },
+    {
+      "id": "tl-2026",
+      "year": "2026",
+      "title": "Next-Phase Civil Development",
+      "description": "Executing modern educational, civic, and community infrastructure works aligned with Telangana's growing public development needs.",
+      "location": "Kodangal & Surrounding Regions",
+      "milestone": "Present Operations",
+      "projects": "Ongoing Infrastructure",
+      "images": [],
+      "status": "published"
+    }
+  ],
+  "projects": [],
+  "gallery": [],
+  "updates": [
+    {
+      "id": "up-1",
+      "title": "Continuing Government Infrastructure Works in Kodangal Constituency",
+      "date": "2026-08-15",
+      "category": "Announcements",
+      "description": "Rajamuri's Infra Developers continues its dedicated commitment to public infrastructure, executing sanctioned educational and civil works with high standards of safety and durability.",
+      "images": [],
+      "status": "published"
+    }
+  ],
+  "inquiries": [],
+  "auth": {
+    "username": "admin",
+    "passwordHash": "rajamuri2014"
+  }
+}
