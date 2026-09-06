@@ -519,6 +519,39 @@ export function DataProvider({ children }) {
     }
   };
 
+  const addGalleryItem = async (itemData) => {
+    try {
+      const res = await fetch('/api/gallery', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(itemData)
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to add gallery item');
+      setGallery(prev => [data, ...prev]);
+      return { success: true, item: data };
+    } catch (err) {
+      return { success: false, error: err.message };
+    }
+  };
+
+  const deleteGalleryItem = async (id) => {
+    try {
+      const res = await fetch(`/api/gallery/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (!res.ok) throw new Error('Failed to delete gallery item');
+      setGallery(prev => prev.filter(g => g.id !== id));
+      return { success: true };
+    } catch (err) {
+      return { success: false, error: err.message };
+    }
+  };
+
   return (
     <DataContext.Provider value={{
       company,
@@ -552,6 +585,8 @@ export function DataProvider({ children }) {
       deleteTimeline,
       updateOwner,
       updateCompany,
+      addGalleryItem,
+      deleteGalleryItem,
       submitInquiry,
       deleteInquiry,
       changePassword,

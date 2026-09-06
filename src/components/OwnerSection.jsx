@@ -1,9 +1,10 @@
-import React from 'react';
-import { ShieldCheck, Phone, Mail, MessageSquare, Award, ArrowUpRight, CheckCircle2, Building2, MapPin, Compass, Navigation } from 'lucide-react';
+import React, { useState } from 'react';
+import { ShieldCheck, Phone, Mail, MessageSquare, Award, ArrowUpRight, CheckCircle2, Building2, MapPin, Compass, Navigation, User } from 'lucide-react';
 import { useData } from '../context/DataContext';
 
 export default function OwnerSection() {
   const { owner, company, language, theme, t } = useData();
+  const [activeVisual, setActiveVisual] = useState('photo'); // 'photo' or 'map'
 
   return (
     <section id="about-us" className="relative py-24 sm:py-32 bg-[#F8FAFC] dark:bg-[#0A0F1D] overflow-hidden telangana-border-accent transition-colors duration-300">
@@ -91,27 +92,103 @@ export default function OwnerSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             {/* ------------------------------------------------------------- */}
-            {/* REPLACED IMAGE WITH EXACT TELANGANA MAP POINTING TO KODANGAL */}
+            {/* EXECUTIVE PORTRAIT (MY FATHER) & EXACT TELANGANA MAP TOGGLE   */}
             {/* ------------------------------------------------------------- */}
             <div className="lg:col-span-6">
               <div className="rounded-2xl p-4 sm:p-6 bg-slate-50 dark:bg-[#0A0F1D] border-2 border-slate-300 dark:border-slate-700 shadow-md overflow-hidden relative">
                 
-                {/* Map Card Header */}
-                <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200 dark:border-slate-800">
-                  <div className="flex items-center gap-2">
-                    <Compass className="w-4 h-4 text-[#B8860B] dark:text-[#F0CD6D]" />
-                    <span className="text-xs font-mono font-bold tracking-widest uppercase text-slate-800 dark:text-slate-200">
-                      EXACT TELANGANA MAP
-                    </span>
+                {/* Visual View Switcher (Portrait vs Telangana Map) */}
+                <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800 gap-2 flex-wrap">
+                  <div className="flex items-center gap-1.5 p-1 bg-slate-200/80 dark:bg-slate-800/80 rounded-xl">
+                    <button
+                      type="button"
+                      onClick={() => setActiveVisual('photo')}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold tracking-wider uppercase transition-all flex items-center gap-1.5 ${
+                        activeVisual === 'photo'
+                          ? 'bg-gradient-to-r from-[#F0CD6D] via-[#D4AF37] to-[#B8860B] text-slate-950 shadow-sm'
+                          : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white'
+                      }`}
+                    >
+                      <User className="w-3.5 h-3.5" />
+                      <span>OWNER PORTRAIT</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setActiveVisual('map')}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold tracking-wider uppercase transition-all flex items-center gap-1.5 ${
+                        activeVisual === 'map'
+                          ? 'bg-gradient-to-r from-[#F0CD6D] via-[#D4AF37] to-[#B8860B] text-slate-950 shadow-sm'
+                          : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white'
+                      }`}
+                    >
+                      <Compass className="w-3.5 h-3.5" />
+                      <span>TELANGANA MAP</span>
+                    </button>
                   </div>
-                  <span className="text-[10px] font-mono text-[#8B6508] dark:text-[#F0CD6D] px-2.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 font-bold">
+
+                  <span className="text-[10px] font-mono text-[#8B6508] dark:text-[#F0CD6D] px-2.5 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 font-bold">
                     ESTD. 2014
                   </span>
                 </div>
 
-                {/* Geographically Authentic Vector SVG of Telangana State with Kodangal Beacon */}
-                <div className="relative w-full aspect-[1/1] max-w-md mx-auto flex items-center justify-center p-1">
-                  <svg viewBox="0 0 520 500" className="w-full h-full filter drop-shadow-md select-none">
+                {/* PRIMARY VIEW: FATHER'S EXECUTIVE PORTRAIT */}
+                {activeVisual === 'photo' && (
+                  <div className="relative w-full aspect-[3/4] max-w-md mx-auto rounded-2xl overflow-hidden border-2 border-[#D4AF37]/50 shadow-2xl bg-slate-900 group">
+                    <img
+                      src={owner.photoUrl || '/images/rajamuri_rajashekar_reddy.jpg'}
+                      alt={owner.name || "Rajamuri Rajashekar Reddy"}
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      onError={(e) => {
+                        e.target.src = '/images/rajamuri_rajashekar_reddy.jpg';
+                      }}
+                    />
+                    
+                    {/* Dark Architectural Vignette Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/25 to-transparent pointer-events-none"></div>
+
+                    {/* Top Verified State Badge */}
+                    <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/85 backdrop-blur-md border border-[#F0CD6D]/60 text-[10px] font-mono text-[#F0CD6D] font-bold shadow-md">
+                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>VERIFIED INFRASTRUCTURE CONTRACTOR</span>
+                      </span>
+
+                      <button
+                        onClick={() => setActiveVisual('map')}
+                        className="pointer-events-auto p-1.5 rounded-lg bg-slate-950/80 text-[#F0CD6D] hover:text-white border border-[#D4AF37]/40 hover:bg-slate-900 transition-colors"
+                        title="Switch to Telangana Map"
+                      >
+                        <Compass className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* Bottom Executive Nameplate */}
+                    <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                      <div className="text-[10px] sm:text-[11px] font-mono text-[#F0CD6D] font-bold tracking-widest uppercase mb-1">
+                        FOUNDER & PRINCIPAL EXECUTIVE
+                      </div>
+                      <h4 className="text-xl sm:text-2xl font-display font-black tracking-wide uppercase leading-tight">
+                        {owner.name}
+                      </h4>
+                      <div className="flex items-center justify-between text-[11px] font-mono text-slate-300 pt-2.5 mt-2.5 border-t border-white/20">
+                        <span className="flex items-center gap-1.5 text-slate-200 font-semibold">
+                          <MapPin className="w-3.5 h-3.5 text-[#F0CD6D]" />
+                          Kodangal, Vikarabad Dist, TG
+                        </span>
+                        <span className="text-emerald-400 font-bold flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                          Active Leadership
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* SECONDARY VIEW: EXACT TELANGANA MAP (POINTING KODANGAL) */}
+                {activeVisual === 'map' && (
+                  <div className="relative w-full aspect-[1/1] max-w-md mx-auto flex items-center justify-center p-1">
+                    <svg viewBox="0 0 520 500" className="w-full h-full filter drop-shadow-md select-none">
                     <defs>
                       <linearGradient id="tgRealMapGradAbout" x1="0%" y1="0%" x2="100%" y2="100%">
                         {theme === 'dark' ? (
@@ -336,6 +413,7 @@ export default function OwnerSection() {
 
                   </svg>
                 </div>
+                )}
 
                 {/* Bottom Strip */}
                 <div className="mt-2 p-2.5 rounded-xl bg-white dark:bg-[#131B2E] border border-slate-200 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono shadow-sm">

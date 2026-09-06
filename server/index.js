@@ -24,6 +24,7 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Serve uploads statically
 app.use('/uploads', express.static(uploadsDir));
+app.use(express.static(path.join(rootDir, 'public')));
 
 // Multer storage configuration
 const storage = multer.diskStorage({
@@ -500,6 +501,6 @@ if (fs.existsSync(distDir)) {
   });
 }
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Rajamuri's Infra Developers API Server running on port ${PORT}`);
 });
