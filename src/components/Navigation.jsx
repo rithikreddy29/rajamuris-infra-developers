@@ -12,8 +12,9 @@ export default function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sectionIds = ['about-us', 'about', 'work', 'journey', 'regional', 'capabilities', 'contact'];
-      const scrollPosition = window.scrollY + 160;
+      // Section order matching page flow
+      const sectionIds = ['work', 'journey', 'capabilities', 'about-us', 'contact'];
+      const scrollPosition = window.scrollY + 200;
 
       let current = '';
       for (const id of sectionIds) {
@@ -22,11 +23,16 @@ export default function Navigation() {
           const top = el.offsetTop;
           const height = el.offsetHeight;
           if (scrollPosition >= top && scrollPosition < top + height) {
-            current = (id === 'about' ? 'about-us' : id);
-            break;
+            current = id;
           }
         }
       }
+
+      // If scrolled near bottom of page, highlight contact
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 120) {
+        current = 'contact';
+      }
+
       if (current) {
         setActiveSection(current);
       } else if (window.scrollY < 200) {
@@ -40,11 +46,10 @@ export default function Navigation() {
   }, []);
 
   const navLinks = [
-    { name: t.nav.aboutUs, href: '#about-us' },
     { name: t.nav.ourWork, href: '#work' },
     { name: t.nav.journey, href: '#journey' },
-    { name: t.nav.regional, href: '#regional' },
     { name: t.nav.capabilities, href: '#capabilities' },
+    { name: t.nav.aboutUs, href: '#about-us' },
     { name: t.nav.contact, href: '#contact' },
   ];
 

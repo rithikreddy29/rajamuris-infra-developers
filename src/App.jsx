@@ -8,7 +8,6 @@ import CompanyStory from './components/CompanyStory';
 import StatisticsSection from './components/StatisticsSection';
 import OurWork from './components/OurWork';
 import JourneyTimeline from './components/JourneyTimeline';
-import TelanganaMapSection from './components/TelanganaMapSection';
 import CapabilitiesSection from './components/CapabilitiesSection';
 import ProjectGallery from './components/ProjectGallery';
 import WhyChooseUs from './components/WhyChooseUs';
@@ -49,15 +48,15 @@ export default function App() {
       <Navigation />
       <main className="flex-1">
         <HeroSection />
-        <OwnerSection />
+        <CompanyStory />
         <StatisticsSection />
         <OurWork />
         <JourneyTimeline />
-        <TelanganaMapSection />
         <CapabilitiesSection />
         <ProjectGallery />
         <WhyChooseUs />
         <UpdatesSection />
+        <OwnerSection />
         <ContactSection />
       </main>
       <Footer />
