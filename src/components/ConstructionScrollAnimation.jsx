@@ -33,12 +33,12 @@ export default function ConstructionScrollAnimation({ isBackground = false }) {
         {/* ------------------------------------------------------------- */}
         {/* FRONTAL 3D ARCHITECTURAL SIMULATION (FACING TOWARDS USER)    */}
         {/* ------------------------------------------------------------- */}
-        <div className={`relative w-full ${isBackground ? 'h-full' : 'aspect-[16/9] sm:aspect-[21/9]'} bg-white overflow-hidden select-none`}>
+        <div className={`relative w-full ${isBackground ? 'h-full flex items-center justify-center' : 'aspect-[16/9] sm:aspect-[21/9]'} bg-transparent overflow-hidden select-none`}>
           
           <svg
             viewBox="0 0 1200 650"
-            preserveAspectRatio="xMidYMid slice"
-            className="w-full h-full"
+            preserveAspectRatio="xMidYMid meet"
+            className="w-full h-full max-h-full"
           >
             <defs>
               {/* GPU-Accelerated Lag-Free CSS Keyframes */}
@@ -442,31 +442,6 @@ export default function ConstructionScrollAnimation({ isBackground = false }) {
               {/* Solid White Safety Shoulder Lines */}
               <line x1="0" y1="18" x2="1200" y2="18" stroke="#FFFFFF" strokeWidth="2.5" opacity="0.9" />
               <line x1="0" y1="132" x2="1200" y2="132" stroke="#FFFFFF" strokeWidth="2.5" opacity="0.9" />
-
-              {/* ----------------------------------------------------------- */}
-              {/* CLEAN KODANGAL MILESTONE STONE (NO R&B, JUST KODANGAL)      */}
-              {/* ----------------------------------------------------------- */}
-              <g transform="translate(1080, -20)" filter="url(#cardShadowFront)">
-                {/* Milestone Curved Dome Stone Body */}
-                <path
-                  d="M 0,20 Q 18,0 36,20 L 36,65 L 0,65 Z"
-                  fill="#FFFFFF"
-                  stroke="#0F172A"
-                  strokeWidth="2"
-                />
-                {/* Green Rounded Dome Cap */}
-                <path
-                  d="M 0,20 Q 18,0 36,20 L 36,32 L 0,32 Z"
-                  fill="#16A34A"
-                />
-                {/* Clean Milestone Text: KODANGAL 0 KM */}
-                <text x="18" y="46" textAnchor="middle" fill="#0F172A" fontSize="7.5" fontWeight="black" fontFamily="'Plus Jakarta Sans', sans-serif">
-                  KODANGAL
-                </text>
-                <text x="18" y="58" textAnchor="middle" fill="#64748B" fontSize="7" fontWeight="bold" fontFamily="monospace">
-                  0 KM
-                </text>
-              </g>
 
               {/* ----------------------------------------------------------- */}
               {/* VEHICLE 1: HEAVY ROAD ROLLER COMPACTOR (SMOOTH HORIZONTAL)  */}

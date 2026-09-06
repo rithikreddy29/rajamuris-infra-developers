@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { translations } from '../utils/translations';
 
 const DataContext = createContext(null);
 
@@ -175,6 +176,33 @@ export function DataProvider({ children }) {
   const [inquiries, setInquiries] = useState([]);
   const [token, setToken] = useState(() => localStorage.getItem('raj_admin_token') || null);
   const [loading, setLoading] = useState(true);
+
+  // Theme state: 'light' | 'dark'
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('raj_theme') || 'light';
+  });
+
+  // Language state: 'en' | 'te'
+  const [language, setLanguage] = useState(() => {
+    return localStorage.getItem('raj_lang') || 'en';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('raj_theme', theme);
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem('raj_lang', language);
+  }, [language]);
+
+  const toggleTheme = () => setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  const toggleLanguage = () => setLanguage(prev => (prev === 'te' ? 'en' : 'te'));
+  const t = translations[language] || translations.en;
 
   const isAuthenticated = Boolean(token);
 
@@ -506,6 +534,13 @@ export function DataProvider({ children }) {
       token,
       isAuthenticated,
       loading,
+      theme,
+      toggleTheme,
+      setTheme,
+      language,
+      toggleLanguage,
+      setLanguage,
+      t,
       login,
       logout,
       uploadMedia,

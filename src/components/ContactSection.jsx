@@ -59,7 +59,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32 bg-[#F8FAFC] border-t border-slate-200 overflow-hidden telangana-border-accent">
+    <section id="contact" className="relative py-24 sm:py-32 bg-[#F8FAFC] dark:bg-[#0A0F1D] border-t border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white overflow-hidden telangana-border-accent transition-colors duration-300">
       
       {/* Background Grid */}
       <div className="absolute inset-0 bg-architectural-grid opacity-50 pointer-events-none"></div>
@@ -68,18 +68,18 @@ export default function ContactSection() {
         
         {/* Major Closing Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span>
-            <span className="text-xs font-mono tracking-[0.25em] text-[#8B6508] uppercase font-bold">
+            <span className="text-xs font-mono tracking-[0.25em] text-[#8B6508] dark:text-[#F0CD6D] uppercase font-bold">
               COMMENCE ENGAGEMENT
             </span>
           </div>
 
-          <h2 className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl text-slate-950 uppercase tracking-tight leading-[1.1]">
+          <h2 className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl text-slate-950 dark:text-white uppercase tracking-tight leading-[1.1]">
             LET'S BUILD WHAT'S NEXT.
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 font-light mt-3 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-light mt-3 leading-relaxed">
             Have a project, requirement or opportunity? Get in touch with Rajamuri's Infra Developers.
           </p>
 
@@ -87,7 +87,7 @@ export default function ContactSection() {
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
             <a
               href={`tel:${owner.phoneClean || '+919666660634'}`}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-950 text-white hover:bg-slate-800 transition-all font-mono text-xs font-bold uppercase tracking-wider shadow-md"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-950 dark:bg-[#1E293B] text-white hover:bg-slate-800 dark:hover:bg-slate-700 transition-all font-mono text-xs font-bold uppercase tracking-wider shadow-md border border-transparent dark:border-slate-700"
             >
               <Phone className="w-4 h-4 text-[#F0CD6D]" />
               <span>CALL NOW</span>
@@ -105,9 +105,9 @@ export default function ContactSection() {
 
             <a
               href={`mailto:${owner.email || 'rajmuri18575@gmail.com'}`}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-slate-300 text-slate-800 hover:text-slate-950 hover:border-slate-400 transition-all font-mono text-xs font-bold uppercase tracking-wider shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-[#131B2E] border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white hover:border-slate-400 dark:hover:border-slate-600 transition-all font-mono text-xs font-bold uppercase tracking-wider shadow-sm"
             >
-              <Mail className="w-4 h-4 text-[#B8860B]" />
+              <Mail className="w-4 h-4 text-[#B8860B] dark:text-[#F0CD6D]" />
               <span>EMAIL US</span>
             </a>
           </div>
@@ -118,13 +118,13 @@ export default function ContactSection() {
           
           {/* Left Column: Formal Enquiry Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl p-6 sm:p-10 bg-white border border-slate-200 shadow-xl">
+            <div className="rounded-2xl p-6 sm:p-10 bg-white dark:bg-[#131B2E] border border-slate-200 dark:border-slate-800 shadow-xl">
               
               <div className="mb-6">
-                <h3 className="font-display font-bold text-xl sm:text-2xl text-slate-950 uppercase">
+                <h3 className="font-display font-bold text-xl sm:text-2xl text-slate-950 dark:text-white uppercase">
                   SUBMIT FORMAL INQUIRY
                 </h3>
-                <p className="text-xs font-mono text-slate-500 mt-1">
+                <p className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1">
                   Requests are reviewed directly by Rajamuri Rajashekar Reddy and the executive civil engineering team.
                 </p>
               </div>

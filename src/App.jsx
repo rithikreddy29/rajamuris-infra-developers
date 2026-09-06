@@ -45,11 +45,11 @@ export default function App() {
 
   // Public Corporate Website: 100% clean of admin controls
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-[#F0CD6D] selection:text-slate-950">
+    <div className="min-h-screen bg-white dark:bg-[#0A0F1D] text-slate-900 dark:text-white flex flex-col selection:bg-[#F0CD6D] selection:text-slate-950 transition-colors duration-300">
       <Navigation />
       <main className="flex-1">
         <HeroSection />
-        <CompanyStory />
+        <OwnerSection />
         <StatisticsSection />
         <OurWork />
         <JourneyTimeline />
@@ -58,7 +58,6 @@ export default function App() {
         <ProjectGallery />
         <WhyChooseUs />
         <UpdatesSection />
-        <OwnerSection />
         <ContactSection />
       </main>
       <Footer />

@@ -39,7 +39,7 @@ export default function TelanganaMapSection() {
   ];
 
   return (
-    <section id="regional" className="relative py-24 sm:py-32 bg-white overflow-hidden telangana-border-accent">
+    <section id="regional" className="relative py-24 sm:py-32 bg-white dark:bg-[#0A0F1D] text-slate-900 dark:text-white overflow-hidden telangana-border-accent transition-colors duration-300">
       
       {/* Background Subtle Grid */}
       <div className="absolute inset-0 bg-architectural-grid opacity-50 pointer-events-none"></div>
@@ -48,22 +48,22 @@ export default function TelanganaMapSection() {
         
         {/* Section Heading */}
         <div className="mb-14 text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span>
-            <span className="text-xs font-mono tracking-[0.25em] text-[#8B6508] uppercase font-bold">
+            <span className="text-xs font-mono tracking-[0.25em] text-[#8B6508] dark:text-[#F0CD6D] uppercase font-bold">
               REGIONAL IDENTITY
             </span>
           </div>
 
-          <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-950 uppercase tracking-tight">
+          <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-950 dark:text-white uppercase tracking-tight">
             BUILDING FOR COMMUNITIES
           </h2>
           
-          <p className="font-mono text-sm sm:text-base tracking-widest text-[#8B6508] mt-2 uppercase font-bold">
+          <p className="font-mono text-sm sm:text-base tracking-widest text-[#8B6508] dark:text-[#F0CD6D] mt-2 uppercase font-bold">
             KODANGAL • TELANGANA
           </p>
 
-          <p className="text-sm sm:text-base text-slate-600 mt-3 font-light leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-3 font-light leading-relaxed">
             Rajamuri's Infra Developers has undertaken civil construction and Roads & Buildings (R&B) works across the region, with an enduring commitment to public buildings that directly serve local communities.
           </p>
         </div>
@@ -73,16 +73,16 @@ export default function TelanganaMapSection() {
           
           {/* Left Column: Stylized Vector Telangana Map with Kodangal Beacon (6 cols) */}
           <div className="lg:col-span-6">
-            <div className="rounded-2xl p-6 sm:p-8 bg-slate-50 border border-slate-200 shadow-sm overflow-hidden relative">
+            <div className="rounded-2xl p-6 sm:p-8 bg-slate-50 dark:bg-[#131B2E] border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden relative">
               
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-200">
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-200 dark:border-slate-800">
                 <div className="flex items-center gap-2">
                   <Compass className="w-4 h-4 text-[#B8860B]" />
-                  <span className="text-xs font-mono font-bold tracking-widest uppercase text-slate-800">
+                  <span className="text-xs font-mono font-bold tracking-widest uppercase text-slate-800 dark:text-slate-200">
                     EXACT TELANGANA MAP
                   </span>
                 </div>
-                <span className="text-[10px] font-mono text-[#8B6508] px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 font-bold">
+                <span className="text-[10px] font-mono text-[#8B6508] dark:text-[#F0CD6D] px-2.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 font-bold">
                   ESTD. 2014
                 </span>
               </div>
@@ -375,22 +375,22 @@ export default function TelanganaMapSection() {
                 return (
                   <div
                     key={idx}
-                    className="p-4 rounded-xl bg-slate-50 hover:bg-white border border-slate-200 hover:border-[#B8860B] shadow-sm transition-all flex items-start gap-4 group"
+                    className="p-4 rounded-xl bg-slate-50 dark:bg-[#131B2E] hover:bg-white dark:hover:bg-[#1E293B] border border-slate-200 dark:border-slate-800 hover:border-[#B8860B] shadow-sm transition-all flex items-start gap-4 group"
                   >
-                    <div className="p-2.5 rounded-xl bg-white border border-slate-200 text-[#B8860B] group-hover:scale-105 transition-transform">
+                    <div className="p-2.5 rounded-xl bg-white dark:bg-[#0A0F1D] border border-slate-200 dark:border-slate-700 text-[#B8860B] dark:text-[#F0CD6D] group-hover:scale-105 transition-transform">
                       <IconComponent className="w-5 h-5" />
                     </div>
 
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-display font-bold text-sm sm:text-base text-slate-900 group-hover:text-[#B8860B] transition-colors">
+                        <h4 className="font-display font-bold text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-[#B8860B] dark:group-hover:text-[#F0CD6D] transition-colors">
                           {item.title}
                         </h4>
-                        <span className="text-[10px] font-mono text-[#8B6508] bg-amber-50 border border-amber-200 px-2 py-0.5 rounded font-semibold">
+                        <span className="text-[10px] font-mono text-[#8B6508] dark:text-[#F0CD6D] bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 px-2 py-0.5 rounded font-semibold">
                           {item.telugu}
                         </span>
                       </div>
-                      <p className="text-xs text-slate-600 mt-1 font-light leading-relaxed">
+                      <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 font-light leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
@@ -399,10 +399,10 @@ export default function TelanganaMapSection() {
               })}
             </div>
 
-            <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 flex items-start gap-3 mt-5">
-              <ShieldCheck className="w-5 h-5 text-[#B8860B] flex-shrink-0 mt-0.5" />
-              <p className="text-[11px] font-mono text-slate-700 leading-relaxed">
-                <strong className="text-slate-900 font-bold">GOVERNMENT CONTRACT INTEGRITY:</strong> Projects are formally associated and published only after verified completion and administrative validation.
+            <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 flex items-start gap-3 mt-5">
+              <ShieldCheck className="w-5 h-5 text-[#B8860B] dark:text-[#F0CD6D] flex-shrink-0 mt-0.5" />
+              <p className="text-[11px] font-mono text-slate-700 dark:text-slate-300 leading-relaxed">
+                <strong className="text-slate-900 dark:text-white font-bold">GOVERNMENT CONTRACT INTEGRITY:</strong> Projects are formally associated and published only after verified completion and administrative validation.
               </p>
             </div>
 
