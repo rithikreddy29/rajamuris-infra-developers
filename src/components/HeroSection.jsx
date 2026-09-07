@@ -33,19 +33,19 @@ export default function HeroSection() {
           <span className="break-words">{t.hero.tagline}</span>
         </div>
 
-        {/* Main Title - Responsive sizing: NEVER breaks words on laptops, NEVER cuts off on phones */}
-        <h1 className="font-display font-black tracking-tight text-slate-950 dark:text-white uppercase mb-6 drop-shadow-sm w-full max-w-full">
-          <span className="block text-black dark:text-white text-[24px] min-[360px]:text-[28px] min-[400px]:text-4xl sm:text-5xl md:text-6xl lg:text-[58px] xl:text-[72px] leading-tight whitespace-nowrap">
+        {/* Main Title - Perfectly calibrated proportions: 100% fit on mobile, elegant centered framing on laptop */}
+        <h1 className="flex flex-col items-center justify-center uppercase mb-6 drop-shadow-sm w-full max-w-full text-center select-none">
+          <span className="font-display font-black text-black dark:text-white text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight whitespace-nowrap">
             {t.hero.titleTop}
           </span>
-          <span className="block text-gold-gradient tracking-tight text-[20px] min-[360px]:text-[24px] min-[400px]:text-[32px] sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[66px] leading-tight mt-1 sm:mt-2 whitespace-nowrap">
+          <span className="font-display font-extrabold text-gold-gradient text-sm xs:text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight tracking-[0.12em] sm:tracking-[0.2em] mt-1 sm:mt-2 whitespace-nowrap">
             {t.hero.titleBottom}
           </span>
         </h1>
 
         {/* Headline */}
-        <div className="max-w-2xl mx-auto mb-8 w-full px-2">
-          <p className="text-sm sm:text-xl md:text-2xl font-bold tracking-wide text-black dark:text-white leading-relaxed font-sans break-words">
+        <div className="max-w-3xl mx-auto mb-8 w-full px-4">
+          <p className="text-sm sm:text-xl md:text-2xl font-bold tracking-wide text-black dark:text-white leading-relaxed font-sans text-center">
             {t.hero.headline}
           </p>
           <p className="text-xs sm:text-base text-slate-900 dark:text-slate-200 mt-2 font-medium break-words leading-relaxed">
