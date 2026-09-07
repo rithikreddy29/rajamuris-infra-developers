@@ -44,9 +44,9 @@ export default function App() {
 
   // Public Corporate Website: 100% clean of admin controls
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0A0F1D] text-slate-900 dark:text-white flex flex-col selection:bg-[#F0CD6D] selection:text-slate-950 transition-colors duration-300">
+    <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-white dark:bg-[#0A0F1D] text-slate-900 dark:text-white flex flex-col selection:bg-[#F0CD6D] selection:text-slate-950 transition-colors duration-300">
       <Navigation />
-      <main className="flex-1">
+      <main className="flex-1 w-full max-w-[100vw] overflow-x-hidden">
         <HeroSection />
         <CompanyStory />
         <StatisticsSection />

@@ -24,11 +24,18 @@ html.dark {
   --border-light: #1E293B;
 }
 
+html {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
   background-color: #FFFFFF;
   color: #0F172A;
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.3s ease, color 0.3s ease;

@@ -62,14 +62,14 @@ export default function Navigation() {
             : 'bg-white/90 dark:bg-[#0A0F1D]/90 backdrop-blur-sm border-b border-slate-100 dark:border-slate-800/80 py-3.5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* Brand Identity: INFRA DEVELOPERS directly below RAJAMURI'S */}
           <a href="#" className="flex flex-col group flex-shrink-0 py-0.5">
-            <span className="font-display font-black text-base sm:text-lg lg:text-xl tracking-tight text-slate-950 dark:text-white uppercase leading-none group-hover:text-[#B8860B] transition-colors">
+            <span className="font-display font-black text-sm xs:text-base sm:text-lg lg:text-xl tracking-tight text-slate-950 dark:text-white uppercase leading-none group-hover:text-[#B8860B] transition-colors">
               {language === 'te' ? 'రాజమురిస్' : "RAJAMURI'S"}
             </span>
-            <span className="text-[9px] sm:text-[10px] tracking-[0.24em] text-[#8B6508] dark:text-[#F0CD6D] font-bold uppercase font-mono mt-0.5">
+            <span className="text-[8px] xs:text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.24em] text-[#8B6508] dark:text-[#F0CD6D] font-bold uppercase font-mono mt-0.5">
               {language === 'te' ? 'ఇన్ఫ్రా డెవలపర్స్' : 'INFRA DEVELOPERS'}
             </span>
           </a>
@@ -107,30 +107,30 @@ export default function Navigation() {
           </nav>
 
           {/* Right Action Bar: Telugu Toggle + Dark/Light Mode + Phone + CTA */}
-          <div className="flex items-center gap-2 sm:gap-3 xl:gap-3.5 flex-shrink-0 whitespace-nowrap">
+          <div className="flex items-center gap-1.5 xs:gap-2 sm:gap-3 xl:gap-3.5 flex-shrink-0 whitespace-nowrap">
             
             {/* Telugu Translation Toggle Button */}
             <button
               onClick={toggleLanguage}
-              className="px-2.5 py-1.5 rounded-xl text-[11px] font-mono font-bold tracking-wider uppercase transition-all flex items-center gap-1.5 border border-amber-300/80 dark:border-amber-500/40 bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 dark:hover:bg-amber-900/60 text-[#8B6508] dark:text-[#F0CD6D] shadow-sm hover:scale-105 active:scale-95"
+              className="px-2 py-1 xs:px-2.5 xs:py-1.5 rounded-lg xs:rounded-xl text-[10px] xs:text-[11px] font-mono font-bold tracking-wider uppercase transition-all flex items-center gap-1 xs:gap-1.5 border border-amber-300/80 dark:border-amber-500/40 bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 dark:hover:bg-amber-900/60 text-[#8B6508] dark:text-[#F0CD6D] shadow-sm active:scale-95"
               title={language === 'en' ? 'తెలుగులోకి మార్చండి (Switch to Telugu)' : 'Switch to English'}
               aria-label="Toggle Telugu Translation"
             >
-              <Globe className="w-3.5 h-3.5 text-[#B8860B] dark:text-[#F0CD6D]" />
+              <Globe className="w-3 h-3 xs:w-3.5 xs:h-3.5 text-[#B8860B] dark:text-[#F0CD6D]" />
               <span className="font-semibold">{language === 'en' ? 'తెలుగు' : 'English'}</span>
             </button>
 
             {/* Dark Mode / Light Mode Option */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-xl text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-[#B8860B] dark:hover:border-[#B8860B] transition-all hover:scale-105 active:scale-95 shadow-sm"
+              className="p-1.5 xs:p-2 rounded-lg xs:rounded-xl text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-[#B8860B] dark:hover:border-[#B8860B] transition-all active:scale-95 shadow-sm"
               title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
               aria-label="Toggle Theme"
             >
               {theme === 'dark' ? (
-                <Sun className="w-4 h-4 text-amber-400" />
+                <Sun className="w-3.5 h-3.5 xs:w-4 xs:h-4 text-amber-400" />
               ) : (
-                <Moon className="w-4 h-4 text-slate-700" />
+                <Moon className="w-3.5 h-3.5 xs:w-4 xs:h-4 text-slate-700" />
               )}
             </button>
 
@@ -157,10 +157,10 @@ export default function Navigation() {
             {/* Mobile Menu Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+              className="lg:hidden p-1.5 xs:p-2 rounded-lg xs:rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-4 h-4 xs:w-5 xs:h-5" /> : <Menu className="w-4 h-4 xs:w-5 xs:h-5" />}
             </button>
 
           </div>

@@ -11,7 +11,7 @@ export default function HeroSection() {
       
       {/* Background Architectural Canvas / Blueprint Grid */}
       <div className="absolute inset-0 z-0 bg-architectural-grid opacity-60 pointer-events-none"></div>
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full bg-amber-100/30 dark:bg-amber-900/10 blur-[130px] pointer-events-none"></div>
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[90vw] max-w-[800px] h-[350px] sm:h-[500px] rounded-full bg-amber-100/30 dark:bg-amber-900/10 blur-[130px] pointer-events-none"></div>
 
       {/* ------------------------------------------------------------- */}
       {/* FAST 3.5s AUTOMATED CIVIL ANIMATION DIRECTLY IN THE BACKGROUND */}
@@ -25,35 +25,39 @@ export default function HeroSection() {
       </div>
 
       {/* Main Hero Foreground Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center w-full">
         
         {/* Supporting Tagline Pill */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-[#131B2E] border-2 border-slate-300 dark:border-slate-700 shadow-md text-slate-900 dark:text-white text-xs font-mono tracking-widest uppercase font-bold mb-6">
-          <span className="w-2 h-2 rounded-full bg-[#B8860B] animate-pulse"></span>
-          <span>{t.hero.tagline}</span>
+        <div className="inline-flex items-center justify-center gap-2 px-3.5 sm:px-5 py-2 rounded-full bg-white dark:bg-[#131B2E] border-2 border-slate-300 dark:border-slate-700 shadow-md text-slate-900 dark:text-white text-[10px] min-[400px]:text-xs font-mono tracking-normal sm:tracking-widest uppercase font-bold mb-6 max-w-full text-center leading-snug">
+          <span className="w-2 h-2 rounded-full bg-[#B8860B] animate-pulse flex-shrink-0"></span>
+          <span className="break-words">{t.hero.tagline}</span>
         </div>
 
-        {/* Main Title */}
-        <h1 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-slate-950 dark:text-white leading-[1.05] uppercase mb-6 drop-shadow-sm">
-          <span className="block text-black dark:text-white">{t.hero.titleTop}</span>
-          <span className="block text-gold-gradient tracking-tight">{t.hero.titleBottom}</span>
+        {/* Main Title - Responsive clamp so it NEVER cuts off on any phone screen */}
+        <h1 className="font-display font-black tracking-tight text-slate-950 dark:text-white uppercase mb-6 drop-shadow-sm w-full max-w-full break-words">
+          <span className="block text-black dark:text-white text-[28px] min-[360px]:text-[32px] min-[420px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight">
+            {t.hero.titleTop}
+          </span>
+          <span className="block text-gold-gradient tracking-tight text-[23px] min-[360px]:text-[27px] min-[420px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight mt-1">
+            {t.hero.titleBottom}
+          </span>
         </h1>
 
         {/* Headline */}
-        <div className="max-w-2xl mx-auto mb-8">
-          <p className="text-base sm:text-xl md:text-2xl font-bold tracking-wide text-black dark:text-white leading-relaxed font-sans">
+        <div className="max-w-2xl mx-auto mb-8 w-full px-2">
+          <p className="text-sm sm:text-xl md:text-2xl font-bold tracking-wide text-black dark:text-white leading-relaxed font-sans break-words">
             {t.hero.headline}
           </p>
-          <p className="text-sm sm:text-base text-slate-900 dark:text-slate-200 mt-2 font-medium">
+          <p className="text-xs sm:text-base text-slate-900 dark:text-slate-200 mt-2 font-medium break-words leading-relaxed">
             {t.hero.subtext}
           </p>
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-8">
+        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8 px-2 sm:px-0">
           <a
             href="#work"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-xs sm:text-sm tracking-widest uppercase text-white bg-slate-950 dark:bg-[#1E293B] hover:bg-slate-800 dark:hover:bg-slate-700 shadow-[0_4px_25px_rgba(15,23,42,0.3)] transition-all hover:scale-[1.02] active:scale-[0.98] border border-transparent dark:border-slate-700"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-xs sm:text-sm tracking-widest uppercase text-white bg-slate-950 dark:bg-[#1E293B] hover:bg-slate-800 dark:hover:bg-slate-700 shadow-[0_4px_25px_rgba(15,23,42,0.3)] transition-all hover:scale-[1.02] active:scale-[0.98] border border-transparent dark:border-slate-700 whitespace-nowrap"
           >
             <span>{t.hero.viewWork}</span>
             <ArrowUpRight className="w-4 h-4 text-[#F0CD6D]" />
@@ -61,7 +65,7 @@ export default function HeroSection() {
 
           <a
             href="#contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-xs sm:text-sm tracking-widest uppercase text-slate-950 dark:text-white bg-white dark:bg-[#131B2E] border-2 border-slate-400 dark:border-slate-700 hover:border-[#B8860B] hover:text-[#B8860B] dark:hover:border-[#F0CD6D] dark:hover:text-[#F0CD6D] shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-xs sm:text-sm tracking-widest uppercase text-slate-950 dark:text-white bg-white dark:bg-[#131B2E] border-2 border-slate-400 dark:border-slate-700 hover:border-[#B8860B] hover:text-[#B8860B] dark:hover:border-[#F0CD6D] dark:hover:text-[#F0CD6D] shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
           >
             <span>{t.hero.getInTouch}</span>
           </a>
