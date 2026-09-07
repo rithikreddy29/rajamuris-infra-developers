@@ -25,7 +25,7 @@ export default function HeroSection() {
       </div>
 
       {/* Main Hero Foreground Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center w-full">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center w-full">
         
         {/* Supporting Tagline Pill */}
         <div className="inline-flex items-center justify-center gap-2 px-3.5 sm:px-5 py-2 rounded-full bg-white dark:bg-[#131B2E] border-2 border-slate-300 dark:border-slate-700 shadow-md text-slate-900 dark:text-white text-[10px] min-[400px]:text-xs font-mono tracking-normal sm:tracking-widest uppercase font-bold mb-6 max-w-full text-center leading-snug">
@@ -33,12 +33,12 @@ export default function HeroSection() {
           <span className="break-words">{t.hero.tagline}</span>
         </div>
 
-        {/* Main Title - Responsive clamp so it NEVER cuts off on any phone screen */}
-        <h1 className="font-display font-black tracking-tight text-slate-950 dark:text-white uppercase mb-6 drop-shadow-sm w-full max-w-full break-words">
-          <span className="block text-black dark:text-white text-[28px] min-[360px]:text-[32px] min-[420px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight">
+        {/* Main Title - Responsive sizing: NEVER breaks words on laptops, NEVER cuts off on phones */}
+        <h1 className="font-display font-black tracking-tight text-slate-950 dark:text-white uppercase mb-6 drop-shadow-sm w-full max-w-full">
+          <span className="block text-black dark:text-white text-[24px] min-[360px]:text-[28px] min-[400px]:text-4xl sm:text-5xl md:text-6xl lg:text-[58px] xl:text-[72px] leading-tight whitespace-nowrap">
             {t.hero.titleTop}
           </span>
-          <span className="block text-gold-gradient tracking-tight text-[23px] min-[360px]:text-[27px] min-[420px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight mt-1">
+          <span className="block text-gold-gradient tracking-tight text-[20px] min-[360px]:text-[24px] min-[400px]:text-[32px] sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[66px] leading-tight mt-1 sm:mt-2 whitespace-nowrap">
             {t.hero.titleBottom}
           </span>
         </h1>

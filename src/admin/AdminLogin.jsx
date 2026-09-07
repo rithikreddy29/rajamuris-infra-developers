@@ -116,12 +116,11 @@ export default function AdminLogin({ onLoginSuccess }) {
             </button>
           </form>
 
-          {/* Helper Credentials Box */}
-          <div className="mt-6 p-3.5 rounded-xl bg-[#0A101D] border border-[#D4AF37]/40 text-xs font-mono text-slate-200 text-center">
-            <span className="text-slate-300 font-bold block mb-1">DEFAULT CREDENTIALS:</span>
-            <span className="text-[#F0CD6D] font-bold">Username: admin</span>
-            <span className="mx-2 text-slate-500">•</span>
-            <span className="text-[#F0CD6D] font-bold">Password: rajamuri2014</span>
+          {/* Secure Access Notice */}
+          <div className="mt-6 pt-4 border-t border-white/10 text-center">
+            <p className="text-[11px] font-mono text-slate-400 tracking-wide">
+              🔒 RESTRICTED PORTAL • AUTHORIZED MANAGEMENT PERSONNEL ONLY
+            </p>
           </div>
         </div>
 
